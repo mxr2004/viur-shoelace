@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, query } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { emit } from '../../internal/event';
 import { getTextContent } from '../../internal/slot';
 import { hasFocusVisible } from '../../internal/focus-visible';
@@ -26,6 +26,9 @@ export default class SlMenu extends LitElement {
   private typeToSelectString = '';
   private typeToSelectTimeout: any;
 
+  /** Enable or disable type-to-select behavior. */
+  @property({ type: Boolean, attribute: 'select-on-type' }) selectOnType = true;
+
   firstUpdated() {
     this.setAttribute('role', 'menu');
   }
@@ -45,9 +48,9 @@ export default class SlMenu extends LitElement {
   }
 
   getActiveItem() {
-    return this.getAllItems({ includeDisabled: false }).filter(i =>
-      i.shadowRoot!.querySelector('.menu-item--focused')
-    )[0];
+    const items = this.getAllItems({ includeDisabled: false });
+    const activeItem = this.getCurrentItem();
+    return activeItem ? items.indexOf(activeItem) : -1;
   }
 
   /**
@@ -77,25 +80,27 @@ export default class SlMenu extends LitElement {
    * enabling type-to-select when the menu doesn't have focus.
    */
   typeToSelect(key: string) {
-    const items = this.getAllItems({ includeDisabled: false });
-    clearTimeout(this.typeToSelectTimeout);
-    this.typeToSelectTimeout = setTimeout(() => (this.typeToSelectString = ''), 750);
-    this.typeToSelectString += key.toLowerCase();
+    if(this.selectOnType) {
+      const items = this.getAllItems({includeDisabled: false});
+      clearTimeout(this.typeToSelectTimeout);
+      this.typeToSelectTimeout = setTimeout(() => (this.typeToSelectString = ''), 750);
+      this.typeToSelectString += key.toLowerCase();
 
-    // Restore focus in browsers that don't support :focus-visible when using the keyboard
-    if (!hasFocusVisible) {
-      items.map(item => item.classList.remove('sl-focus-invisible'));
-    }
+      // Restore focus in browsers that don't support :focus-visible when using the keyboard
+      if (!hasFocusVisible) {
+        items.map(item => item.classList.remove('sl-focus-invisible'));
+      }
 
-    for (const item of items) {
-      const slot = item.shadowRoot!.querySelector('slot:not([name])') as HTMLSlotElement;
-      const label = getTextContent(slot).toLowerCase().trim();
-      if (label.substring(0, this.typeToSelectString.length) === this.typeToSelectString) {
-        this.setCurrentItem(item);
+      for (const item of items) {
+        const slot = item.shadowRoot!.querySelector('slot:not([name])') as HTMLSlotElement;
+        const label = getTextContent(slot).toLowerCase().trim();
+        if (label.substring(0, this.typeToSelectString.length) === this.typeToSelectString) {
+          this.setCurrentItem(item);
 
-        // Set focus here to force the browser to show :focus-visible styles
-        item.focus();
-        break;
+          // Set focus here to force the browser to show :focus-visible styles
+          item.focus();
+          break;
+        }
       }
     }
   }
