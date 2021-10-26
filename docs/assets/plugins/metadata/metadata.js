@@ -348,6 +348,17 @@
         if (component.status === 'planned') badgeType = 'neutral';
         if (component.status === 'deprecated') badgeType = 'danger';
 
+
+        let viur = ""
+        if (component.viur){
+          viur = `<sl-badge type="danger" pill>
+                ViUR ${component.viur}
+              </sl-badge>`
+        }
+
+
+
+
         result += `
           <div class="component-header">
             <div class="component-header__tag">
@@ -362,6 +373,8 @@
               <sl-badge type="${badgeType}" pill style="text-transform: capitalize;">
                 ${component.status}
               </sl-badge>
+
+                `+viur+`
             </div>
           </div>
         `;
@@ -461,13 +474,13 @@
             <sl-tab-group>
             <sl-tab slot="nav" panel="cdn" active>CDN</sl-tab>
             <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
-            <sl-tab slot="nav" panel="react">React</sl-tab>
+            <sl-tab slot="nav" panel="vue">Vue</sl-tab>
 
             <sl-tab-panel name="cdn">\n
-            To import this component from [the CDN](https://www.jsdelivr.com/package/npm/@shoelace-style/shoelace):
+            To import this component from [the CDN](https://www.XXXX):
 
             \`\`\`js
-            import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${metadata.package.version}/${component.path}';
+            import 'https://xxxx/npm/@shoelace-style/shoelace@${metadata.package.version}/${component.path}';
             \`\`\`
             </sl-tab-panel>
 
@@ -478,11 +491,8 @@
             \`\`\`
             </sl-tab-panel>
 
-            <sl-tab-panel name="react">\n
-            To import this component using [\`@shoelace-style/react\`](https://www.npmjs.com/package/@shoelace-style/react):
-            \`\`\`js
-            import '@shoelace-style/react/dist/${component.tagName.replace(/^sl-/, '')}';
-            \`\`\`
+            <sl-tab-panel name="vue">\n
+            WIP
             </sl-tab-panel>
             </sl-tab-group>
           `;

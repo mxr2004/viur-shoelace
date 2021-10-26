@@ -11,6 +11,7 @@ import '../spinner/spinner';
 /**
  * @since 2.0
  * @status stable
+ * @viur 0.5
  *
  * @dependency sl-spinner
  *
@@ -215,10 +216,10 @@ export default class SlButton extends LitElement {
               'button--large': this.size === 'large',
               'button--caret': this.caret,
               'button--circle': this.circle,
-              'button--disabled': this.disabled,
+              'button--outline button--disabled': this.disabled,
               'button--focused': this.hasFocus,
               'button--loading': this.loading,
-              'button--standard': !this.outline,
+              'button--standard': !this.outline && !this.disabled,
               'button--outline': this.outline,
               'button--pill': this.pill,
               'button--has-label': this.hasLabel,

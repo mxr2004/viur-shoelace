@@ -1,13 +1,13 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import { focusVisibleSelector } from '../../internal/focus-visible';
-
+//language=CSS
 export default css`
   ${componentStyles}
 
   :host {
     --height: var(--sl-toggle-size);
-    --thumb-size: calc(var(--sl-toggle-size) + 4px);
+    --thumb-size: calc(var(--sl-toggle-size) - 2px);
     --width: calc(var(--height) * 2);
 
     display: inline-block;
@@ -79,37 +79,37 @@ export default css`
     ~ .switch__control
     .switch__thumb {
     background-color: rgb(var(--sl-color-neutral-0));
-    border-color: rgb(var(--sl-color-primary-600));
-    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-primary-500) / var(--sl-focus-ring-alpha));
+    border-color: rgb(var(--sl-color-success-600));
+    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-success-500) / var(--sl-focus-ring-alpha));
   }
 
   /* Checked */
   .switch--checked .switch__control {
-    background-color: rgb(var(--sl-color-primary-600));
-    border-color: rgb(var(--sl-color-primary-600));
+    background-color: rgb(var(--sl-color-success-600));
+    border-color: rgb(var(--sl-color-success-600));
   }
 
   .switch--checked .switch__control .switch__thumb {
     background-color: rgb(var(--sl-color-neutral-0));
-    border-color: rgb(var(--sl-color-primary-600));
+    border-color: rgb(var(--sl-color-success-600));
     transform: translateX(calc((var(--width) - var(--height)) / 2));
   }
 
   /* Checked + hover */
   .switch.switch--checked:not(.switch--disabled) .switch__control:hover {
-    background-color: rgb(var(--sl-color-primary-600));
-    border-color: rgb(var(--sl-color-primary-600));
+    background-color: rgb(var(--sl-color-success-600));
+    border-color: rgb(var(--sl-color-success-600));
   }
 
   .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb {
     background-color: rgb(var(--sl-color-neutral-0));
-    border-color: rgb(var(--sl-color-primary-600));
+    border-color: rgb(var(--sl-color-success-600));
   }
 
   /* Checked + focus */
   .switch.switch--checked:not(.switch--disabled) .switch__input${focusVisibleSelector} ~ .switch__control {
-    background-color: rgb(var(--sl-color-primary-600));
-    border-color: rgb(var(--sl-color-primary-600));
+    background-color: rgb(var(--sl-color-success-600));
+    border-color: rgb(var(--sl-color-success-600));
   }
 
   .switch.switch--checked:not(.switch--disabled)
@@ -117,8 +117,8 @@ export default css`
     ~ .switch__control
     .switch__thumb {
     background-color: rgb(var(--sl-color-neutral-0));
-    border-color: rgb(var(--sl-color-primary-600));
-    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-primary-500) / var(--sl-focus-ring-alpha));
+    border-color: rgb(var(--sl-color-success-600));
+    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-success-500) / var(--sl-focus-ring-alpha));
   }
 
   /* Disabled */

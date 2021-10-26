@@ -2,6 +2,7 @@ import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import { focusVisibleSelector } from '../../internal/focus-visible';
 
+//language=CSS
 export default css`
   ${componentStyles}
 
@@ -39,8 +40,10 @@ export default css`
   }
 
   .button--disabled {
-    opacity: 0.5;
+    opacity:0.7;
+    background: none;
     cursor: not-allowed;
+    border-style: dashed !important; /**fixme**/
   }
 
   /* When disabled, prevent mouse events from bubbling up */

@@ -15,6 +15,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sl
 /**
  * @since 2.0
  * @status stable
+ * @viur 0.5
  *
  * @dependency sl-icon-button
  *

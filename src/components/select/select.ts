@@ -115,6 +115,9 @@ export default class SlSelect extends LitElement {
   /** The select's label. Alternatively, you can use the label slot. */
   @property() label: string;
 
+  /** The input's label position */
+  @property() labelposition: 'top' | 'left' = 'top';
+
   /** The select's help text. Alternatively, you can use the help-text slot. */
   @property({ attribute: 'help-text' }) helpText: string;
 
@@ -439,6 +442,7 @@ export default class SlSelect extends LitElement {
         helpText: this.helpText,
         hasHelpTextSlot: this.hasHelpTextSlot,
         size: this.size,
+        labelPosition: this.labelposition,
         onLabelClick: () => this.handleLabelClick()
       },
       html`

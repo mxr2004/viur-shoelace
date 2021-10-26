@@ -59,6 +59,9 @@ export default class SlTextarea extends LitElement {
   /** The textarea's label. Alternatively, you can use the label slot. */
   @property() label: string;
 
+  /** The input's label position */
+  @property() labelposition: 'top' | 'left' = 'top';
+
   /** The textarea's help text. Alternatively, you can use the help-text slot. */
   @property({ attribute: 'help-text' }) helpText = '';
 
@@ -290,7 +293,8 @@ export default class SlTextarea extends LitElement {
         helpTextId: this.helpTextId,
         helpText: this.helpText,
         hasHelpTextSlot: this.hasHelpTextSlot,
-        size: this.size
+        size: this.size,
+        labelPosition: this.labelposition
       },
       html`
         <div

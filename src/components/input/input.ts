@@ -80,6 +80,9 @@ export default class SlInput extends LitElement {
   /** The input's label. Alternatively, you can use the label slot. */
   @property() label: string;
 
+  /** The input's label position */
+  @property() labelposition: 'top' | 'left' = 'top';
+
   /** The input's help text. Alternatively, you can use the help-text slot. */
   @property({ attribute: 'help-text' }) helpText = '';
 
@@ -281,7 +284,8 @@ export default class SlInput extends LitElement {
         helpTextId: this.helpTextId,
         helpText: this.helpText,
         hasHelpTextSlot: this.hasHelpTextSlot,
-        size: this.size
+        size: this.size,
+        labelPosition: this.labelposition
       },
       html`
         <div

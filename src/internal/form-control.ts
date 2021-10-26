@@ -30,12 +30,15 @@ export const renderFormControl = (
 
     /** A function that gets called when the label is clicked. */
     onLabelClick?: (event: MouseEvent) => void;
+
+    /** The position of the label if used */
+    labelPosition?: 'top' | 'left'
   },
   input: TemplateResult
 ) => {
   const hasLabel = props.label ? true : !!props.hasLabelSlot;
   const hasHelpText = props.helpText ? true : !!props.hasHelpTextSlot;
-
+  const labelPosition = props.labelPosition ? props.labelPosition : "top";
   return html`
     <div
       part="form-control"
@@ -45,7 +48,9 @@ export const renderFormControl = (
         'form-control--medium': props.size === 'medium',
         'form-control--large': props.size === 'large',
         'form-control--has-label': hasLabel,
-        'form-control--has-help-text': hasHelpText
+        'form-control--has-help-text': hasHelpText,
+        'form-control__label-top': labelPosition === "top",
+        'form-control__label-left': labelPosition === "left"
       })}
     >
       <label

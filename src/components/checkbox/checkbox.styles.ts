@@ -2,6 +2,7 @@ import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import { focusVisibleSelector } from '../../internal/focus-visible';
 
+//language=CSS
 export default css`
   ${componentStyles}
 
@@ -29,7 +30,7 @@ export default css`
     width: var(--sl-toggle-size);
     height: var(--sl-toggle-size);
     border: solid var(--sl-input-border-width) rgb(var(--sl-input-border-color));
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     background-color: rgb(var(--sl-input-background-color));
     color: rgb(var(--sl-color-neutral-0));
     transition: var(--sl-transition-fast) border-color, var(--sl-transition-fast) background-color,
@@ -73,15 +74,15 @@ export default css`
   /* Checked/indeterminate */
   .checkbox--checked .checkbox__control,
   .checkbox--indeterminate .checkbox__control {
-    border-color: rgb(var(--sl-color-primary-600));
-    background-color: rgb(var(--sl-color-primary-600));
+    border-color: rgb(var(--sl-color-success-600));
+    background-color: rgb(var(--sl-color-success-600));
   }
 
   /* Checked/indeterminate + hover */
   .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__control:hover,
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__control:hover {
-    border-color: rgb(var(--sl-color-primary-500));
-    background-color: rgb(var(--sl-color-primary-500));
+    border-color: rgb(var(--sl-color-success-500));
+    background-color: rgb(var(--sl-color-success-500));
   }
 
   /* Checked/indeterminate + focus */
@@ -89,8 +90,8 @@ export default css`
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled)
     .checkbox__input${focusVisibleSelector}
     ~ .checkbox__control {
-    border-color: rgb(var(--sl-color-primary-500));
-    background-color: rgb(var(--sl-color-primary-500));
+    border-color: rgb(var(--sl-color-success-500));
+    background-color: rgb(var(--sl-color-success-500));
     box-shadow: var(--sl-focus-ring);
   }
 

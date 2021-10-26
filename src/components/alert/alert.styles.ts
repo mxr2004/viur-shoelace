@@ -1,6 +1,7 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 
+//language=CSS
 export default css`
   ${componentStyles}
 
@@ -17,7 +18,7 @@ export default css`
     align-items: stretch;
     background-color: rgb(var(--sl-surface-base-alt));
     border: solid var(--sl-panel-border-width) rgb(var(--sl-panel-border-color));
-    border-top-width: calc(var(--sl-panel-border-width) * 3);
+    /*border-top-width: calc(var(--sl-panel-border-width) * 3)*/
     border-radius: var(--sl-border-radius-medium);
     box-shadow: var(--box-shadow);
     font-family: var(--sl-font-sans);
@@ -40,7 +41,9 @@ export default css`
   }
 
   .alert--primary {
-    border-top-color: rgb(var(--sl-color-primary-600));
+    border-color: rgb(var(--sl-color-primary-600));
+    background-color: rgb(var(--sl-color-primary-100));
+
   }
 
   .alert--primary .alert__icon {
@@ -48,7 +51,8 @@ export default css`
   }
 
   .alert--success {
-    border-top-color: rgb(var(--sl-color-success-600));
+    border-color: rgb(var(--sl-color-success-600));
+    background-color: rgb(var(--sl-color-success-100));
   }
 
   .alert--success .alert__icon {
@@ -56,7 +60,8 @@ export default css`
   }
 
   .alert--neutral {
-    border-top-color: rgb(var(--sl-color-neutral-600));
+    border-color: rgb(var(--sl-color-neutral-600));
+    background-color: rgb(var(--sl-color-neutral-100));
   }
 
   .alert--neutral .alert__icon {
@@ -64,7 +69,8 @@ export default css`
   }
 
   .alert--warning {
-    border-top-color: rgb(var(--sl-color-warning-600));
+    border-color: rgb(var(--sl-color-warning-600));
+    background-color: rgb(var(--sl-color-warning-100));
   }
 
   .alert--warning .alert__icon {
@@ -72,7 +78,8 @@ export default css`
   }
 
   .alert--danger {
-    border-top-color: rgb(var(--sl-color-danger-600));
+    border-color: rgb(var(--sl-color-danger-600));
+    background-color: rgb(var(--sl-color-danger-100));
   }
 
   .alert--danger .alert__icon {

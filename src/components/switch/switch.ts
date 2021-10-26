@@ -12,6 +12,7 @@ let id = 0;
 /**
  * @since 2.0
  * @status stable
+ * @viur 0.5
  *
  * @slot - The switch's label.
  *

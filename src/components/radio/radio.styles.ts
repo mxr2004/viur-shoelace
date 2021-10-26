@@ -1,7 +1,7 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import { focusVisibleSelector } from '../../internal/focus-visible';
-
+//languag=CSS
 export default css`
   ${componentStyles}
 
@@ -65,27 +65,27 @@ export default css`
   .radio:not(.radio--checked):not(.radio--disabled) .radio__input${focusVisibleSelector} ~ .radio__control {
     border-color: rgb(var(--sl-input-border-color-focus));
     background-color: rgb(var(--sl-input-background-color-focus));
-    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-primary-500) / var(--sl-focus-ring-alpha));
+    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-success-500) / var(--sl-focus-ring-alpha));
   }
 
   /* Checked */
   .radio--checked .radio__control {
     color: rgb(var(--sl-color-neutral-0));
-    border-color: rgb(var(--sl-color-primary-600));
-    background-color: rgb(var(--sl-color-primary-600));
+    border-color: rgb(var(--sl-color-success-600));
+    background-color: rgb(var(--sl-color-success-600));
   }
 
   /* Checked + hover */
   .radio.radio--checked:not(.radio--disabled) .radio__control:hover {
-    border-color: rgb(var(--sl-color-primary-500));
-    background-color: rgb(var(--sl-color-primary-500));
+    border-color: rgb(var(--sl-color-success-500));
+    background-color: rgb(var(--sl-color-success-500));
   }
 
   /* Checked + focus */
   .radio.radio--checked:not(.radio--disabled) .radio__input${focusVisibleSelector} ~ .radio__control {
-    border-color: rgb(var(--sl-color-primary-500));
-    background-color: rgb(var(--sl-color-primary-500));
-    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-primary-500) / var(--sl-focus-ring-alpha));
+    border-color: rgb(var(--sl-color-success-500));
+    background-color: rgb(var(--sl-color-success-500));
+    box-shadow: 0 0 0 var(--sl-focus-ring-width) rgb(var(--sl-color-success-500) / var(--sl-focus-ring-alpha));
   }
 
   /* Disabled */

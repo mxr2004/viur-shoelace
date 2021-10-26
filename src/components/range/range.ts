@@ -58,6 +58,9 @@ export default class SlRange extends LitElement {
   /** The range's label. Alternatively, you can use the label slot. */
   @property() label = '';
 
+  /** The input's label position */
+  @property() labelposition: 'top' | 'left' = 'top';
+
   /** The range's help text. Alternatively, you can use the help-text slot. */
   @property({ attribute: 'help-text' }) helpText = '';
 
@@ -218,7 +221,8 @@ export default class SlRange extends LitElement {
         helpTextId: this.helpTextId,
         helpText: this.helpText,
         hasHelpTextSlot: this.hasHelpTextSlot,
-        size: 'medium'
+        size: 'medium',
+        labelPosition: this.labelposition
       },
       html`
         <div

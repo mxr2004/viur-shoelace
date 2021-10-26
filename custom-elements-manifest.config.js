@@ -25,7 +25,7 @@ export default {
           case ts.SyntaxKind.ClassDeclaration:
             const className = node.name.getText();
             const classDoc = moduleDoc?.declarations?.find(declaration => declaration.name === className);
-            const customTags = ['animation', 'dependency', 'since', 'status'];
+            const customTags = ['animation', 'dependency', 'since', 'status', 'viur'];
             let customComments = '/**';
 
             node.jsDoc?.forEach(jsDoc => {
@@ -62,6 +62,7 @@ export default {
 
                 // Value-only metadata tags
                 case 'since':
+                case 'viur':
                 case 'status':
                   classDoc[t.tag] = t.name;
                   break;

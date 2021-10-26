@@ -12,6 +12,7 @@ let id = 0;
 /**
  * @since 2.0
  * @status stable
+ * @viur 0.5
  *
  * @slot - The radio's label.
  *
@@ -174,10 +175,8 @@ export default class SlRadio extends LitElement {
         <span part="control" class="radio__control">
           <span part="checked-icon" class="radio__icon">
             <svg viewBox="0 0 16 16">
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g fill="currentColor">
-                  <circle cx="8" cy="8" r="3.42857143"></circle>
-                </g>
+              <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd">
+                <circle cx="8" cy="8" r="7"></circle>
               </g>
             </svg>
           </span>
