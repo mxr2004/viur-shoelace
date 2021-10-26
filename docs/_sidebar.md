@@ -51,8 +51,12 @@
   - [Tag](/components/tag)
   - [Textarea](/components/textarea)
   - [Tooltip](/components/tooltip)
+  - 
+- Extension
   <!--plop:component-->
 
+- ViUR Components
+  - [Viur Spinner](/components/viur-spinner)
 - Utilities
   - [Animated Image](/components/animated-image)
   - [Animation](/components/animation)
