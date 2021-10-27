@@ -99,7 +99,7 @@
     var height = 0
 
     var childs = _.track.querySelector("slot").assignedNodes({flatten: true})
-    _.slides = Array.prototype.filter.call(childs, (node) => node.nodeType == Node.ELEMENT_NODE)
+    _.slides = Array.prototype.filter.call(childs, (node) => node.nodeType == Node.ELEMENT_NODE);
     [].forEach.call(_.slides, function (_, i) {
       _.classList.add('glider-slide')
       _.setAttribute('data-gslide', i)
