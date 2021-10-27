@@ -12,6 +12,7 @@ const parser = new DOMParser();
 /**
  * @since 2.0
  * @status stable
+ * @viur 0.5
  *
  * @event sl-load - Emitted when the icon has loaded.
  * @event {{ status: number }} sl-error - Emitted when the icon fails to load due to an error.

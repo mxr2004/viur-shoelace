@@ -4,7 +4,33 @@
 
 Icons are symbols that can be used to represent various options within an application.
 
-Shoelace comes bundled with over 1,300 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
+This Fork uses primarly the [ViUR Icons](https://github.com/viur-framework/viur-icons) project. These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
+
+Click or tap on an icon below to copy its name and use it like this.
+
+```html
+<sl-icon name="icon-name-here"></sl-icon>
+```
+
+<div class="icon-search2">
+  <div class="icon-search-controls">
+    <sl-input placeholder="Search Icons" clearable>
+      <sl-icon slot="prefix" name="search"></sl-icon>
+    </sl-input>
+  </div>
+  <div class="icon-list"></div>
+  <input type="text" class="icon-copy-input">
+</div>
+
+
+## Bootstrap Library
+Shoelace comes bundled with over 1,300 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are registered as additional icon library.
+To use this icons, set the `library` to `bootstrap`.
+
+```html
+<!-- This will show the icon located at /assets/bootstrap-icons/heart.svg -->
+<sl-icon library="bootstrap" name="heart"></sl-icon>
+```
 
 Click or tap on an icon below to copy its name and use it like this.
 
@@ -61,6 +87,7 @@ Custom icons can be loaded individually with the `src` attribute. Only SVGs on a
 ```html preview
 <sl-icon src="/assets/images/shoe.svg" style="font-size: 8rem;"></sl-icon>
 ```
+
 
 ## Icon Libraries
 
@@ -489,11 +516,77 @@ If you want to change the icons Shoelace uses internally, you can register an ic
 ```
 
 <!-- Supporting scripts and styles for the search utility -->
+<!--language=JS-->
 <script>
-  fetch('/dist/assets/icons/icons.json')
+  fetch('/dist/assets/bootstrap-icons/icons.json')
     .then(res => res.json())  
     .then(icons => {
       const container = document.querySelector('.icon-search');
+      const input = container.querySelector('sl-input');
+      const select = container.querySelector('sl-select');
+      const copyInput = container.querySelector('.icon-copy-input');
+      const loader = container.querySelector('.icon-loader');
+      const list = container.querySelector('.icon-list');
+      const queue = [];
+      let inputTimeout;
+
+      // Generate icons
+      icons.map(i => {
+        const item = document.createElement('div');
+        item.classList.add('icon-list-item');
+        item.setAttribute('data-name', i.name);
+        item.setAttribute('data-terms', [i.name, i.title, ...(i.tags || []), ...(i.categories || [])].join(' '));
+        item.innerHTML = `
+          <svg width="1em" height="1em">
+            <use xlink:href="/assets/bootstrap-icons/sprite.svg#${i.name}"></use>
+          </svg>      
+        `;
+
+        const tooltip = document.createElement('sl-tooltip');
+        tooltip.content = i.name;
+        
+        tooltip.appendChild(item);
+        list.appendChild(tooltip);
+
+        item.addEventListener('click', () => {
+          copyInput.value = i.name;
+          copyInput.select();
+          document.execCommand('copy');
+          tooltip.content = 'Copied!';
+          setTimeout(() => tooltip.content = i.name, 1000);
+        });
+      });
+
+      // Filter as the user types
+      input.addEventListener('sl-input', () => {
+        clearTimeout(inputTimeout);
+        inputTimeout = setTimeout(() => {
+          [...list.querySelectorAll('.icon-list-item')].map(item => {
+            const filter = input.value.toLowerCase();
+            if (filter === '') {
+              item.hidden = false;
+            } else {
+              const terms = item.getAttribute('data-terms').toLowerCase();
+              item.hidden = terms.indexOf(filter) < 0;
+            }
+          });
+        }, 250);
+      });
+
+      // Sort by type and remember preference
+      const iconType = localStorage.getItem('sl-icon:type') || 'outline';
+      select.value = iconType;
+      list.setAttribute('data-type', select.value);
+      select.addEventListener('sl-change', () => {
+        list.setAttribute('data-type', select.value);
+        localStorage.setItem('sl-icon:type', select.value);
+      });
+    });
+
+  fetch('/dist/assets/icons/icons.json')
+    .then(res => res.json())  
+    .then(icons => {
+      const container = document.querySelector('.icon-search2');
       const input = container.querySelector('sl-input');
       const select = container.querySelector('sl-select');
       const copyInput = container.querySelector('.icon-copy-input');
@@ -554,6 +647,7 @@ If you want to change the icons Shoelace uses internally, you can register an ic
         localStorage.setItem('sl-icon:type', select.value);
       });
     });
+
 </script>
 
 <style>

@@ -1,5 +1,6 @@
 import defaultLibrary from './library.default';
 import systemLibrary from './library.system';
+import bootstrapLibrary from './library.bootstrap';
 import type SlIcon from '../icon/icon';
 
 export type IconLibraryResolver = (name: string) => string;
@@ -10,7 +11,7 @@ export interface IconLibrary {
   mutator?: IconLibraryMutator;
 }
 
-let registry: IconLibrary[] = [defaultLibrary, systemLibrary];
+let registry: IconLibrary[] = [defaultLibrary, bootstrapLibrary,systemLibrary];
 let watchedIcons: SlIcon[] = [];
 
 export function watchIcon(icon: SlIcon) {
