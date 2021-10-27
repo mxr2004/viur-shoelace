@@ -44,6 +44,7 @@
   - [Select](/components/select)
   - [Skeleton](/components/skeleton)
   - [Spinner](/components/spinner)
+  - [Spinner Circle](/components/spinner-circle)
   - [Switch](/components/switch)
   - [Tab Group](/components/tab-group)
   - [Tab](/components/tab)
@@ -51,12 +52,11 @@
   - [Tag](/components/tag)
   - [Textarea](/components/textarea)
   - [Tooltip](/components/tooltip)
-  - 
+
 - Extension
+  - [Slider](/components/slider)
   <!--plop:component-->
 
-- ViUR Components
-  - [Viur Spinner](/components/viur-spinner)
 - Utilities
   - [Animated Image](/components/animated-image)
   - [Animation](/components/animation)

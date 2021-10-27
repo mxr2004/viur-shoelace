@@ -41,7 +41,7 @@ export { default as SlResizeObserver } from './components/resize-observer/resize
 export { default as SlResponsiveMedia } from './components/responsive-media/responsive-media';
 export { default as SlSelect } from './components/select/select';
 export { default as SlSkeleton } from './components/skeleton/skeleton';
-export { default as SlSpinner } from './components/spinner/spinner';
+export { default as SlSpinnerCircle } from './components/spinner-circle/spinner-circle';
 export { default as SlSwitch } from './components/switch/switch';
 export { default as SlTab } from './components/tab/tab';
 export { default as SlTabGroup } from './components/tab-group/tab-group';
@@ -49,7 +49,8 @@ export { default as SlTabPanel } from './components/tab-panel/tab-panel';
 export { default as SlTag } from './components/tag/tag';
 export { default as SlTextarea } from './components/textarea/textarea';
 export { default as SlTooltip } from './components/tooltip/tooltip';
-export { default as SlViurSpinner } from './components/viur-spinner/viur-spinner';
+export { default as SlSpinner } from './components/spinner/spinner';
+export { default as SlSlider } from './components/slider/slider';
 /* plop:component */
 
 // Utilities

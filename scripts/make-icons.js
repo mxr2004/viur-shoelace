@@ -121,7 +121,7 @@ const iconDir2 = path.join(outdir, '/assets/icons');
       const name = path.basename(file, path.extname(file));
       const data = fm(await readFile(file, 'utf8'))
       let svgcode = dom.window.document.createRange().createContextualFragment(data["body"]).firstElementChild.innerHTML
-      console.log(svgcode)
+
       svgcode = svgcode.toString().replace(/#fff/g,'currentcolor')
       svgcode = svgcode.toString().replace(/#FFFFFF/g,'currentcolor')
 
@@ -131,7 +131,7 @@ const iconDir2 = path.join(outdir, '/assets/icons');
         </symbol>
       `;
     });
-    console.log(sprite)
+
     await writeFile('./docs/assets/icons/sprite.svg',
       `<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">${sprite.join()}</svg>`,
       'utf8');

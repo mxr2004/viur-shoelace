@@ -4,12 +4,11 @@ import styles from './spinner.styles';
 
 /**
  * @since 2.0
- * @status stable
+ * @status experimental
+ * @viur 0.5
  *
  * @csspart base - The component's base wrapper.
  *
- * @cssproperty --track-width - The width of the track.
- * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the indicator.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
@@ -17,13 +16,20 @@ import styles from './spinner.styles';
 export default class SlSpinner extends LitElement {
   static styles = styles;
 
+
   render() {
     return html`
-      <svg part="base" class="spinner" aria-busy="true" aria-live="polite">
-        <circle class="spinner__track"></circle>
-        <circle class="spinner__indicator"></circle>
-      </svg>
-    `;
+      <div part="base" class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>`;
   }
 }
 
