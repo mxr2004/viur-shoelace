@@ -125,7 +125,6 @@ export default css`
     margin: 7px;
   }
   .glider-dot:hover,
-  .glider-dot:focus,
   .glider-dot.active {
     background: var(--slider-dot-color);
   }

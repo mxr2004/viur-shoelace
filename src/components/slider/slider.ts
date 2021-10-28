@@ -103,14 +103,12 @@ export default class SlSlider extends LitElement {
     }
 
     this.collectOtions()
-    console.log(this.baseOptions)
     this.gliderInstance = new Glider( this.gliderWrapper, this.baseOptions)
     this.startAutoScroll()
   }
 
   handleSlotChange(){
     this.collectOtions()
-    console.log(this.baseOptions)
     this.gliderInstance = new Glider( this.gliderWrapper, this.baseOptions)
     this.startAutoScroll()
   }

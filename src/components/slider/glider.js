@@ -144,7 +144,6 @@
     _.opt.resizeLock && _.scrollTo(_.slide * _.itemWidth, 0)
 
     if (breakpointChanged || paging) {
-      console.log("AAAAA1")
       _.bindArrows()
       _.buildDots()
       _.bindDrag()
@@ -194,8 +193,6 @@
 
   gliderPrototype.buildDots = function () {
     var _ = this
-    console.log(_)
-    console.log(_.opt.dots)
     if (!_.opt.dots) {
       if (_.dots) _.dots.innerHTML = ''
       return
@@ -205,7 +202,6 @@
       _.dots = _.ele.parentNode.querySelector(_.opt.dots)
     } else _.dots = _.opt.dots
     if (!_.dots) return
-    console.log(_.dots)
     _.dots.innerHTML = ''
     _.dots.classList.add('glider-dots')
 
@@ -233,10 +229,8 @@
     }
     ['prev', 'next'].forEach(function (direction) {
       var arrow = _.opt.arrows[direction]
-      console.log(arrow)
       if (arrow) {
         if (typeof arrow === 'string') arrow = _.ele.parentNode.querySelector(arrow)
-        console.log(arrow)
         if (arrow) {
           arrow._func = arrow._func || _.scrollItem.bind(_, direction)
           _.event(arrow, 'remove', {
