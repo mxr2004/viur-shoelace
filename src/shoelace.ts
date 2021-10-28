@@ -51,6 +51,7 @@ export { default as SlTextarea } from './components/textarea/textarea';
 export { default as SlTooltip } from './components/tooltip/tooltip';
 export { default as SlSpinner } from './components/spinner/spinner';
 export { default as SlSlider } from './components/slider/slider';
+export { default as SlDetailsGroup } from './components/details-group/details-group';
 /* plop:component */
 
 // Utilities

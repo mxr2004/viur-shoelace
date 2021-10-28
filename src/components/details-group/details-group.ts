@@ -1,0 +1,54 @@
+import { LitElement, html } from 'lit';
+import { customElement, property, queryAssignedNodes } from 'lit/decorators.js';
+import { emit } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import styles from './details-group.styles';
+
+/**
+ * @since 2.0
+ * @status experimental
+ * @viur 0.5
+ *
+ * @slot - The default slot.
+ *
+ * @cssproperty --details-gap - The gap between the detail boxes.
+ */
+@customElement('sl-details-group')
+export default class SlDetailsGroup extends LitElement {
+  static styles = styles;
+
+  @queryAssignedNodes('',true)
+  currentSlotNodes;
+
+  hasChanged(){
+    this.registerDetails()
+  }
+
+  handleSlotChange(){
+    this.registerDetails()
+  }
+
+  registerDetails(){
+    let detailsList = Array.prototype.filter.call(this.currentSlotNodes, (node) => (node.nodeType == Node.ELEMENT_NODE ));
+
+    if (detailsList){
+      for(const details of detailsList){
+        details.addEventListener('sl-show', event => {
+          [...detailsList].map(details => (details.open = event.target === details));
+        });
+      }
+    }
+  }
+
+  render() {
+    return html`
+      <slot @slotchange=${this.handleSlotChange}>
+    </slot> `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sl-details-group': SlDetailsGroup;
+  }
+}

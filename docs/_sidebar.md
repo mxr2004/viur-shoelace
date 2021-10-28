@@ -55,6 +55,7 @@
 
 - Extension
   - [Slider](/components/slider)
+  - [Details Group](/components/details-group)
   <!--plop:component-->
 
 - Utilities
