@@ -67,7 +67,8 @@
     table.innerHTML = `
       <thead>
         <tr>
-          <th>Name</th>
+          <th data-flavor="html">Name</th>
+          <th data-flavor="react">React Event</th>
           <th>Description</th>
           <th>Event Detail</th>
         </tr>
@@ -77,7 +78,8 @@
           .map(
             event => `
               <tr>
-                <td><code class="nowrap">${escapeHtml(event.name)}</code></td>
+                <td data-flavor="html"><code class="nowrap">${escapeHtml(event.name)}</code></td>
+                <td data-flavor="react"><code class="nowrap">${escapeHtml(event.reactName)}</code></td>
                 <td>${escapeHtml(event.description)}</td>
                 <td>${event.type?.text ? `<code>${escapeHtml(event.type?.text)}` : '-'}</td>
               </tr>
@@ -405,6 +407,41 @@
           return prop.kind === 'field' && prop.privacy !== 'private';
         });
 
+        if (component.path) {
+          /* prettier-ignore */
+          result += `
+            ## Importing
+
+            <sl-tab-group>
+            <sl-tab slot="nav" panel="cdn">CDN</sl-tab>
+            <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
+            <sl-tab slot="nav" panel="react">React</sl-tab>
+
+            <sl-tab-panel name="cdn">\n
+            To cherry pick this component from [the CDN](https://www.jsdelivr.com/package/npm/@shoelace-style/shoelace):
+
+            \`\`\`js
+            import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${metadata.package.version}/${component.path}';
+            \`\`\`
+            </sl-tab-panel>
+
+            <sl-tab-panel name="bundler">\n
+            To import this component using [a bundler](/getting-started/installation#bundling):
+            \`\`\`js
+            import '@shoelace-style/shoelace/${component.path}';
+            \`\`\`
+            </sl-tab-panel>
+
+            <sl-tab-panel name="react">\n
+            To import this component as a [React component](/frameworks/react):
+            \`\`\`js
+            import { ${component.name} } from '@shoelace-style/shoelace/dist/react';
+            \`\`\`
+            </sl-tab-panel>
+            </sl-tab-group>
+          `;
+        }
+
         if (props?.length) {
           result += `
             ## Properties
@@ -421,8 +458,20 @@
 
         if (methods?.length) {
           result += `
-          ## Methods
-          ${createMethodsTable(methods)}
+            ## Methods
+
+            <p data-flavor="html">
+              Methods can be called by obtaining a reference to the element and calling
+              <code>el.methodName()</code>.
+            </p>
+
+
+            <p data-flavor="react">
+              Methods can be called by obtaining a <code>ref</code> to the element and calling
+              <code>ref.current.methodName()</code>.
+            </p>
+
+            ${createMethodsTable(methods)}
           `;
         }
 
@@ -463,38 +512,6 @@
             This component imports the following dependencies.
 
             ${createDependenciesList(component.tagName, getAllComponents(metadata))}
-          `;
-        }
-
-        if (component.path) {
-          /* prettier-ignore */
-          result += `
-            ## Importing
-
-            <sl-tab-group>
-            <sl-tab slot="nav" panel="cdn" active>CDN</sl-tab>
-            <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
-            <sl-tab slot="nav" panel="vue">Vue</sl-tab>
-
-            <sl-tab-panel name="cdn">\n
-            To import this component from [the CDN](https://www.XXXX):
-
-            \`\`\`js
-            import 'https://xxxx/npm/@shoelace-style/shoelace@${metadata.package.version}/${component.path}';
-            \`\`\`
-            </sl-tab-panel>
-
-            <sl-tab-panel name="bundler">\n
-            To import this component using [a bundler](/getting-started/installation#bundling):
-            \`\`\`js
-            import '@shoelace-style/shoelace/${component.path}';
-            \`\`\`
-            </sl-tab-panel>
-
-            <sl-tab-panel name="vue">\n
-            WIP
-            </sl-tab-panel>
-            </sl-tab-group>
           `;
         }
 

@@ -363,7 +363,7 @@ export default class SlInput extends LitElement {
                   tabindex="-1"
                 >
                   <slot name="clear-icon">
-                    <sl-icon name="x-circle" library="system"></sl-icon>
+                    <sl-icon name="x-circle-fill" library="system"></sl-icon>
                   </slot>
                 </button>
               `

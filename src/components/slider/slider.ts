@@ -1,7 +1,8 @@
 import { LitElement, html } from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import styles from './slider.styles';
-import Glider from './glider.js'
+// @ts-ignore
+import Glider from './glider.js';
 
 /**
  * @since 2.0
@@ -55,8 +56,8 @@ export default class SlSlider extends LitElement {
   @property({ type: Number, reflect: true }) autoScroll = 0;
 
   baseOptions = {}
-  gliderInstance = null
-  interval = null
+  gliderInstance:any = null
+  interval:any = null
 
   collectOtions(){
     if (this.arrows){

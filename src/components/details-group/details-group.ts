@@ -1,7 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, queryAssignedNodes } from 'lit/decorators.js';
-import { emit } from '../../internal/event';
-import { watch } from '../../internal/watch';
+import { customElement, queryAssignedNodes } from 'lit/decorators.js';
 import styles from './details-group.styles';
 
 /**
@@ -18,7 +16,7 @@ export default class SlDetailsGroup extends LitElement {
   static styles = styles;
 
   @queryAssignedNodes('',true)
-  currentSlotNodes;
+  currentSlotNodes:any;
 
   hasChanged(){
     this.registerDetails()
@@ -29,11 +27,11 @@ export default class SlDetailsGroup extends LitElement {
   }
 
   registerDetails(){
-    let detailsList = Array.prototype.filter.call(this.currentSlotNodes, (node) => (node.nodeType == Node.ELEMENT_NODE ));
+    let detailsList = Array.prototype.filter.call(this.currentSlotNodes, (node:any) => (node.nodeType == Node.ELEMENT_NODE ));
 
     if (detailsList){
       for(const details of detailsList){
-        details.addEventListener('sl-show', event => {
+        details.addEventListener('sl-show', (event:Event) => {
           [...detailsList].map(details => (details.open = event.target === details));
         });
       }
