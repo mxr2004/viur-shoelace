@@ -1,8 +1,10 @@
 # ViUR-Shoelace
-Viur-shoelce is a fork of the great web component library [shoelace.style](https://shoelace.style) by [Cory LaViska](https://twitter.com/claviska).
-The fork adapts style, components to the Viur-Framework. If you don't use the Viur-Framework, please have a look at the [original repo](https://github.com/shoelace-style/shoelace) of Cory LaViska.
+Viur-shoelace is a fork of the great web component library [shoelace.style](https://shoelace.style) by [Cory LaViska](https://twitter.com/claviska).
+The fork adapts style, components and some behavior for the [ViUR-Framework](https://github.com/viur-framework). If you don't use the Viur-Framework, please have a look at the [original repo](https://github.com/shoelace-style/shoelace) of Cory LaViska.
 
-If you use this fork in a profit way please support [fund its development](https://github.com/sponsors/claviska) 
+If you use this fork in a profit way please support it by [fund its development](https://github.com/sponsors/claviska) 
+
+---
 
 A forward-thinking library of web components.
 
