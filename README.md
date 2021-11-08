@@ -4,6 +4,8 @@ The fork adapts style, components to the Viur-Framework. If you don't use the Vi
 
 If you use this fork in a profit way please support [fund its development](https://github.com/sponsors/claviska) 
 
+---
+
 A forward-thinking library of web components.
 
 - Works with all frameworks 🧩
