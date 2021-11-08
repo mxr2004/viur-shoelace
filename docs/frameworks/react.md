@@ -17,7 +17,7 @@ Next, [include a theme](/getting-started/themes) and set the [base path](/gettin
 import '@shoelace-style/shoelace/dist/themes/light.css';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path';
 
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/dist/');
+setBasePath('https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/');
 ```
 
 ?> If you'd rather not use the CDN for assets, you can create a [copy task](https://webpack.js.org/plugins/copy-webpack-plugin/) to copy `node_modules/@shoelace-style/shoelace/dist/assets` into your app's `public` directory. Then you can point the base path to that folder instead.

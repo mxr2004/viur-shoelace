@@ -115,7 +115,7 @@ This was achieved by taking the light theme's [color tokens](/tokens/color) and 
 To install the dark theme, add the following to the `<head>` section of your page.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/dist/themes/dark.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/themes/dark.css">
 ```
 
 To activate the theme, apply the `sl-theme-dark` class to the `<html>` element.

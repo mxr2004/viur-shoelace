@@ -421,7 +421,7 @@
             To cherry pick this component from [the CDN](https://www.jsdelivr.com/package/npm/@shoelace-style/shoelace):
 
             \`\`\`js
-            import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${metadata.package.version}/${component.path}';
+            import 'https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@${metadata.package.version}/${component.path}';
             \`\`\`
             </sl-tab-panel>
 
