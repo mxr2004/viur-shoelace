@@ -1,9 +1,10 @@
 {
-  "name": "@shoelace-style/shoelace",
+  "name": "@viur/viur-shoelace",
   "description": "A forward-thinking library of web components.",
   "version": "2.0.0-beta.60",
-  "homepage": "https://github.com/shoelace-style/shoelace",
+  "homepage": "https://github.com/viur-framework/viur-shoelace",
   "author": "Cory LaViska",
+  "contributors": ["Andreas H. Kelch"],
   "license": "MIT",
   "main": "dist/shoelace.js",
   "module": "dist/shoelace.js",
@@ -20,10 +21,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shoelace-style/shoelace.git"
+    "url": "git+https://github.com/viur-framework/viur-shoelace.git"
   },
   "bugs": {
-    "url": "https://github.com/shoelace-style/shoelace/issues"
+    "url": "https://github.com/viur-framework/viur-shoelace/issues"
   },
   "funding": {
     "type": "individual",
