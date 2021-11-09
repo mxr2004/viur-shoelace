@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14199709-676f-432f-8c89-0aed420a9438/deploy-status)](https://app.netlify.com/sites/serene-allen-537100/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/14199709-676f-432f-8c89-0aed420a9438/deploy-status)](https://serene-allen-537100.netlify.app)
 
 # ViUR-Shoelace
 Viur-shoelace is a fork of the great web component library [shoelace.style](https://shoelace.style) by [Cory LaViska](https://twitter.com/claviska).
