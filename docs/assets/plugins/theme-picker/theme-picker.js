@@ -32,7 +32,14 @@
         // Toggle the dark mode class without transitions
         document.body.appendChild(noTransitions);
         requestAnimationFrame(() => {
-          document.documentElement.classList.toggle('sl-theme-dark', isDark());
+          if (theme === "viur"){
+            document.documentElement.classList.remove('sl-theme-dark');
+            document.documentElement.classList.add('sl-theme-viur');
+          }else{
+            document.documentElement.classList.remove('sl-theme-viur');
+            document.documentElement.classList.toggle('sl-theme-dark', isDark());
+          }
+
           requestAnimationFrame(() => document.body.removeChild(noTransitions));
         });
       }
@@ -50,6 +57,7 @@
           <sl-menu-label>Toggle <kbd>\\</kbd></sl-menu-label>
           <sl-menu-item value="light">Light</sl-menu-item>
           <sl-menu-item value="dark">Dark</sl-menu-item>
+          <sl-menu-item value="viur">ViUR</sl-menu-item>
           <sl-divider></sl-divider>
           <sl-menu-item value="auto">Auto</sl-menu-item>
         </sl-menu>
