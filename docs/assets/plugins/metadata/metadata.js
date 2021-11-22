@@ -316,13 +316,13 @@
       buttons.classList.add('sidebar-buttons');
       buttons.innerHTML = `
         <sl-button size="small" class="repo-button repo-button--sponsor" href="https://github.com/sponsors/claviska" target="_blank">
-          <sl-icon name="heart"></sl-icon> Sponsor
+          <sl-icon slot="prefix" name="heart"></sl-icon> Sponsor
         </sl-button>
         <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace/stargazers" target="_blank">
-          <sl-icon name="github"></sl-icon> <span class="github-star-count">Star</span>
+          <sl-icon slot="prefix" name="github"></sl-icon> <span class="github-star-count">Star</span>
         </sl-button>
         <sl-button size="small" class="repo-button repo-button--twitter" href="https://twitter.com/shoelace_style" target="_blank">
-          <sl-icon name="twitter"></sl-icon> Follow
+          <sl-icon slot="prefix" name="twitter"></sl-icon> Follow
         </sl-button>
       `;
       target.appendChild(buttons);
@@ -413,12 +413,21 @@
             ## Importing
 
             <sl-tab-group>
-            <sl-tab slot="nav" panel="cdn">CDN</sl-tab>
+            <sl-tab slot="nav" panel="script">Script</sl-tab>
+            <sl-tab slot="nav" panel="import">Import</sl-tab>
             <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
             <sl-tab slot="nav" panel="react">React</sl-tab>
 
-            <sl-tab-panel name="cdn">\n
-            To cherry pick this component from [the CDN](https://www.jsdelivr.com/package/npm/@shoelace-style/shoelace):
+            <sl-tab-panel name="script">\n
+            To import this component from [the CDN](https://www.jsdelivr.com/package/npm/@viur/viur-shoelace) using a script tag:
+
+            \`\`\`html
+            <script type="module" src="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@${metadata.package.version}/${component.path}"></script>
+            \`\`\`
+            </sl-tab-panel>
+
+            <sl-tab-panel name="import">\n
+            To import this component from [the CDN](https://www.jsdelivr.com/package/npm/@viur/viur-shoelace) using a JavaScript import:
 
             \`\`\`js
             import 'https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@${metadata.package.version}/${component.path}';
@@ -428,14 +437,14 @@
             <sl-tab-panel name="bundler">\n
             To import this component using [a bundler](/getting-started/installation#bundling):
             \`\`\`js
-            import '@shoelace-style/shoelace/${component.path}';
+            import '@viur/viur-shoelace/${component.path}';
             \`\`\`
             </sl-tab-panel>
 
             <sl-tab-panel name="react">\n
             To import this component as a [React component](/frameworks/react):
             \`\`\`js
-            import { ${component.name} } from '@shoelace-style/shoelace/dist/react';
+            import { ${component.name} } from '@viur/viur-shoelace/dist/react';
             \`\`\`
             </sl-tab-panel>
             </sl-tab-group>

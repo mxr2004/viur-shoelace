@@ -6,7 +6,7 @@ export default css`
   ${componentStyles}
 
   :host {
-    --indicator-color: rgb(var(--sl-color-primary-600));
+    --indicator-color: var(--sl-color-primary-600);
     --dot-width: calc(1em / 4);
     --speed: 1s;
   }

@@ -52,3 +52,4 @@ export { default as SlTable } from './table';
 export { default as SlTag } from './tag';
 export { default as SlTextarea } from './textarea';
 export { default as SlTooltip } from './tooltip';
+export { default as SlVisuallyHidden } from './visually-hidden';

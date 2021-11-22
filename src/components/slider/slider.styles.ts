@@ -6,9 +6,9 @@ export default css`
 
   :host {
     display: block;
-    --slider-dot-color:rgb(var(--sl-color-primary-600));
-    --slider-arrow-color:rgb(var(--sl-color-primary-600));
-    --slider-arrow-color-hover:rgb(var(--sl-color-primary-300));
+    --slider-dot-color:var(--sl-color-primary-600);
+    --slider-arrow-color:var(--sl-color-primary-600);
+    --slider-arrow-color-hover:var(--sl-color-primary-300);
   }
 
   .glider-contain {
@@ -117,9 +117,9 @@ export default css`
     outline: none;
     display: block;
     cursor: pointer;
-    color: rgb(var(--sl-color-neutral-300));
+    color: var(--sl-color-neutral-300);
     border-radius: 999px;
-    background: rgb(var(--sl-color-neutral-300));;
+    background: var(--sl-color-neutral-300);
     width: 12px;
     height: 12px;
     margin: 7px;
@@ -138,8 +138,8 @@ export default css`
     .glider::-webkit-scrollbar-thumb {
       opacity: 1;
       border-radius: 99px;
-      background-color: rgb(var(--sl-color-neutral-200));;
-      box-shadow: 0 0 1px rgb(var(--sl-color-neutral-200));;
+      background-color: var(--sl-color-neutral-200);
+      box-shadow: 0 0 1px var(--sl-color-neutral-200);
     }
   }
 

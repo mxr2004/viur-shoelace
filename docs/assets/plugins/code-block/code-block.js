@@ -113,8 +113,9 @@
 
       [...doc.querySelectorAll('code[class^="lang-"]')].map(code => {
         if (code.classList.contains('preview')) {
+          const isExpanded = code.classList.contains('expanded');
           const pre = code.closest('pre');
-          const preId = `code-block-preview-${count}`;
+          const sourceGroupId = `code-block-source-group-${count}`;
           const toggleId = `code-block-toggle-${count}`;
           const reactPre = getAdjacentExample('react', pre);
           const hasReact = reactPre !== null;
@@ -125,12 +126,11 @@
             }
           ];
 
-          pre.id = preId;
           pre.setAttribute('data-lang', pre.getAttribute('data-lang').replace(/ preview$/, ''));
           pre.setAttribute('aria-labelledby', toggleId);
 
           const codeBlock = `
-            <div class="code-block">
+            <div class="code-block ${isExpanded ? 'code-block--expanded' : ''}">
               <div class="code-block__preview">
                 ${code.textContent}
                 <div class="code-block__resizer">
@@ -138,24 +138,31 @@
                 </div>
               </div>
 
-              <div class="code-block__source code-block__source--html" ${hasReact ? 'data-flavor="html"' : ''}>
-                ${pre.outerHTML}
-              </div>
-
-              ${
-                hasReact
-                  ? `
-                <div class="code-block__source code-block__source--react" data-flavor="react">
-                  ${reactPre.outerHTML}
+              <div class="code-block__source-group" id="${sourceGroupId}">
+                <div class="code-block__source code-block__source--html" ${hasReact ? 'data-flavor="html"' : ''}>
+                  ${pre.outerHTML}
                 </div>
-              `
-                  : ''
-              }
+
+                ${
+                  hasReact
+                    ? `
+                  <div class="code-block__source code-block__source--react" data-flavor="react">
+                    ${reactPre.outerHTML}
+                  </div>
+                `
+                    : ''
+                }
+              </div>
 
               <div class="code-block__buttons">
                 ${hasReact ? ` ${htmlButton} ${reactButton} ` : ''}
 
-                <button type="button" class="code-block__button code-block__toggle" aria-expanded="false" aria-controls="${preId}">
+                <button
+                  type="button"
+                  class="code-block__button code-block__toggle"
+                  aria-expanded="${isExpanded ? 'true' : 'false'}"
+                  aria-controls="${sourceGroupId}"
+                >
                   Source
                   <svg
                     viewBox="0 0 24 24"
@@ -286,6 +293,9 @@
       const htmlExample = codeBlock.querySelector('.code-block__source--html > pre > code')?.textContent;
       const reactExample = codeBlock.querySelector('.code-block__source--react > pre > code')?.textContent;
       const isReact = flavor === 'react' && typeof reactExample === 'string';
+      const theme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
       const editors = isReact ? '0010' : '1000';
       let htmlTemplate = '';
       let jsTemplate = '';
@@ -324,10 +334,14 @@
 
       // CSS templates
       cssTemplate =
-        `@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${version}/dist/themes/light.css';\n` +
+        `@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${version}/dist/themes/${
+          isDark ? 'dark' : 'light'
+        }.css';\n` +
         '\n' +
         'body {\n' +
         '  font: 16px sans-serif;\n' +
+        '  background-color: var(--sl-color-neutral-0);\n' +
+        '  color: var(--sl-color-neutral-900);\n' +
         '  padding: 1rem;\n' +
         '}';
 
@@ -338,6 +352,7 @@
         tags: ['shoelace', 'web components'],
         editors,
         head: `<meta name="viewport" content="width=device-width">`,
+        html_classes: `sl-theme-${isDark ? 'dark' : 'light'}`,
         css_external: ``,
         js_external: ``,
         js_module: true,

@@ -425,7 +425,6 @@ export default class SlDropdown extends LitElement {
           <div
             part="panel"
             class="dropdown__panel"
-            role="menu"
             aria-hidden=${this.open ? 'false' : 'true'}
             aria-labelledby=${this.componentId}
           >
@@ -442,7 +441,7 @@ setDefaultAnimation('dropdown.show', {
     { opacity: 0, transform: 'scale(0.9)' },
     { opacity: 1, transform: 'scale(1)' }
   ],
-  options: { duration: 150, easing: 'ease' }
+  options: { duration: 100, easing: 'ease' }
 });
 
 setDefaultAnimation('dropdown.hide', {
@@ -450,7 +449,7 @@ setDefaultAnimation('dropdown.hide', {
     { opacity: 1, transform: 'scale(1)' },
     { opacity: 0, transform: 'scale(0.9)' }
   ],
-  options: { duration: 150, easing: 'ease' }
+  options: { duration: 100, easing: 'ease' }
 });
 
 declare global {
