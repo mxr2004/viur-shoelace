@@ -67,7 +67,7 @@ export default css`
     z-index: 2;
     font-size: 40px;
     text-decoration: none;
-    left: -23px;
+    left: 0;
     border: 0;
     top: calc(50% - 56px);
     cursor: pointer;
@@ -87,7 +87,7 @@ export default css`
     color: var(--slider-arrow-color-hover);
   }
   .glider-next {
-    right: -23px;
+    right: 0;
     left: auto;
   }
   .glider-next.disabled,
