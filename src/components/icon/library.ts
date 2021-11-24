@@ -11,7 +11,7 @@ export interface IconLibrary {
   mutator?: IconLibraryMutator;
 }
 
-let registry: IconLibrary[] = [defaultLibrary, bootstrapLibrary,systemLibrary];
+let registry: IconLibrary[] = [defaultLibrary, bootstrapLibrary, systemLibrary];
 let watchedIcons: SlIcon[] = [];
 
 export function watchIcon(icon: SlIcon) {

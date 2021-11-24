@@ -16,20 +16,18 @@ import styles from './spinner.styles';
 export default class SlSpinner extends LitElement {
   static styles = styles;
 
-
   render() {
-    return html`
-      <div part="base" class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>`;
+    return html` <div part="base" class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>`;
   }
 }
 

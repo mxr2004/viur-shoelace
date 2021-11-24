@@ -105,7 +105,6 @@ export default css`
   .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb {
     background-color: var(--sl-color-neutral-0);
     border-color: var(--sl-color-success-600);
-
   }
 
   /* Checked + focus */
@@ -121,7 +120,6 @@ export default css`
     background-color: var(--sl-color-neutral-0);
     border-color: var(--sl-color-success-600);
     box-shadow: var(--sl-focus-ring);
-
   }
 
   /* Disabled */

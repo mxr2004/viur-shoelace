@@ -15,23 +15,26 @@ import styles from './details-group.styles';
 export default class SlDetailsGroup extends LitElement {
   static styles = styles;
 
-  @queryAssignedNodes('',true)
-  currentSlotNodes:any;
+  @queryAssignedNodes('', true)
+  currentSlotNodes: any;
 
-  hasChanged(){
-    this.registerDetails()
+  hasChanged() {
+    this.registerDetails();
   }
 
-  handleSlotChange(){
-    this.registerDetails()
+  handleSlotChange() {
+    this.registerDetails();
   }
 
-  registerDetails(){
-    let detailsList = Array.prototype.filter.call(this.currentSlotNodes, (node:any) => (node.nodeType == Node.ELEMENT_NODE ));
+  registerDetails() {
+    let detailsList = Array.prototype.filter.call(
+      this.currentSlotNodes,
+      (node: any) => node.nodeType == Node.ELEMENT_NODE
+    );
 
-    if (detailsList){
-      for(const details of detailsList){
-        details.addEventListener('sl-show', (event:Event) => {
+    if (detailsList) {
+      for (const details of detailsList) {
+        details.addEventListener('sl-show', (event: Event) => {
           [...detailsList].map(details => (details.open = event.target === details));
         });
       }
@@ -39,9 +42,7 @@ export default class SlDetailsGroup extends LitElement {
   }
 
   render() {
-    return html`
-      <slot @slotchange=${this.handleSlotChange}>
-    </slot> `;
+    return html` <slot @slotchange=${this.handleSlotChange}> </slot> `;
   }
 }
 

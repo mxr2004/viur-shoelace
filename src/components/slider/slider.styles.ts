@@ -6,9 +6,9 @@ export default css`
 
   :host {
     display: block;
-    --slider-dot-color:var(--sl-color-primary-600);
-    --slider-arrow-color:var(--sl-color-primary-600);
-    --slider-arrow-color-hover:var(--sl-color-primary-300);
+    --slider-dot-color: var(--sl-color-primary-600);
+    --slider-arrow-color: var(--sl-color-primary-600);
+    --slider-arrow-color-hover: var(--sl-color-primary-300);
   }
 
   .glider-contain {
@@ -58,7 +58,8 @@ export default css`
     opacity: 0;
     height: 0;
   }
-  .glider-prev,.glider-next {
+  .glider-prev,
+  .glider-next {
     user-select: none;
     position: absolute;
     outline: none;
@@ -74,13 +75,12 @@ export default css`
 
     opacity: 1;
     line-height: 1;
-    transition: opacity .5s cubic-bezier(.17,.67,.83,.67),
-                color .5s cubic-bezier(.17,.67,.83,.67);
+    transition: opacity 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67), color 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
   }
-  .glider-prev::part(base),.glider-next::part(base) {
-     color: var(--slider-arrow-color);
+  .glider-prev::part(base),
+  .glider-next::part(base) {
+    color: var(--slider-arrow-color);
   }
-
 
   .glider-prev::part(base):hover,
   .glider-next::part(base):hover {
@@ -92,7 +92,7 @@ export default css`
   }
   .glider-next.disabled,
   .glider-prev.disabled {
-    opacity: .25;
+    opacity: 0.25;
     color: #666;
     cursor: default;
   }
@@ -128,7 +128,7 @@ export default css`
   .glider-dot.active {
     background: var(--slider-dot-color);
   }
-  @media(max-width: 36em){
+  @media (max-width: 36em) {
     .glider::-webkit-scrollbar {
       opacity: 1;
       -webkit-appearance: none;
@@ -142,6 +142,4 @@ export default css`
       box-shadow: 0 0 1px var(--sl-color-neutral-200);
     }
   }
-
-
 `;

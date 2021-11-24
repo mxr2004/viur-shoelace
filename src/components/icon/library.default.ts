@@ -9,7 +9,6 @@ const library: IconLibrary = {
     //svg.setAttribute('stroke', 'currentColor');
     [...svg.querySelectorAll('*')].map(el => el.setAttribute('fill', 'inherit'));
   }
-
 };
 
 export default library;

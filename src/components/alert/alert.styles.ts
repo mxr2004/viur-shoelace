@@ -70,7 +70,6 @@ export default css`
   .alert--warning {
     border-color: var(--sl-color-warning-600);
     background-color: var(--sl-color-warning-100);
-
   }
 
   .alert--warning .alert__icon {

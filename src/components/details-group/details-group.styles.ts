@@ -6,7 +6,7 @@ export default css`
 
   :host {
     display: block;
-    --details-gap:var(--sl-spacing-2x-small);
+    --details-gap: var(--sl-spacing-2x-small);
   }
 
   ::slotted(sl-details:not(:last-of-type)) {

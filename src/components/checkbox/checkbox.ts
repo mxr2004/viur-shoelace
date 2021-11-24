@@ -158,7 +158,6 @@ export default class SlCheckbox extends LitElement {
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
                       <g stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="12" height="12" stroke-width="2"></rect>
-
                       </g>
                     </g>
                   </svg>

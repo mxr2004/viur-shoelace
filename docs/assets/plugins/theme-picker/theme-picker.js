@@ -32,10 +32,10 @@
         // Toggle the dark mode class without transitions
         document.body.appendChild(noTransitions);
         requestAnimationFrame(() => {
-          if (theme === "viur"){
+          if (theme === 'viur') {
             document.documentElement.classList.remove('sl-theme-dark');
             document.documentElement.classList.add('sl-theme-viur');
-          }else{
+          } else {
             document.documentElement.classList.remove('sl-theme-viur');
             document.documentElement.classList.toggle('sl-theme-dark', isDark());
           }

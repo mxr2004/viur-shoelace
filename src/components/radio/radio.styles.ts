@@ -79,7 +79,6 @@ export default css`
   .radio.radio--checked:not(.radio--disabled) .radio__control:hover {
     border-color: var(--sl-color-success-500);
     background-color: var(--sl-color-success-500);
-
   }
 
   /* Checked + focus */

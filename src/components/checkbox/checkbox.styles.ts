@@ -77,7 +77,6 @@ export default css`
   .checkbox--indeterminate .checkbox__control {
     border-color: var(--sl-color-success-600);
     background-color: var(--sl-color-success-600);
-
   }
 
   /* Checked/indeterminate + hover */

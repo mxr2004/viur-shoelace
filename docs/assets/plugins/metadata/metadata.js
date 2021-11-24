@@ -350,18 +350,15 @@
         if (component.status === 'planned') badgeType = 'neutral';
         if (component.status === 'deprecated') badgeType = 'danger';
 
-
-        let viur = ""
-        if (component.viur){
+        let viur = '';
+        if (component.viur) {
           viur = `<sl-badge type="danger" pill>
                 ViUR ${component.viur}
-              </sl-badge>`
+              </sl-badge>`;
         }
 
-
-
-
-        result += `
+        result +=
+          `
           <div class="component-header">
             <div class="component-header__tag">
               <code>&lt;${component.tagName}&gt; | ${component.name}</code>
@@ -376,7 +373,9 @@
                 ${component.status}
               </sl-badge>
 
-                `+viur+`
+                ` +
+          viur +
+          `
             </div>
           </div>
         `;

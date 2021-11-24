@@ -96,7 +96,7 @@ const iconDir2 = path.join(outdir, '/assets/icons');
     await del([iconDir2]);
     await mkdirp(iconDir2);
     await Promise.all([
-      copy(`${srcPath}`, iconDir2),
+      copy(`${srcPath}`, iconDir2)
       //copy(`${srcPath}/LICENSE`, path.join(iconDir2, 'LICENSE')),
       //copy(`${srcPath}/bootstrap-icons.svg`, './docs/assets/icons/sprite.svg', { overwrite: true })
     ]);
@@ -119,11 +119,12 @@ const iconDir2 = path.join(outdir, '/assets/icons');
     const dom = new JSDOM();
     const sprite = await Promise.map(files, async file => {
       const name = path.basename(file, path.extname(file));
-      const data = fm(await readFile(file, 'utf8'))
-      let svgcode = dom.window.document.createRange().createContextualFragment(data["body"]).firstElementChild.innerHTML
+      const data = fm(await readFile(file, 'utf8'));
+      let svgcode = dom.window.document.createRange().createContextualFragment(data['body']).firstElementChild
+        .innerHTML;
 
-      svgcode = svgcode.toString().replace(/#fff/g,'currentcolor')
-      svgcode = svgcode.toString().replace(/#FFFFFF/g,'currentcolor')
+      svgcode = svgcode.toString().replace(/#fff/g, 'currentcolor');
+      svgcode = svgcode.toString().replace(/#FFFFFF/g, 'currentcolor');
 
       return `
         <symbol viewBox="0 0 60 60" id="${name}">
@@ -132,9 +133,11 @@ const iconDir2 = path.join(outdir, '/assets/icons');
       `;
     });
 
-    await writeFile('./docs/assets/icons/sprite.svg',
+    await writeFile(
+      './docs/assets/icons/sprite.svg',
       `<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">${sprite.join()}</svg>`,
-      'utf8');
+      'utf8'
+    );
     await writeFile(path.join(iconDir2, 'icons.json'), JSON.stringify(metadata, null, 2), 'utf8');
 
     console.log(chalk.cyan(`Successfully processed ${numIcons2} icons ✨\n`));
@@ -142,6 +145,3 @@ const iconDir2 = path.join(outdir, '/assets/icons');
     console.error(err);
   }
 })();
-
-
-
