@@ -1,6 +1,6 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
-
+//language=CSS
 export default css`
   ${componentStyles}
 
@@ -56,6 +56,19 @@ export default css`
     border-color: var(--sl-color-danger-200);
     color: var(--sl-color-danger-800);
   }
+
+  .tag--info {
+    background-color: var(--sl-color-info-50);
+    border-color: var(--sl-color-info-200);
+    color: var(--sl-color-info-800);
+  }
+
+  .tag--secondary {
+    background-color: var(--sl-color-secondary-50);
+    border-color: var(--sl-color-secondary-200);
+    color: var(--sl-color-secondary-800);
+  }
+
 
   /*
    * Size modifiers

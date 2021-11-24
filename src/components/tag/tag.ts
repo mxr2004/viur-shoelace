@@ -25,7 +25,7 @@ export default class SlTag extends LitElement {
   static styles = styles;
 
   /** The tag's type. */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' = 'neutral';
+  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' | 'info' | 'secondary' = 'neutral';
 
   /** The tag's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -52,6 +52,8 @@ export default class SlTag extends LitElement {
           'tag--success': this.type === 'success',
           'tag--neutral': this.type === 'neutral',
           'tag--warning': this.type === 'warning',
+          'tag--info': this.type === 'info',
+          'tag--secondary': this.type === 'secondary',
           'tag--danger': this.type === 'danger',
           'tag--text': this.type === 'text',
 

@@ -10,6 +10,9 @@ Tags are used as labels to organize things or to indicate a selection.
 <sl-tag type="neutral">Neutral</sl-tag>
 <sl-tag type="warning">Warning</sl-tag>
 <sl-tag type="danger">Danger</sl-tag>
+<sl-tag type="info">Info</sl-tag>
+<sl-tag type="secondary">Secondary</sl-tag>
+
 ```
 
 
