@@ -1,6 +1,6 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
-
+//language=CSS
 export default css`
   ${componentStyles}
 
@@ -50,6 +50,16 @@ export default css`
     color: var(--sl-color-neutral-0);
   }
 
+  .badge--info {
+    background-color: var(--sl-color-info-600);
+    color: var(--sl-color-neutral-0);
+  }
+
+  .badge--secondary {
+    background-color: var(--sl-color-secondary-600);
+    color: var(--sl-color-neutral-0);
+  }
+
   /* Pill modifier */
   .badge--pill {
     border-radius: var(--sl-border-radius-pill);
@@ -78,6 +88,14 @@ export default css`
 
   .badge--pulse.badge--danger {
     --pulse-color: var(--sl-color-danger-600);
+  }
+
+  .badge--pulse.badge--info {
+    --pulse-color: var(--sl-color-info-600);
+  }
+
+  .badge--pulse.badge--secondary {
+    --pulse-color: var(--sl-color-secondary-600);
   }
 
   @keyframes pulse {

@@ -16,7 +16,7 @@ export default class SlBadge extends LitElement {
   static styles = styles;
 
   /** The badge's type. */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'info' | 'secondary' = 'primary';
 
   /** Draws a pill-style badge with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
@@ -34,6 +34,8 @@ export default class SlBadge extends LitElement {
           'badge--success': this.type === 'success',
           'badge--neutral': this.type === 'neutral',
           'badge--warning': this.type === 'warning',
+          'badge--info': this.type === 'info',
+          'badge--secondary': this.type === 'secondary',
           'badge--danger': this.type === 'danger',
           'badge--pill': this.pill,
           'badge--pulse': this.pulse

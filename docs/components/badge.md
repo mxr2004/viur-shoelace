@@ -28,6 +28,8 @@ Set the `type` attribute to change the badge's type.
 <sl-badge type="neutral">Neutral</sl-badge>
 <sl-badge type="warning">Warning</sl-badge>
 <sl-badge type="danger">Danger</sl-badge>
+<sl-badge type="info">Info</sl-badge>
+<sl-badge type="secondary">Secondary</sl-badge>
 ```
 
 ```jsx react
