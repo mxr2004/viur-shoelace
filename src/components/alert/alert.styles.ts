@@ -86,6 +86,24 @@ export default css`
     color: var(--sl-color-danger-600);
   }
 
+  .alert--info {
+    border-color: var(--sl-color-info-600);
+    background-color: var(--sl-color-info-100);
+  }
+
+  .alert--info .alert__icon {
+    color: var(--sl-color-info-600);
+  }
+
+  .alert--secondary {
+    border-color: var(--sl-color-secondary-600);
+    background-color: var(--sl-color-secondary-100);
+  }
+
+  .alert--secondary .alert__icon {
+    color: var(--sl-color-secondary-600);
+  }
+
   .alert__message {
     flex: 1 1 auto;
     padding: var(--sl-spacing-large);

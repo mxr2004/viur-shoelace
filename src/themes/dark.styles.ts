@@ -311,6 +311,32 @@ export default css`
     --sl-color-neutral-900: var(--sl-color-gray-900);
     --sl-color-neutral-950: var(--sl-color-gray-950);
 
+    /* Info */
+    --sl-color-info-50: var(--sl-color-sky-50);
+    --sl-color-info-100: var(--sl-color-sky-100);
+    --sl-color-info-200: var(--sl-color-sky-200);
+    --sl-color-info-300: var(--sl-color-sky-300);
+    --sl-color-info-400: var(--sl-color-sky-400);
+    --sl-color-info-500: var(--sl-color-sky-500);
+    --sl-color-info-600: var(--sl-color-sky-600);
+    --sl-color-info-700: var(--sl-color-sky-700);
+    --sl-color-info-800: var(--sl-color-sky-800);
+    --sl-color-info-900: var(--sl-color-sky-900);
+    --sl-color-info-950: var(--sl-color-sky-950);
+
+    /* Secondary */
+    --sl-color-secondary-50: var(--sl-color-orange-50);
+    --sl-color-secondary-100: var(--sl-color-orange-100);
+    --sl-color-secondary-200: var(--sl-color-orange-200);
+    --sl-color-secondary-300: var(--sl-color-orange-300);
+    --sl-color-secondary-400: var(--sl-color-orange-400);
+    --sl-color-secondary-500: var(--sl-color-orange-500);
+    --sl-color-secondary-600: var(--sl-color-orange-600);
+    --sl-color-secondary-700: var(--sl-color-orange-700);
+    --sl-color-secondary-800: var(--sl-color-orange-800);
+    --sl-color-secondary-900: var(--sl-color-orange-900);
+    --sl-color-secondary-950: var(--sl-color-orange-950);
+
     /* Neutral one-offs */
     --sl-color-neutral-0: hsl(240, 5.9%, 11%);
     --sl-color-neutral-1000: hsl(0, 0%, 100%);
