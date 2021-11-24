@@ -53,7 +53,7 @@ export default class SlAlert extends LitElement {
   @property({ type: Boolean, reflect: true }) closable = false;
 
   /** The type of alert. */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'info' | 'secondary' = 'primary';
 
   /**
    * The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with
@@ -183,6 +183,8 @@ export default class SlAlert extends LitElement {
           'alert--success': this.type === 'success',
           'alert--neutral': this.type === 'neutral',
           'alert--warning': this.type === 'warning',
+          'alert--info': this.type === 'info',
+          'alert--secondary': this.type === 'secondary',
           'alert--danger': this.type === 'danger'
         })}
         role="alert"

@@ -10,7 +10,7 @@ export default css`
     /* Gray */
     --sl-color-gray-50: hsl(240 5.1% 15%);
     --sl-color-gray-100: hsl(240 5.7% 18.2%);
-    --sl-color-gray-200: hsl(240 4.6% 21.5%);
+    --sl-color-gray-200: hsl(240 4.6% 22%);
     --sl-color-gray-300: hsl(240 5% 27.6%);
     --sl-color-gray-400: hsl(240 5% 35.5%);
     --sl-color-gray-500: hsl(240 3.7% 44%);
@@ -311,6 +311,32 @@ export default css`
     --sl-color-neutral-900: var(--sl-color-gray-900);
     --sl-color-neutral-950: var(--sl-color-gray-950);
 
+    /* Info */
+    --sl-color-info-50: var(--sl-color-sky-50);
+    --sl-color-info-100: var(--sl-color-sky-100);
+    --sl-color-info-200: var(--sl-color-sky-200);
+    --sl-color-info-300: var(--sl-color-sky-300);
+    --sl-color-info-400: var(--sl-color-sky-400);
+    --sl-color-info-500: var(--sl-color-sky-500);
+    --sl-color-info-600: var(--sl-color-sky-600);
+    --sl-color-info-700: var(--sl-color-sky-700);
+    --sl-color-info-800: var(--sl-color-sky-800);
+    --sl-color-info-900: var(--sl-color-sky-900);
+    --sl-color-info-950: var(--sl-color-sky-950);
+
+    /* Secondary */
+    --sl-color-secondary-50: var(--sl-color-orange-50);
+    --sl-color-secondary-100: var(--sl-color-orange-100);
+    --sl-color-secondary-200: var(--sl-color-orange-200);
+    --sl-color-secondary-300: var(--sl-color-orange-300);
+    --sl-color-secondary-400: var(--sl-color-orange-400);
+    --sl-color-secondary-500: var(--sl-color-orange-500);
+    --sl-color-secondary-600: var(--sl-color-orange-600);
+    --sl-color-secondary-700: var(--sl-color-orange-700);
+    --sl-color-secondary-800: var(--sl-color-orange-800);
+    --sl-color-secondary-900: var(--sl-color-orange-900);
+    --sl-color-secondary-950: var(--sl-color-orange-950);
+
     /* Neutral one-offs */
     --sl-color-neutral-0: hsl(240, 5.9%, 11%);
     --sl-color-neutral-1000: hsl(0, 0%, 100%);
@@ -423,8 +449,8 @@ export default css`
     --sl-input-height-large: 3.125rem; /* 50px */
 
     --sl-input-background-color: var(--sl-color-neutral-0);
-    --sl-input-background-color-hover: var(--sl-color-neutral-0);
-    --sl-input-background-color-focus: var(--sl-color-neutral-0);
+    --sl-input-background-color-hover: var(--sl-input-background-color);
+    --sl-input-background-color-focus: var(--sl-input-background-color);
     --sl-input-background-color-disabled: var(--sl-color-neutral-100);
     --sl-input-border-color: var(--sl-color-neutral-300);
     --sl-input-border-color-hover: var(--sl-color-neutral-400);
@@ -512,7 +538,7 @@ export default css`
     --sl-tooltip-arrow-start-end-offset: 8px;
 
     /*
-     * Z-index tokens
+     * Z-indexes
      */
 
     --sl-z-index-drawer: 700;

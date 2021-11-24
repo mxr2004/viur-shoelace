@@ -68,6 +68,22 @@ Set the `type` attribute to change the alert's type.
     <strong>Your account has been deleted</strong><br>
     We're very sorry to see you go!
 </sl-alert>
+
+<br>
+
+<sl-alert type="info" open>
+  <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+  <strong>This is super informative</strong><br>
+  You can tell by how pretty the alert is.
+</sl-alert>
+
+<br>
+
+<sl-alert type="secondary" open>
+  <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+    <strong>An additional Alert</strong><br>
+    You can tell by how pretty the alert is.
+</sl-alert>
 ```
 
 ```jsx react

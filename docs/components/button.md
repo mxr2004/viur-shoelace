@@ -29,6 +29,8 @@ Use the `type` attribute to set the button's type.
 <sl-button type="neutral">Neutral</sl-button>
 <sl-button type="warning">Warning</sl-button>
 <sl-button type="danger">Danger</sl-button>
+<sl-button type="info">Info</sl-button>
+<sl-button type="secondary">Secondary</sl-button>
 ```
 
 ```jsx react
