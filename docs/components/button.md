@@ -44,6 +44,8 @@ const App = () => (
     <SlButton type="neutral">Neutral</SlButton>
     <SlButton type="warning">Warning</SlButton>
     <SlButton type="danger">Danger</SlButton>  
+    <SlButton type="info">Info</SlButton>
+    <SlButton type="secondary">Secondary</SlButton>
   </>
 );
 ```
@@ -81,6 +83,8 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 <sl-button type="neutral" outline>Neutral</sl-button>
 <sl-button type="warning" outline>Warning</sl-button>
 <sl-button type="danger" outline>Danger</sl-button>
+<sl-button type="info" outline>Info</sl-button>
+<sl-button type="secondary" outline>Secondary</sl-button>
 ```
 
 ```jsx react
@@ -94,6 +98,8 @@ const App = () => (
     <SlButton type="neutral" outline>Neutral</SlButton>
     <SlButton type="warning" outline>Warning</SlButton>
     <SlButton type="danger" outline>Danger</SlButton>
+    <SlButton type="info" outline>Info</SlButton>
+    <SlButton type="secondary" outline>Secondary</SlButton>
   </>
 );
 ```
@@ -363,6 +369,8 @@ Use the `loading` attribute to make a button busy. The width will remain the sam
 <sl-button type="neutral" loading>Neutral</sl-button>
 <sl-button type="warning" loading>Warning</sl-button>
 <sl-button type="danger" loading>Danger</sl-button>
+<sl-button type="info" loading>Info</sl-button>
+<sl-button type="secondary" loading>Secondary</sl-button>
 ```
 
 ```jsx react
@@ -376,6 +384,8 @@ const App = () => (
     <SlButton type="neutral" loading>Neutral</SlButton>
     <SlButton type="warning" loading>Warning</SlButton>
     <SlButton type="danger" loading>Danger</SlButton>
+    <SlButton type="info" loading>Info</SlButton>
+    <SlButton type="secondary" loading>Secondary</SlButton>
   </>
 );
 ```
@@ -391,6 +401,8 @@ Use the `disabled` attribute to disable a button. Clicks will be suppressed unti
 <sl-button type="neutral" disabled>Neutral</sl-button>
 <sl-button type="warning" disabled>Warning</sl-button>
 <sl-button type="danger" disabled>Danger</sl-button>
+<sl-button type="info" disabled>Info</sl-button>
+<sl-button type="secondary" disabled>Secondary</sl-button>
 ```
 
 ```jsx react
@@ -404,6 +416,8 @@ const App = () => (
     <SlButton type="neutral" disabled>Neutral</SlButton>
     <SlButton type="warning" disabled>Warning</SlButton>
     <SlButton type="danger" disabled>Danger</SlButton>
+    <SlButton type="info" disabled>Info</SlButton>
+    <SlButton type="secondary" disabled>Secondary</SlButton>
   </>
 );
 ```

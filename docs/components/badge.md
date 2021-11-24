@@ -56,6 +56,8 @@ Use the `pill` attribute to give badges rounded edges.
 <sl-badge type="neutral" pill>Neutral</sl-badge>
 <sl-badge type="warning" pill>Warning</sl-badge>
 <sl-badge type="danger" pill>Danger</sl-badge>
+<sl-badge type="info" pill>Info</sl-badge>
+<sl-badge type="secondary" pill>Secondary</sl-badge>
 ```
 
 ```jsx react
@@ -83,6 +85,8 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
   <sl-badge type="neutral" pill pulse>1</sl-badge>
   <sl-badge type="warning" pill pulse>1</sl-badge>
   <sl-badge type="danger" pill pulse>1</sl-badge>
+    <sl-badge type="info" pill pulse>1</sl-badge>
+    <sl-badge type="secondary" pill pulse>1</sl-badge>
 </div>
 
 <style>

@@ -228,53 +228,53 @@ export default css`
 
   /* Info */
   .button--standard.button--info {
-    background-color: var(--sl-color-info-600);
-    border-color: var(--sl-color-info-600);
+    background-color: var(--sl-color-info-500);
+    border-color: var(--sl-color-info-700);
     color: var(--sl-color-neutral-0);
   }
 
   .button--standard.button--info:hover:not(.button--disabled) {
-    background-color: var(--sl-color-info-500);
-    border-color: var(--sl-color-info-500);
+    background-color: var(--sl-color-info-400);
+    border-color: var(--sl-color-info-600);
     color: var(--sl-color-neutral-0);
   }
 
   .button--standard.button--info${focusVisibleSelector}:not(.button--disabled) {
-    background-color: var(--sl-color-info-600);
-    border-color: var(--sl-color-info-600);
+    background-color: var(--sl-color-info-500);
+    border-color: var(--sl-color-info-700);
     color: var(--sl-color-neutral-0);
     box-shadow: var(--sl-focus-ring);
   }
 
   .button--standard.button--info:active:not(.button--disabled) {
-    background-color: var(--sl-color-info-600);
-    border-color: var(--sl-color-info-600);
+    background-color: var(--sl-color-info-500);
+    border-color: var(--sl-color-info-700);
     color: var(--sl-color-neutral-0);
   }
 
   /* secondary */
   .button--standard.button--secondary {
-    background-color: var(--sl-color-secondary-600);
-    border-color: var(--sl-color-secondary-600);
+    background-color: var(--sl-color-secondary-500);
+    border-color: var(--sl-color-secondary-700);
     color: var(--sl-color-neutral-0);
   }
 
   .button--standard.button--secondary:hover:not(.button--disabled) {
-    background-color: var(--sl-color-secondary-500);
-    border-color: var(--sl-color-secondary-500);
+    background-color: var(--sl-color-secondary-400);
+    border-color: var(--sl-color-secondary-600);
     color: var(--sl-color-neutral-0);
   }
 
   .button--standard.button--secondary${focusVisibleSelector}:not(.button--disabled) {
-    background-color: var(--sl-color-secondary-600);
-    border-color: var(--sl-color-secondary-600);
+    background-color: var(--sl-color-secondary-500);
+    border-color: var(--sl-color-secondary-700);
     color: var(--sl-color-neutral-0);
     box-shadow: var(--sl-focus-ring);
   }
 
   .button--standard.button--secondary:active:not(.button--disabled) {
-    background-color: var(--sl-color-secondary-600);
-    border-color: var(--sl-color-secondary-600);
+    background-color: var(--sl-color-secondary-500);
+    border-color: var(--sl-color-secondary-700);
     color: var(--sl-color-neutral-0);
   }
 
