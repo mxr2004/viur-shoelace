@@ -62,6 +62,7 @@
 - Extension
   - [Slider](/components/slider)
   - [Details Group](/components/details-group)
+  - [Table Wrapper](/components/table-wrapper)
   <!--plop:component-->
 
 - Utilities

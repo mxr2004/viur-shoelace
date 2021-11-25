@@ -53,6 +53,7 @@ export { default as SlSpinner } from './components/spinner/spinner';
 export { default as SlSlider } from './components/slider/slider';
 export { default as SlDetailsGroup } from './components/details-group/details-group';
 export { default as SlVisuallyHidden } from './components/visually-hidden/visually-hidden';
+export { default as SlTableWrapper } from './components/table-wrapper/table-wrapper';
 /* plop:component */
 
 // Utilities
