@@ -54,6 +54,7 @@ export { default as SlSlider } from './components/slider/slider';
 export { default as SlDetailsGroup } from './components/details-group/details-group';
 export { default as SlVisuallyHidden } from './components/visually-hidden/visually-hidden';
 export { default as SlTableWrapper } from './components/table-wrapper/table-wrapper';
+export { default as SlBackToTop } from './components/back-to-top/back-to-top';
 /* plop:component */
 
 // Utilities

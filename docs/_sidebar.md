@@ -63,6 +63,7 @@
   - [Slider](/components/slider)
   - [Details Group](/components/details-group)
   - [Table Wrapper](/components/table-wrapper)
+  - [Back To Top](/components/back-to-top)
   <!--plop:component-->
 
 - Utilities
