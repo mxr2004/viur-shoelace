@@ -45,10 +45,14 @@ export default css`
     width: 100%;
   }
 
-  .form-control--has-label.form-control__label-left .form-control__input .input{
+  .form-control--has-label.form-control__label-left .form-control__input .input,
+  .form-control--has-label.form-control__label-left .form-control__input .select__control{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    border-left-width: 0;
+  }
+
+  .form-control--has-label.form-control__label-left .form-control__input .textarea{
+    border-top-left-radius: 0;
   }
 
   .form-control--has-label .form-control__label {
