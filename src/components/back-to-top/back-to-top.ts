@@ -1,7 +1,5 @@
 import { LitElement, html } from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import { emit } from '../../internal/event';
-import { watch } from '../../internal/watch';
 import styles from './back-to-top.styles';
 
 /**
@@ -27,7 +25,7 @@ export default class SlBackToTop extends LitElement {
     this.targetElement.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  scolling(e){
+  scolling(e:any){
     this.classList.toggle("scrolled", 1.5 * e.target.scrollTop > e.target.clientHeight )
   }
 

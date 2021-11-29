@@ -1,8 +1,7 @@
 import { LitElement, html } from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import { emit } from '../../internal/event';
-import { watch } from '../../internal/watch';
 import styles from './map.styles';
+// @ts-ignore
 import {map, tileLayer, popup} from 'leaflet'
 
 /**
@@ -47,13 +46,13 @@ export default class SlMap extends LitElement {
   }
 
   showPositionInfo(e:any){
-    async function getPlace(lng,lat,apikey){
+    async function getPlace(lng:number,lat:number,apikey:string){
       const placeURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
       let params ='?types=address&limit=1&access_token='+apikey
       return await fetch(placeURL+lng+","+lat+".json"+params)
     }
     if (this.showAddress){
-      let placeRequest = getPlace(e.latlng.lng,e.latlng.lat,this.apikey).then(res=>res.json()).then(data=>{
+      getPlace(e.latlng.lng,e.latlng.lat,this.apikey).then(res=>res.json()).then(data=>{
         this.popup = popup().setLatLng(e.latlng)
           .setContent(data["features"][0]["place_name"].replaceAll(",","<br>"))
           this.popup.openOn(e.target);
