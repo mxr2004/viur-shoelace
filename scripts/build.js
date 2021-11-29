@@ -74,7 +74,10 @@ mkdirp.sync(outdir);
         ? alwaysExternal
         : [...alwaysExternal, '@popperjs/core', '@shoelace-style/animations', 'lit', 'qr-creator'],
       splitting: true,
-      plugins: []
+      plugins: [],
+      loader:{
+        '.png':'file'
+      }
     })
     .catch(err => {
       console.error(chalk.red(err));
