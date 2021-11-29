@@ -2,6 +2,7 @@ import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import formControlStyles from '../../styles/form-control.styles';
 
+//language=CSS
 export default css`
   ${componentStyles}
   ${formControlStyles}
@@ -327,4 +328,20 @@ export default css`
   .select--pill.select--large .select__control {
     border-radius: var(--sl-input-height-large);
   }
+
+  /* Button Group classse*/
+  :host(.sl-button-group__button--inner) .select__control {
+    border-radius: 0;
+  }
+
+  :host(.sl-button-group__button--first:not(.sl-button-group__button--last)) .select__control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  :host(.sl-button-group__button--last:not(.sl-button-group__button--first)) .select__control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
 `;

@@ -20,22 +20,22 @@ export default class SlButtonGroup extends LitElement {
   @property() label = '';
 
   handleFocus(event: CustomEvent) {
-    const button = findButton(event.target as HTMLElement);
+    const button = findElement(event.target as HTMLElement);
     button?.classList.add('sl-button-group__button--focus');
   }
 
   handleBlur(event: CustomEvent) {
-    const button = findButton(event.target as HTMLElement);
+    const button = findElement(event.target as HTMLElement);
     button?.classList.remove('sl-button-group__button--focus');
   }
 
   handleMouseOver(event: CustomEvent) {
-    const button = findButton(event.target as HTMLElement);
+    const button = findElement(event.target as HTMLElement);
     button?.classList.add('sl-button-group__button--hover');
   }
 
   handleMouseOut(event: CustomEvent) {
-    const button = findButton(event.target as HTMLElement);
+    const button = findElement(event.target as HTMLElement);
     button?.classList.remove('sl-button-group__button--hover');
   }
 
@@ -44,7 +44,7 @@ export default class SlButtonGroup extends LitElement {
 
     slottedElements.map(el => {
       const index = slottedElements.indexOf(el);
-      const button = findButton(el);
+      const button = findElement(el);
 
       if (button) {
         button.classList.add('sl-button-group__button');
@@ -52,6 +52,25 @@ export default class SlButtonGroup extends LitElement {
         button.classList.toggle('sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
         button.classList.toggle('sl-button-group__button--last', index === slottedElements.length - 1);
       }
+
+      const input = findElement(el, 'sl-input');
+
+      if (input) {
+        input.classList.add('sl-button-group__button');
+        input.classList.toggle('sl-button-group__button--first', index === 0);
+        input.classList.toggle('sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
+        input.classList.toggle('sl-button-group__button--last', index === slottedElements.length - 1);
+      }
+
+      const select = findElement(el, 'sl-select');
+
+      if (select) {
+        select.classList.add('sl-button-group__button');
+        select.classList.toggle('sl-button-group__button--first', index === 0);
+        select.classList.toggle('sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
+        select.classList.toggle('sl-button-group__button--last', index === slottedElements.length - 1);
+      }
+
     });
   }
 
@@ -73,8 +92,9 @@ export default class SlButtonGroup extends LitElement {
   }
 }
 
-function findButton(el: HTMLElement) {
-  return el.tagName.toLowerCase() === 'sl-button' ? el : el.querySelector('sl-button');
+function findElement(el: HTMLElement,type:string="sl-button") {
+
+  return el.tagName.toLowerCase() === type ? el : el.querySelector(type);
 }
 
 declare global {

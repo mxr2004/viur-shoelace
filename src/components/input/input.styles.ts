@@ -270,4 +270,22 @@ export default css`
   ::-ms-reveal {
     display: none;
   }
+
+  /* Button Group classse*/
+  :host(.sl-button-group__button--inner) .input {
+    border-radius: 0;
+  }
+
+  :host(.sl-button-group__button--first:not(.sl-button-group__button--last)) .input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  :host(.sl-button-group__button--last:not(.sl-button-group__button--first)) .input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+
+
 `;
