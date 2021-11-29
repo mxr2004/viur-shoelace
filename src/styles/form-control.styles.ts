@@ -27,13 +27,28 @@ export default css`
     border-bottom-right-radius: 0;
     padding: 0.3em 1.125em;
     min-width: 220px;
-    height: fit-content;
+    height: var(--sl-input-height-medium);
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  .form-control--has-label.form-control--small.form-control__label-left .form-control__label {
+    height: var(--sl-input-height-small);
+  }
+
+  .form-control--has-label.form-control--large.form-control__label-left .form-control__label {
+    height: var(--sl-input-height-large);
+    padding: 0.7em 1.125em;
+  }
+
   .form-control--has-label.form-control__label-left .form-control__input {
     width: 100%;
+  }
+
+  .form-control--has-label.form-control__label-left .form-control__input .input{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;
   }
 
   .form-control--has-label .form-control__label {
