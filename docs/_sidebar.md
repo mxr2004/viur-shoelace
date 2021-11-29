@@ -64,6 +64,7 @@
   - [Details Group](/components/details-group)
   - [Table Wrapper](/components/table-wrapper)
   - [Back To Top](/components/back-to-top)
+  - [Map](/components/map)
   <!--plop:component-->
 
 - Utilities
