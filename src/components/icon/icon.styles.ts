@@ -17,5 +17,6 @@ export default css`
     display: block;
     height: 100%;
     width: 100%;
+    transform:scale(1.20);
   }
 `;
