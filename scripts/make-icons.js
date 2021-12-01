@@ -78,7 +78,7 @@ const iconDir2 = path.join(outdir, '/assets/icons');
 
 (async () => {
   try {
-    const version = 'master';
+    const version = 'develop';
     const srcPath = `./.cache/icons/viur-icons-${version}`;
     const url = `https://github.com/viur-framework/viur-icons/archive/refs/heads/${version}.zip`;
 
@@ -123,8 +123,12 @@ const iconDir2 = path.join(outdir, '/assets/icons');
       let svgcode = dom.window.document.createRange().createContextualFragment(data['body']).firstElementChild
         .innerHTML;
 
+      svgcode = svgcode.toString().replace(/<title>.*?<\/title>/g, '');
+      svgcode = svgcode.toString().replace(/<style>.*?<\/style>/g, '');
       svgcode = svgcode.toString().replace(/#fff/g, 'currentcolor');
       svgcode = svgcode.toString().replace(/#FFFFFF/g, 'currentcolor');
+
+      await writeFile(file, `<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">${svgcode}</svg>`,'utf-8')
 
       return `
         <symbol viewBox="0 0 60 60" id="${name}">
