@@ -85,16 +85,16 @@ export default css`
   }
 
   .button--standard.button--default${focusVisibleSelector}:not(.button--disabled) {
-    background-color: var(--sl-color-primary-50);
-    border-color: var(--sl-color-primary-200);
-    color: var(--sl-color-primary-200);
+    background-color: var(--sl-color-neutral-0);
+    border-color: var(--sl-color-neutral-200);
+    color: var(--sl-color-neutral-700);
     box-shadow: var(--sl-focus-ring);
   }
 
   .button--standard.button--default:active:not(.button--disabled) {
-    background-color: var(--sl-color-primary-50);
-    border-color: var(--sl-color-primary-200);
-    color: var(--sl-color-primary-700);
+    background-color: var(--sl-color-neutral-0);
+    border-color: var(--sl-color-neutral-200);
+    color: var(--sl-color-neutral-700);
   }
 
   /* Primary */
