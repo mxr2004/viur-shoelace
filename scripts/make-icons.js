@@ -120,15 +120,13 @@ const iconDir2 = path.join(outdir, '/assets/icons');
     const sprite = await Promise.map(files, async file => {
       const name = path.basename(file, path.extname(file));
       const data = fm(await readFile(file, 'utf8'));
-      let svgcode = dom.window.document.createRange().createContextualFragment(data['body']).firstElementChild
-        .innerHTML;
+      let svg = dom.window.document.createRange().createContextualFragment(data['body']).firstElementChild;
+      let svgcode = svg.innerHTML;
 
       svgcode = svgcode.toString().replace(/<title>.*?<\/title>/g, '');
       svgcode = svgcode.toString().replace(/<style>.*?<\/style>/g, '');
       svgcode = svgcode.toString().replace(/#fff/g, 'currentcolor');
       svgcode = svgcode.toString().replace(/#FFFFFF/g, 'currentcolor');
-
-      await writeFile(file, `<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">${svgcode}</svg>`,'utf-8')
 
       return `
         <symbol viewBox="0 0 60 60" id="${name}">

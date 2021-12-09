@@ -24,7 +24,7 @@ Click or tap on an icon below to copy its name and use it like this.
 
 
 ## Bootstrap Library
-Shoelace comes bundled with over 1,300 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are registered as additional icon library.
+Shoelace comes bundled with over 1,500 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are registered as additional icon library.
 To use this icons, set the `library` to `bootstrap`.
 
 ```html
