@@ -5,14 +5,13 @@
 Tags are used as labels to organize things or to indicate a selection.
 
 ```html preview
-<sl-tag type="primary">Primary</sl-tag>
-<sl-tag type="success">Success</sl-tag>
-<sl-tag type="neutral">Neutral</sl-tag>
-<sl-tag type="warning">Warning</sl-tag>
-<sl-tag type="danger">Danger</sl-tag>
+<sl-tag variant="primary">Primary</sl-tag>
+<sl-tag variant="success">Success</sl-tag>
+<sl-tag variant="neutral">Neutral</sl-tag>
+<sl-tag variant="warning">Warning</sl-tag>
+<sl-tag variant="danger">Danger</sl-tag>
 <sl-tag type="info">Info</sl-tag>
 <sl-tag type="secondary">Secondary</sl-tag>
-
 ```
 
 
@@ -21,11 +20,11 @@ import { SlTag } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
   <>
-    <SlTag type="primary">Primary</SlTag>
-    <SlTag type="success">Success</SlTag>
-    <SlTag type="neutral">Neutral</SlTag>
-    <SlTag type="warning">Warning</SlTag>
-    <SlTag type="danger">Danger</SlTag> 
+    <SlTag variant="primary">Primary</SlTag>
+    <SlTag variant="success">Success</SlTag>
+    <SlTag variant="neutral">Neutral</SlTag>
+    <SlTag variant="warning">Warning</SlTag>
+    <SlTag variant="danger">Danger</SlTag> 
   </>
 );
 ```

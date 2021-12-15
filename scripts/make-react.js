@@ -3,7 +3,7 @@ import fs from 'fs';
 import del from 'del';
 import mkdirp from 'mkdirp';
 import path from 'path';
-import pascalCase from 'pascal-case';
+import {pascalCase} from 'pascal-case';
 import prettier from 'prettier';
 import prettierConfig from '../prettier.config.cjs';
 import { getAllComponents } from './shared.js';
