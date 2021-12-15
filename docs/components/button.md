@@ -29,8 +29,8 @@ Use the `variant` attribute to set the button's variant.
 <sl-button variant="neutral">Neutral</sl-button>
 <sl-button variant="warning">Warning</sl-button>
 <sl-button variant="danger">Danger</sl-button>
-<sl-button type="info">Info</sl-button>
-<sl-button type="secondary">Secondary</sl-button>
+<sl-button variant="info">Info</sl-button>
+<sl-button variant="secondary">Secondary</sl-button>
 
 ```
 
@@ -45,8 +45,8 @@ const App = () => (
     <SlButton variant="neutral">Neutral</SlButton>
     <SlButton variant="warning">Warning</SlButton>
     <SlButton variant="danger">Danger</SlButton> 
-    <SlButton type="info">Info</SlButton>
-    <SlButton type="secondary">Secondary</SlButton>
+    <SlButton variant="info">Info</SlButton>
+    <SlButton variant="secondary">Secondary</SlButton>
   </>
 );
 ```
@@ -84,8 +84,8 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 <sl-button variant="neutral" outline>Neutral</sl-button>
 <sl-button variant="warning" outline>Warning</sl-button>
 <sl-button variant="danger" outline>Danger</sl-button>
-<sl-button type="info" outline>Info</sl-button>
-<sl-button type="secondary" outline>Secondary</sl-button>
+<sl-button variant="info" outline>Info</sl-button>
+<sl-button variant="secondary" outline>Secondary</sl-button>
 ```
 
 ```jsx react
@@ -99,8 +99,8 @@ const App = () => (
     <SlButton variant="neutral" outline>Neutral</SlButton>
     <SlButton variant="warning" outline>Warning</SlButton>
     <SlButton variant="danger" outline>Danger</SlButton>
-    <SlButton type="info" outline>Info</SlButton>
-    <SlButton type="secondary" outline>Secondary</SlButton>
+    <SlButton variant="info" outline>Info</SlButton>
+    <SlButton variant="secondary" outline>Secondary</SlButton>
   </>
 );
 ```
@@ -370,8 +370,8 @@ Use the `loading` attribute to make a button busy. The width will remain the sam
 <sl-button variant="neutral" loading>Neutral</sl-button>
 <sl-button variant="warning" loading>Warning</sl-button>
 <sl-button variant="danger" loading>Danger</sl-button>
-<sl-button type="info" loading>Info</sl-button>
-<sl-button type="secondary" loading>Secondary</sl-button>
+<sl-button variant="info" loading>Info</sl-button>
+<sl-button variant="secondary" loading>Secondary</sl-button>
 ```
 
 ```jsx react
@@ -385,8 +385,8 @@ const App = () => (
     <SlButton variant="neutral" loading>Neutral</SlButton>
     <SlButton variant="warning" loading>Warning</SlButton>
     <SlButton variant="danger" loading>Danger</SlButton>
-    <SlButton type="info" loading>Info</SlButton>
-    <SlButton type="secondary" loading>Secondary</SlButton>
+    <SlButton variant="info" loading>Info</SlButton>
+    <SlButton variant="secondary" loading>Secondary</SlButton>
   </>
 );
 ```
@@ -402,8 +402,8 @@ Use the `disabled` attribute to disable a button. Clicks will be suppressed unti
 <sl-button variant="neutral" disabled>Neutral</sl-button>
 <sl-button variant="warning" disabled>Warning</sl-button>
 <sl-button variant="danger" disabled>Danger</sl-button>
-<sl-button type="info" disabled>Info</sl-button>
-<sl-button type="secondary" disabled>Secondary</sl-button>
+<sl-button variant="info" disabled>Info</sl-button>
+<sl-button variant="secondary" disabled>Secondary</sl-button>
 ```
 
 ```jsx react

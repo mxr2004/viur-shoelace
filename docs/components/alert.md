@@ -71,7 +71,7 @@ Set the `variant` attribute to change the alert's variant.
 
 <br>
 
-<sl-alert type="info" open>
+<sl-alert variant="info" open>
   <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
   <strong>This is super informative</strong><br>
   You can tell by how pretty the alert is.
@@ -79,7 +79,7 @@ Set the `variant` attribute to change the alert's variant.
 
 <br>
 
-<sl-alert type="secondary" open>
+<sl-alert variant="secondary" open>
   <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
     <strong>An additional Alert</strong><br>
     You can tell by how pretty the alert is.

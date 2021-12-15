@@ -28,8 +28,8 @@ Set the `variant` attribute to change the badge's variant.
 <sl-badge variant="neutral">Neutral</sl-badge>
 <sl-badge variant="warning">Warning</sl-badge>
 <sl-badge variant="danger">Danger</sl-badge>
-<sl-badge type="info">Info</sl-badge>
-<sl-badge type="secondary">Secondary</sl-badge>
+<sl-badge variant="info">Info</sl-badge>
+<sl-badge variant="secondary">Secondary</sl-badge>
 ```
 
 ```jsx react
@@ -56,8 +56,8 @@ Use the `pill` attribute to give badges rounded edges.
 <sl-badge variant="neutral" pill>Neutral</sl-badge>
 <sl-badge variant="warning" pill>Warning</sl-badge>
 <sl-badge variant="danger" pill>Danger</sl-badge>
-<sl-badge type="info" pill>Info</sl-badge>
-<sl-badge type="secondary" pill>Secondary</sl-badge>
+<sl-badge variant="info" pill>Info</sl-badge>
+<sl-badge variant="secondary" pill>Secondary</sl-badge>
 
 ```
 
@@ -86,8 +86,8 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
   <sl-badge variant="neutral" pill pulse>1</sl-badge>
   <sl-badge variant="warning" pill pulse>1</sl-badge>
   <sl-badge variant="danger" pill pulse>1</sl-badge>
-  <sl-badge type="info" pill pulse>1</sl-badge>
-   <sl-badge type="secondary" pill pulse>1</sl-badge>
+  <sl-badge variant="info" pill pulse>1</sl-badge>
+   <sl-badge variant="secondary" pill pulse>1</sl-badge>
 </div>
 
 <style>
