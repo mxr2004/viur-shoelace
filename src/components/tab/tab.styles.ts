@@ -2,6 +2,7 @@ import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import { focusVisibleSelector } from '../../internal/focus-visible';
 
+//language=CSS
 export default css`
   ${componentStyles}
 
@@ -58,4 +59,5 @@ export default css`
   .tab__close-button::part(base) {
     padding: var(--sl-spacing-3x-small);
   }
+
 `;

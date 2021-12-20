@@ -55,6 +55,9 @@ export default class SlTabGroup extends LitElement {
   /** The placement of the tabs. */
   @property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';
 
+  /** use a styling variant */
+  @property({ type: String, reflect: true }) variant: "indicator" | "flap" = "indicator";
+
   /**
    * When set to auto, navigating tabs with the arrow keys will instantly show the corresponding tab panel. When set to
    * manual, the tab will receive focus but will not show until the user presses spacebar or enter.
@@ -354,7 +357,8 @@ export default class SlTabGroup extends LitElement {
           'tab-group--bottom': this.placement === 'bottom',
           'tab-group--start': this.placement === 'start',
           'tab-group--end': this.placement === 'end',
-          'tab-group--has-scroll-controls': this.hasScrollControls
+          'tab-group--has-scroll-controls': this.hasScrollControls,
+          'tab-group--variant-flap':this.variant === 'flap'
         })}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
@@ -375,7 +379,7 @@ export default class SlTabGroup extends LitElement {
 
           <div class="tab-group__nav">
             <div part="tabs" class="tab-group__tabs" role="tablist">
-              <div part="active-tab-indicator" class="tab-group__indicator"></div>
+              ${this.variant === 'flap'?html``:html`<div part="active-tab-indicator" class="tab-group__indicator"></div>`}
               <slot name="nav" @slotchange=${this.syncTabsAndPanels}></slot>
             </div>
           </div>

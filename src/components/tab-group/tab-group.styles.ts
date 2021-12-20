@@ -206,4 +206,60 @@ export default css`
   .tab-group--end ::slotted(sl-tab-panel) {
     --padding: 0 var(--sl-spacing-medium);
   }
+
+  /* flap styling */
+
+  .tab-group--variant-flap.tab-group--top .tab-group__tabs{
+    border:0px;
+  }
+  .tab-group--variant-flap.tab-group--bottom .tab-group__tabs{
+    border:0px;
+  }
+  .tab-group--variant-flap.tab-group--end .tab-group__tabs{
+    border:0px;
+  }
+  .tab-group--variant-flap.tab-group--start .tab-group__tabs{
+    border:0px;
+  }
+
+  .tab-group--variant-flap.tab-group--top ::slotted(sl-tab){
+    background-color:var(--sl-shadow-large);
+  }
+
+  .tab-group--variant-flap.tab-group--top ::slotted(sl-tab[active]){
+    border: 1px solid var(--sl-color-neutral-300);
+    box-shadow: 2px 5px 16px 0px var(--sl-color-neutral-300), 5px 5px 15px 5px rgb(0 0 0 / 0%);
+    border-bottom:0px;
+  }
+  .tab-group--variant-flap.tab-group--top ::slotted(:not(sl-tab[active])){
+     border-bottom: 1px solid var(--sl-color-neutral-300);
+  }
+
+
+  .tab-group--variant-flap.tab-group--bottom ::slotted(sl-tab[active]){
+    border: 1px solid var(--sl-color-neutral-300);
+    box-shadow: 2px 5px 16px 0px var(--sl-color-neutral-300), 5px 5px 15px 5px rgb(0 0 0 / 0%);
+    border-top:0px;
+  }
+  .tab-group--variant-flap.tab-group--bottom ::slotted(:not(sl-tab[active])){
+     border-top: 1px solid var(--sl-color-neutral-300);
+  }
+
+  .tab-group--variant-flap.tab-group--start ::slotted(sl-tab[active]){
+    border: 1px solid var(--sl-color-neutral-300);
+    box-shadow: -10px 0px 16px 0px var(--sl-color-neutral-300);
+    border-right:0px;
+  }
+  .tab-group--variant-flap.tab-group--start ::slotted(:not(sl-tab[active])){
+     border-right: 1px solid var(--sl-color-neutral-300);
+  }
+
+  .tab-group--variant-flap.tab-group--end ::slotted(sl-tab[active]){
+    border: 1px solid var(--sl-color-neutral-300);
+    box-shadow: 10px 0px 16px 0px var(--sl-color-neutral-300);
+    border-left:0px;
+  }
+  .tab-group--variant-flap.tab-group--end ::slotted(:not(sl-tab[active])){
+     border-left: 1px solid var(--sl-color-neutral-300);
+  }
 `;
