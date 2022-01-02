@@ -212,6 +212,7 @@ export default class SlCombobox extends LitElement {
         ?hoist=${this.hoist}
         @keydown=${this.handleKeyDown}
         @sl-hide=${this.handleCloseMenu}
+        disableKeyboardToggle="true"
       >
         <sl-input
           slot="trigger"
