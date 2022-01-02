@@ -121,22 +121,19 @@ export default class SlCombobox extends LitElement {
   handleKeyDown(event: KeyboardEvent) {
     const items = this.menu.getAllItems({ includeDisabled: false });
 
-    if (event.target instanceof SlInput) {
-      if (event.key === 'ArrowDown') {
-        this.dropdown.show();
-        items[0].focus();
-        this.lastActiveItemIdex = 0;
-      }
-    } else if (event.target instanceof SlMenuItem) {
+    if (event.target instanceof SlMenuItem) {
       const activeItem = this.menu.getActiveItem();
 
       switch (event.key) {
         case 'ArrowUp':
           if (activeItem === 0 && this.lastActiveItemIdex === 0) {
-            this.menu.getCurrentItem()?.setAttribute('tabindex', '-1');
-            this.input.focus();
+            const lastItemIndex = items.length - 1;
+            this.menu.setCurrentItem(items[lastItemIndex]);
+            items[lastItemIndex].focus();
+            this.lastActiveItemIdex = lastItemIndex;
+          } else {
+            this.lastActiveItemIdex = activeItem;
           }
-          this.lastActiveItemIdex = activeItem;
           break;
         case 'ArrowDown':
           if (activeItem === items.length - 1 && this.lastActiveItemIdex === items.length - 1) {
