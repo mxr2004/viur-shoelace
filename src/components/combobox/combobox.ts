@@ -76,9 +76,6 @@ export default class SlCombobox extends LitElement {
   /** Disables the combobox component. */
   @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
-  /** The minimum chars that will trigger the combobox suggestions. */
-  @property({ type: Number, attribute: 'min-chars' }) minChars: number = 3;
-
   /** The delay in milliseconds between when a keystroke occurs and when a search is performed. */
   @property({ type: Number }) delay: number = 300;
 
@@ -177,19 +174,21 @@ export default class SlCombobox extends LitElement {
   }
 
   async prepareSuggestions(text: string) {
-    if (this.source && this.input.value.length >= this.minChars && this.input.value !== this.search) {
-      this.search = this.input.value;
-
-      let items = await this.source(text);
-      items.splice(this.maxResults);
-
-      this.suggestions = this.highlightSearchTextInSuggestion(items, this.search);
-
-      this.dropdown.show();
+    if (!this.source) {
+      return;
     }
+
+    this.search = this.input.value;
+
+    let items = await this.source(text);
+    items.splice(this.maxResults);
+
+    this.suggestions = this.highlightSearchTextInSuggestions(items, this.search);
+
+    this.dropdown.show();
   }
 
-  private highlightSearchTextInSuggestion(items: Array<{ text: string; value: string }>, searchText: string) {
+  private highlightSearchTextInSuggestions(items: Array<{ text: string; value: string }>, searchText: string) {
     const regex = new RegExp(searchText, 'gi');
     return items.map(item => {
         const highlightedSuggestion = item.text.replace(
