@@ -4,6 +4,10 @@ import componentStyles from '../../styles/component.styles';
 export default css`
   ${componentStyles}
 
+  sl-dropdown {
+    width: 100%;
+  }
+
   sl-menu-item .highlight {
     color: var(--sl-color-primary-500);
   }
