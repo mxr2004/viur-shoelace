@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { debounce } from '../../internal/throttle';
 import SlInput from '../input/input';
 import SlMenuItem from '../menu-item/menu-item';
 import type SlDropdown from '../dropdown/dropdown';
