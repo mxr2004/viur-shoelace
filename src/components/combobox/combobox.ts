@@ -86,7 +86,7 @@ export default class SlCombobox extends LitElement {
   @property({ type: Number, attribute: 'max-results' }) maxResults: number = 20;
 
   /** Message displayed when no result found. */
-  @property({ type: String, attribute: 'empty-message' }) EmptyMessage: string = 'no data found';
+  @property({ type: String, attribute: 'empty-message' }) emptyMessage: string = 'no data found';
 
   /** The source property is a function executed on user input. The search result is displayed in the suggestions list. */
   @property()
@@ -245,7 +245,7 @@ export default class SlCombobox extends LitElement {
 
         <sl-menu @sl-select=${this.handleMenuSelect} ?select-on-type=${false}>
           ${this.suggestions.length === 0
-            ? html`<sl-menu-item disabled>${this.EmptyMessage}</sl-menu-item>`
+            ? html`<sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
             : this.suggestions.map(item => html`<sl-menu-item value=${item.value}>${item.text}</sl-menu-item>`)}
         </sl-menu>
       </sl-dropdown>
