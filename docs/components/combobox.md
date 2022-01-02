@@ -28,6 +28,9 @@ You can define a remote source to retrieve a list of data.
   const url = 'https://60db3b45801dcb0017290fdb.mockapi.io/users?name={q}';
 
   combobox.source = search => {
+    if(!search) {
+      return Promise.resolve([]);
+    }
     return fetch(url.replace('{q}', search))
       .then(resp => resp.json())
       .then(data =>
