@@ -19,7 +19,6 @@
 
 - Components
   - [Alert](/components/alert)
-  - [Autocomplete](/components/autocomplete)
   - [Avatar](/components/avatar)
   - [Badge](/components/badge)
   - [Breadcrumb](/components/breadcrumb)
@@ -29,6 +28,7 @@
   - [Card](/components/card)
   - [Checkbox](/components/checkbox)
   - [Color Picker](/components/color-picker)
+  - [Combobox](/components/combobox)
   - [Details](/components/details)
   - [Dialog](/components/dialog)
   - [Divider](/components/divider)

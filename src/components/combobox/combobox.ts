@@ -5,7 +5,7 @@ import SlInput from '../input/input';
 import SlMenuItem from '../menu-item/menu-item';
 import type SlDropdown from '../dropdown/dropdown';
 import type SlMenu from '../menu/menu';
-import styles from './autocomplete.styles';
+import styles from './combobox.styles';
 import { unsafeHTML, UnsafeHTMLDirective } from 'lit-html/directives/unsafe-html';
 
 /**
@@ -32,8 +32,8 @@ import { unsafeHTML, UnsafeHTMLDirective } from 'lit-html/directives/unsafe-html
  * @csspart base - The component's base wrapper.
  *
  */
-@customElement('sl-autocomplete')
-export default class SlAutocomplete extends LitElement {
+@customElement('sl-combobox')
+export default class SlCombobox extends LitElement {
   static styles = styles;
 
   private resizeObserver: ResizeObserver;
@@ -46,19 +46,19 @@ export default class SlAutocomplete extends LitElement {
 
   @state() suggestions: Array<{ text: string | UnsafeHTMLDirective; value: string }> = [];
 
-  /** The autocomplete's size. */
+  /** The combobox's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** Draws a pill-style autocomplete with rounded edges. */
+  /** Draws a pill-style combobox with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill: boolean = false;
 
-  /** The autocomplete's label. */
+  /** The combobox's label. */
   @property() label: string;
 
-  /** The autocomplete's name attribute. */
+  /** The combobox's name attribute. */
   @property() name: string;
 
-  /** The autocomplete's help text. */
+  /** The combobox's help text. */
   @property({ attribute: 'help-text' }) helpText: string = '';
 
   /** Adds a clear button when the input is populated. */
@@ -73,10 +73,10 @@ export default class SlAutocomplete extends LitElement {
   /** The input's autofocus attribute. */
   @property({ type: Boolean }) autofocus: boolean;
 
-  /** Disables the autocomplete component. */
+  /** Disables the combobox component. */
   @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
-  /** The minimum chars that will triggered the autocomplete suggestions. */
+  /** The minimum chars that will triggered the combobox suggestions. */
   @property({ type: Number, attribute: 'min-chars' }) minChars: number = 3;
 
   /** The delay in milliseconds between when a keystroke occurs and when a search is performed. */
@@ -255,6 +255,6 @@ export default class SlAutocomplete extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sl-autocomplete': SlAutocomplete;
+    'sl-combobox': SlCombobox;
   }
 }

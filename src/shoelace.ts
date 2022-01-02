@@ -1,7 +1,7 @@
 // Components
 export { default as SlAlert } from './components/alert/alert';
 export { default as SlAnimatedImage } from './components/animated-image/animated-image';
-export { default as SlAutocomplete } from './components/autocomplete/autocomplete';
+export { default as SlCombobox } from './components/combobox/combobox';
 export { default as SlAnimation } from './components/animation/animation';
 export { default as SlAvatar } from './components/avatar/avatar';
 export { default as SlBadge } from './components/badge/badge';
