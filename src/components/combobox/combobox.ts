@@ -229,7 +229,7 @@ export default class SlCombobox extends LitElement {
           autocomplete="off"
           autocorrect="off"
           inputmode="search"
-          @keyup=${debounce(this.handleKeyUp.bind(this), this.delay)}
+          @keyup=${this.handleKeyUp}
           @click=${this.handleClick}
           @sl-clear=${this.handleClearClick}
         >
