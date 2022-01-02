@@ -183,30 +183,26 @@ export default class SlCombobox extends LitElement {
       let items = await this.source(text);
       items.splice(this.maxResults);
 
-      const regex = new RegExp(this.search, 'gi');
-      items.forEach(item => {
-        (item.text as any) = (item.text as string).replace(regex, (match) => `<span class="highlight">${match}</span>`);
-      });
-
-      this.suggestions = [...items];
-
-      // https://github.com/gustf/js-levenshtein/blob/master/index.js
-      //
-      // const regex = new RegExp(this.search, 'gi');
-      // this.menu.innerHTML = items.map(item => template(item)).join('');
-      // this.updateComplete.then(() => {
-      //   this.getItems().forEach(item => {
-      //     if (!item.dataset.label) {
-      //       item.dataset.label = item.innerText;
-      //     }
-      //     if (this.highlight) {
-      //       item.innerHTML = item.innerText.replace(regex, `<mark class="highlight">${this.search}</mark>`);
-      //     }
-      //   });
-      // });
+      this.suggestions = this.highlightSearchTextInSuggestion(items, this.search);
 
       this.dropdown.show();
     }
+  }
+
+  private highlightSearchTextInSuggestion(items: Array<{ text: string; value: string }>, searchText: string) {
+    const regex = new RegExp(searchText, 'gi');
+    return items.map(item => {
+        const highlightedSuggestion = item.text.replace(
+          regex,
+          (match) => `<span class="highlight">${match}</span>`
+        );
+
+        return {
+          ...item,
+          text: highlightedSuggestion
+        };
+      }
+    );
   }
 
   render() {
