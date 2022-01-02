@@ -6,7 +6,7 @@ import SlMenuItem from '../menu-item/menu-item';
 import type SlDropdown from '../dropdown/dropdown';
 import type SlMenu from '../menu/menu';
 import styles from './combobox.styles';
-import { unsafeHTML, UnsafeHTMLDirective } from 'lit-html/directives/unsafe-html';
+import { unsafeHTML, UnsafeHTMLDirective } from 'lit/directives/unsafe-html.js';
 
 /**
  * @since 2.X
@@ -76,7 +76,7 @@ export default class SlCombobox extends LitElement {
   /** Disables the combobox component. */
   @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
-  /** The minimum chars that will triggered the combobox suggestions. */
+  /** The minimum chars that will trigger the combobox suggestions. */
   @property({ type: Number, attribute: 'min-chars' }) minChars: number = 3;
 
   /** The delay in milliseconds between when a keystroke occurs and when a search is performed. */
@@ -90,7 +90,7 @@ export default class SlCombobox extends LitElement {
 
   /** The source property is a function executed on user input. The search result is displayed in the suggestions list. */
   @property()
-  source?: (search: string) => Promise<Array<{ text: string | UnsafeHTMLDirective; value: string }>>;
+  source?: (search: string) => Promise<Array<{ text: string; value: string }>>;
 
   connectedCallback() {
     super.connectedCallback();
@@ -185,9 +185,7 @@ export default class SlCombobox extends LitElement {
 
       const regex = new RegExp(this.search, 'gi');
       items.forEach(item => {
-        (item.text as any) = unsafeHTML(
-          (item.text as string).replace(regex, `<span class="highlight">${this.search}</span>`)
-        );
+        (item.text as any) = (item.text as string).replace(regex, (match) => `<span class="highlight">${match}</span>`);
       });
 
       this.suggestions = [...items];
@@ -246,7 +244,7 @@ export default class SlCombobox extends LitElement {
         <sl-menu @sl-select=${this.handleMenuSelect} ?select-on-type=${false}>
           ${this.suggestions.length === 0
             ? html`<sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
-            : this.suggestions.map(item => html`<sl-menu-item value=${item.value}>${item.text}</sl-menu-item>`)}
+            : this.suggestions.map(item => html`<sl-menu-item value=${item.value}>${unsafeHTML(item.text)}</sl-menu-item>`)}
         </sl-menu>
       </sl-dropdown>
     `;
