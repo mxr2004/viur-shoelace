@@ -20,4 +20,26 @@ export default css`
   sl-menu-item:focus[tabindex='0'] .highlight {
     color: var(--sl-color-white);
   }
+
+  .input__prefix,
+  .input__suffix {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    cursor: default;
+    padding: 0;
+  }
+
+  .input__prefix ::slotted(sl-icon),
+  .input__suffix ::slotted(sl-icon) {
+    color: var(--sl-input-icon-color);
+  }
+
+  .input__prefix ::slotted(*) {
+    padding-left: var(--sl-input-spacing-small);
+  }
+
+  .input__suffix ::slotted(*) {
+    padding-right: var(--sl-input-spacing-small);
+  }
 `;

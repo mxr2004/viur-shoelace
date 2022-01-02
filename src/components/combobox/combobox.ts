@@ -230,7 +230,12 @@ export default class SlCombobox extends LitElement {
           @click=${this.handleClick}
           @sl-clear=${this.handleClearClick}
         >
-          <sl-icon slot="suffix" name="search" library="system"></sl-icon>
+          <span class="input__prefix" slot="prefix">
+            <slot name="prefix"></slot>
+          </span>
+          <span class="input__suffix" slot="suffix">
+            <slot name="suffix"></slot>
+          </span>
         </sl-input>
 
         <sl-menu @sl-select=${this.handleMenuSelect} ?select-on-type=${false}>
