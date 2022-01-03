@@ -42,6 +42,8 @@ export { default as SlResponsiveMedia } from './components/responsive-media/resp
 export { default as SlSelect } from './components/select/select';
 export { default as SlSkeleton } from './components/skeleton/skeleton';
 export { default as SlSpinnerCircle } from './components/spinner-circle/spinner-circle';
+export { default as SlSpinner } from './components/spinner/spinner';
+export { default as SlSplitPanel } from './components/split-panel/split-panel';
 export { default as SlSwitch } from './components/switch/switch';
 export { default as SlTab } from './components/tab/tab';
 export { default as SlTabGroup } from './components/tab-group/tab-group';
@@ -49,7 +51,6 @@ export { default as SlTabPanel } from './components/tab-panel/tab-panel';
 export { default as SlTag } from './components/tag/tag';
 export { default as SlTextarea } from './components/textarea/textarea';
 export { default as SlTooltip } from './components/tooltip/tooltip';
-export { default as SlSpinner } from './components/spinner/spinner';
 export { default as SlSlider } from './components/slider/slider';
 export { default as SlDetailsGroup } from './components/details-group/details-group';
 export { default as SlVisuallyHidden } from './components/visually-hidden/visually-hidden';

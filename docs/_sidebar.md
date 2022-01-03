@@ -52,6 +52,7 @@
   - [Skeleton](/components/skeleton)
   - [Spinner](/components/spinner)
   - [Spinner Circle](/components/spinner-circle)
+  - [Split Panel](/components/split-panel)
   - [Switch](/components/switch)
   - [Tab Group](/components/tab-group)
   - [Tab](/components/tab)

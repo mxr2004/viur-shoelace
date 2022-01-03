@@ -46,6 +46,7 @@ export { default as SlSkeleton } from './skeleton';
 export { default as SlSlider } from './slider';
 export { default as SlSpinner } from './spinner';
 export { default as SlSpinnerCircle } from './spinner-circle';
+export { default as SlSplitPanel } from './split-panel';
 export { default as SlSwitch } from './switch';
 export { default as SlTab } from './tab';
 export { default as SlTabGroup } from './tab-group';
