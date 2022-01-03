@@ -37,6 +37,9 @@ export default class SlMenuItem extends LitElement {
   /** Draws the menu item in a disabled state. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** Draws the menu item in an active state. */
+  @property({ type: Boolean, reflect: true }) active = false;
+
   firstUpdated() {
     this.setAttribute('role', 'menuitem');
   }
@@ -58,7 +61,8 @@ export default class SlMenuItem extends LitElement {
         class=${classMap({
           'menu-item': true,
           'menu-item--checked': this.checked,
-          'menu-item--disabled': this.disabled
+          'menu-item--disabled': this.disabled,
+          'menu-item--active': this.active
         })}
       >
         <sl-icon

@@ -12,6 +12,10 @@ export default css`
     color: var(--sl-color-primary-500);
   }
 
+  sl-menu-item[active] .highlight {
+    color: var(--sl-color-primary-100);
+  }
+
   sl-menu::part(base) {
     padding: 0;
   }

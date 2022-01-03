@@ -143,6 +143,9 @@ export default class SlInput extends LitElement {
   /** The input's inputmode attribute. */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
+  /** Marks an element as the active descendant of the input, see https://www.w3.org/WAI/GL/wiki/Using_aria-activedescendant_to_allow_changes_in_focus_within_widgets_to_be_communicated_to_Assistive_Technology */
+  @property({ type: String, reflect: true }) ariaActivedescendant: string|null = null;
+
   /** Gets or sets the current value as a `Date` object. Only valid when `type` is `date`. */
   get valueAsDate() {
     return this.input.valueAsDate as Date;
@@ -351,6 +354,7 @@ export default class SlInput extends LitElement {
             spellcheck=${ifDefined(this.spellcheck)}
             pattern=${ifDefined(this.pattern)}
             inputmode=${ifDefined(this.inputmode)}
+            aria-activedescendant=${this.ariaActivedescendant}
             aria-labelledby=${ifDefined(
               getLabelledBy({
                 label: this.label,
