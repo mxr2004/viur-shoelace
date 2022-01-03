@@ -144,7 +144,7 @@ export default class SlInput extends LitElement {
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
   /** Marks an element as the active descendant of the input, see https://www.w3.org/WAI/GL/wiki/Using_aria-activedescendant_to_allow_changes_in_focus_within_widgets_to_be_communicated_to_Assistive_Technology */
-  @property({ type: String, reflect: true }) ariaActivedescendant: string|null = null;
+  @property({ reflect: true, attribute: 'aria-activedescendant' }) ariaActivedescendant: string|null = null;
 
   /** Gets or sets the current value as a `Date` object. Only valid when `type` is `date`. */
   get valueAsDate() {

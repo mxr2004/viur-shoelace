@@ -7,6 +7,15 @@ import styles from './combobox.styles';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {scrollIntoView} from "../../internal/scroll";
 
+export interface Suggestion {
+  text: string;
+  value: string;
+}
+
+export interface SuggestionSource {
+  (search: string): Promise<Suggestion[]>
+}
+
 /**
  * @since 2.X
  * @status beta
@@ -76,18 +85,11 @@ export default class SlCombobox extends LitElement {
   /** Disables the combobox component. */
   @property({type: Boolean, reflect: true}) disabled: boolean = false;
 
-  /** The delay in milliseconds between when a keystroke occurs and when a search is performed. */
-  @property({type: Number}) delay: number = 300;
-
-  /** The maximum number of suggestions that will be displayed. */
-  @property({type: Number, attribute: 'max-results'}) maxResults: number = 20;
-
   /** Message displayed when no result found. */
-  @property({type: String, attribute: 'empty-message'}) emptyMessage: string = 'no data found';
+  @property({attribute: 'empty-message'}) emptyMessage: string = 'no data found';
 
   /** The source property is a function executed on user input. The search result is displayed in the suggestions list. */
-  @property()
-  source?: (search: string) => Promise<Array<{ text: string; value: string }>>;
+  @property() source?: SuggestionSource;
 
   connectedCallback() {
     super.connectedCallback();
@@ -234,19 +236,18 @@ export default class SlCombobox extends LitElement {
   }
 
   async prepareSuggestions(text: string) {
-    if (!this.source) {
+    if (typeof this.source !== 'function') {
       return;
     }
 
     this.search = this.input.value;
 
     let items = await this.source(text);
-    items.splice(this.maxResults);
 
     this.suggestions = this.highlightSearchTextInSuggestions(items, this.search);
   }
 
-  highlightSearchTextInSuggestions(items: Array<{ text: string; value: string }>, searchText: string) {
+  highlightSearchTextInSuggestions(items: Suggestion[], searchText: string) {
     const regex = new RegExp(searchText, 'gi');
     return items.map(item => {
         const highlightedSuggestion = item.text.replace(
@@ -282,6 +283,7 @@ export default class SlCombobox extends LitElement {
         disableKeyboardToggle="true"
       >
         <sl-input
+          part="input"
           slot="trigger"
           type="text"
           role="combobox"
@@ -312,7 +314,7 @@ export default class SlCombobox extends LitElement {
           </span>
         </sl-input>
 
-        <sl-menu>
+        <sl-menu part="menu">
           ${this.suggestions.length === 0
             ? html`
               <sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
