@@ -208,12 +208,6 @@ export default class SlCombobox extends LitElement {
         this.search = item.textContent ?? '';
       }
     }
-
-    // Other keys bring focus to the menu and initiate type-to-select behavior
-    if (this.dropdown.open && this.menu && !SlCombobox.navigationKeys.includes(event.key)) {
-      this.menu.typeToSelect(event.key);
-      return;
-    }
   }
 
   ignoreKeyUp(event: KeyboardEvent) {
@@ -318,7 +312,7 @@ export default class SlCombobox extends LitElement {
           </span>
         </sl-input>
 
-        <sl-menu ?select-on-type=${false}>
+        <sl-menu>
           ${this.suggestions.length === 0
             ? html`
               <sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
