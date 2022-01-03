@@ -20,6 +20,7 @@ export default css`
   .loader span:nth-child(1) {
     --i: 0;
   }
+
   .loader span:nth-child(2) {
     --i: 1;
     left: calc(50% - (50% / 4));

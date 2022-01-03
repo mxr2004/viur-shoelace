@@ -6,6 +6,21 @@ Components with the <sl-badge variant="warning" pill>Experimental</sl-badge> bad
 
 _During the beta period, these restrictions may be relaxed in the event of a mission-critical bug._ 🐛
 
+## Next
+
+- 🚨 BREAKING: changed the `alt` attribute to `label` in `<sl-avatar>` for consistency with other components
+- Added `role="status"` to `<sl-spinner>`
+- Added `valueAsDate` and `valueAsNumber` properties to `<sl-input>` [#570](https://github.com/shoelace-style/shoelace/issues/570)
+- Fixed broken spinner animation in Safari [#633](https://github.com/shoelace-style/shoelace/issues/633)
+- Fixed an a11y bug in `<sl-tooltip>` where `aria-describedby` referenced an id in the shadow root
+- Fixed a bug in `<sl-radio>` where tabbing didn't work properly in Firefox [#596](https://github.com/shoelace-style/shoelace/issues/596)
+- Fixed a bug in `<sl-input>` where clicking the left/right edge of the control wouldn't focus it
+- Improved `<sl-spinner>` track color when used on various backgrounds
+- Improved a11y in `<sl-radio>` so VoiceOver announces radios properly in a radio group
+- Improved the API for the experimental `<sl-split-panel>` component by making `position` accept a percentage and adding the `position-in-pixels` attribute
+- Refactored internal id usage in `<sl-details>`, `<sl-dialog>`, `<sl-drawer>`, and `<sl-dropdow>`
+- Removed `position: relative` from the common component stylesheet
+
 ## 2.0.0-beta.63
 
 - 🚨 BREAKING: changed the `type` attribute to `variant` in `<sl-alert>`, `<sl-badge>`, `<sl-button>`, and `<sl-tag>` since it's more appropriate and to disambiguate from other `type` attributes

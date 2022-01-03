@@ -29,7 +29,7 @@
             } else if (isAttributeDifferent) {
               attributeInfo = `
                 <br>
-                <sl-tooltip content="This attribute is different than the property">
+                <sl-tooltip content="This attribute is different from its property">
                   <small>
                     <code class="nowrap">
                       ${escapeHtml(prop.attribute)}
@@ -163,6 +163,7 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
       </thead>
       <tbody>
@@ -170,8 +171,9 @@
           .map(
             style => `
               <tr>
-                <td><code>${escapeHtml(style.name)}</code></td>
+                <td class="nowrap"><code>${escapeHtml(style.name)}</code></td>
                 <td>${escapeHtml(style.description)}</td>
+                <td><code>${escapeHtml(style.default)}</code></td>
               </tr>
             `
           )
