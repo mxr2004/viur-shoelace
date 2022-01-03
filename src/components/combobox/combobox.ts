@@ -1,11 +1,10 @@
-import { LitElement, html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import SlInput from '../input/input';
+import {LitElement, html} from 'lit';
+import {customElement, property, query, state} from 'lit/decorators.js';
 import SlMenuItem from '../menu-item/menu-item';
 import type SlDropdown from '../dropdown/dropdown';
 import type SlMenu from '../menu/menu';
 import styles from './combobox.styles';
-import { unsafeHTML, UnsafeHTMLDirective } from 'lit/directives/unsafe-html.js';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
 /**
  * @since 2.X
@@ -37,19 +36,19 @@ export default class SlCombobox extends LitElement {
 
   private resizeObserver: ResizeObserver;
   private search: string = '';
-  private lastActiveItemIdex: number = -1;
+  private lastActiveItemIndex: number = -1;
 
   @query('sl-input') input: HTMLInputElement;
   @query('sl-dropdown') dropdown: SlDropdown;
   @query('sl-menu') menu: SlMenu;
 
-  @state() suggestions: Array<{ text: string | UnsafeHTMLDirective; value: string }> = [];
+  @state() suggestions: Array<{ text: string; value: string }> = [];
 
   /** The combobox's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({reflect: true}) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Draws a pill-style combobox with rounded edges. */
-  @property({ type: Boolean, reflect: true }) pill: boolean = false;
+  @property({type: Boolean, reflect: true}) pill: boolean = false;
 
   /** The combobox's label. */
   @property() label: string;
@@ -58,31 +57,31 @@ export default class SlCombobox extends LitElement {
   @property() name: string;
 
   /** The combobox's help text. */
-  @property({ attribute: 'help-text' }) helpText: string = '';
+  @property({attribute: 'help-text'}) helpText: string = '';
 
   /** Adds a clear button when the input is populated. */
-  @property({ type: Boolean }) clearable: boolean = false;
+  @property({type: Boolean}) clearable: boolean = false;
 
   /** Enable this option to prevent the panel from being clipped when the component is placed inside a container with `overflow: auto|scroll`. */
-  @property({ type: Boolean }) hoist: boolean = false;
+  @property({type: Boolean}) hoist: boolean = false;
 
   /** The input's placeholder text. */
   @property() placeholder: string;
 
   /** The input's autofocus attribute. */
-  @property({ type: Boolean }) autofocus: boolean;
+  @property({type: Boolean}) autofocus: boolean;
 
   /** Disables the combobox component. */
-  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
+  @property({type: Boolean, reflect: true}) disabled: boolean = false;
 
   /** The delay in milliseconds between when a keystroke occurs and when a search is performed. */
-  @property({ type: Number }) delay: number = 300;
+  @property({type: Number}) delay: number = 300;
 
   /** The maximum number of suggestions that will be displayed. */
-  @property({ type: Number, attribute: 'max-results' }) maxResults: number = 20;
+  @property({type: Number, attribute: 'max-results'}) maxResults: number = 20;
 
   /** Message displayed when no result found. */
-  @property({ type: String, attribute: 'empty-message' }) emptyMessage: string = 'no data found';
+  @property({type: String, attribute: 'empty-message'}) emptyMessage: string = 'no data found';
 
   /** The source property is a function executed on user input. The search result is displayed in the suggestions list. */
   @property()
@@ -119,39 +118,40 @@ export default class SlCombobox extends LitElement {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    const items = this.menu.getAllItems({ includeDisabled: false });
+    event.stopImmediatePropagation();
 
-    if (event.target instanceof SlMenuItem) {
-      const activeItem = this.menu.getActiveItem();
-
-      switch (event.key) {
-        case 'ArrowUp':
-          if (activeItem === 0 && this.lastActiveItemIdex === 0) {
-            const lastItemIndex = items.length - 1;
-            this.menu.setCurrentItem(items[lastItemIndex]);
-            items[lastItemIndex].focus();
-            this.lastActiveItemIdex = lastItemIndex;
-          } else {
-            this.lastActiveItemIdex = activeItem;
-          }
-          break;
-        case 'ArrowDown':
-          if (activeItem === items.length - 1 && this.lastActiveItemIdex === items.length - 1) {
-            this.menu.setCurrentItem(items[0]);
-            items[0].focus();
-            this.lastActiveItemIdex = 0;
-          } else {
-            this.lastActiveItemIdex = activeItem;
-          }
-          break;
-        default:
-          const ignoredKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt', 'Enter', 'Escape'];
-          if (!ignoredKeys.includes(event.key)) this.input.focus();
-          break;
-      }
+    if (!(event.target instanceof SlMenuItem)) {
+      return
     }
 
-    event.stopImmediatePropagation();
+    const items = this.menu.getAllItems({includeDisabled: false});
+    const activeItem = this.menu.getActiveItem();
+
+    switch (event.key) {
+      case 'ArrowUp':
+        if (activeItem === 0 && this.lastActiveItemIndex === 0) {
+          const lastItemIndex = items.length - 1;
+          this.menu.setCurrentItem(items[lastItemIndex]);
+          items[lastItemIndex].focus();
+          this.lastActiveItemIndex = lastItemIndex;
+        } else {
+          this.lastActiveItemIndex = activeItem;
+        }
+        break;
+      case 'ArrowDown':
+        if (activeItem === items.length - 1 && this.lastActiveItemIndex === items.length - 1) {
+          this.menu.setCurrentItem(items[0]);
+          items[0].focus();
+          this.lastActiveItemIndex = 0;
+        } else {
+          this.lastActiveItemIndex = activeItem;
+        }
+        break;
+      default:
+        const ignoredKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt', 'Enter', 'Escape'];
+        if (!ignoredKeys.includes(event.key)) this.input.focus();
+        break;
+    }
   }
 
   async handleKeyUp(event: KeyboardEvent) {
@@ -240,8 +240,10 @@ export default class SlCombobox extends LitElement {
 
         <sl-menu @sl-select=${this.handleMenuSelect} ?select-on-type=${false}>
           ${this.suggestions.length === 0
-            ? html`<sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
-            : this.suggestions.map(item => html`<sl-menu-item value=${item.value}>${unsafeHTML(item.text)}</sl-menu-item>`)}
+            ? html`
+              <sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
+            : this.suggestions.map(item => html`
+              <sl-menu-item value=${item.value}>${unsafeHTML(item.text)}</sl-menu-item>`)}
         </sl-menu>
       </sl-dropdown>
     `;
