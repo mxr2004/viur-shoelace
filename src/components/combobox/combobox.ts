@@ -163,6 +163,50 @@ export default class SlCombobox extends LitElement {
     }
   }
 
+  handleInputKeyDown(event: KeyboardEvent) {
+    event.stopImmediatePropagation();
+
+    const menuItems: SlMenuItem[] = this.menu.getAllItems();
+    const firstMenuItem = menuItems[0];
+    const lastMenuItem = menuItems[menuItems.length - 1];
+
+    // Close when escape or tab is pressed
+    if (event.key === 'Escape') {
+      this.dropdown.focusOnTrigger();
+      this.dropdown.hide();
+      return;
+    }
+
+    // When up/down is pressed, we make the assumption that the user is familiar with the menu and plans to make a
+    // selection. Rather than toggle the panel, we focus on the menu (if one exists) and activate the first item for
+    // faster navigation.
+    if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
+      event.preventDefault();
+
+      this.dropdown.show();
+
+      // Focus on a menu item
+      if (event.key === 'ArrowDown' && firstMenuItem) {
+        this.menu.setCurrentItem(firstMenuItem);
+        firstMenuItem.focus();
+        return;
+      }
+
+      if (event.key === 'ArrowUp' && lastMenuItem) {
+        this.menu.setCurrentItem(lastMenuItem);
+        lastMenuItem.focus();
+        return;
+      }
+    }
+
+    // Other keys bring focus to the menu and initiate type-to-select behavior
+    const ignoredKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt'];
+    if (this.dropdown.open && this.menu && !ignoredKeys.includes(event.key)) {
+      this.menu.typeToSelect(event.key);
+      return;
+    }
+  }
+
   async handleKeyUp(event: KeyboardEvent) {
     event.stopImmediatePropagation();
 
@@ -239,6 +283,7 @@ export default class SlCombobox extends LitElement {
           autocomplete="off"
           autocorrect="off"
           inputmode="search"
+          @keydown=${this.handleInputKeyDown}
           @keyup=${this.handleKeyUp}
           @click=${this.handleClick}
           @sl-clear=${this.handleClearClick}

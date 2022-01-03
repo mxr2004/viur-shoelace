@@ -88,9 +88,6 @@ export default class SlDropdown extends LitElement {
    */
   @property({ type: Boolean }) hoist = false;
 
-  /** If the menu should be toggled when pressing spacebar or enter. */
-  @property({ type: Boolean, reflect: true }) disableKeyboardToggle = false;
-
   connectedCallback() {
     super.connectedCallback();
     this.handleMenuItemActivate = this.handleMenuItemActivate.bind(this);
@@ -257,7 +254,7 @@ export default class SlDropdown extends LitElement {
 
     // When spacebar/enter is pressed, show the panel but don't focus on the menu. This let's the user press the same
     // key again to hide the menu in case they don't want to make a selection.
-    if ([' ', 'Enter'].includes(event.key) && !this.disableKeyboardToggle) {
+    if ([' ', 'Enter'].includes(event.key)) {
       event.preventDefault();
       this.open ? this.hide() : this.show();
       return;
