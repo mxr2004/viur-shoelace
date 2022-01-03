@@ -39,11 +39,27 @@ export default css`
     color: var(--sl-input-icon-color);
   }
 
-  .input__prefix ::slotted(*) {
+  sl-input[size="small"] .input__prefix ::slotted(*) {
     padding-left: var(--sl-input-spacing-small);
   }
 
-  .input__suffix ::slotted(*) {
+  sl-input[size="small"] .input__suffix ::slotted(*) {
     padding-right: var(--sl-input-spacing-small);
+  }
+
+  sl-input[size="medium"] .input__prefix ::slotted(*) {
+    padding-left: var(--sl-input-spacing-medium);
+  }
+
+  sl-input[size="medium"] .input__suffix ::slotted(*) {
+    padding-right: var(--sl-input-spacing-medium);
+  }
+
+  sl-input[size="large"] .input__prefix ::slotted(*) {
+    padding-left: var(--sl-input-spacing-large);
+  }
+
+  sl-input[size="large"] .input__suffix ::slotted(*) {
+    padding-right: var(--sl-input-spacing-large);
   }
 `;
