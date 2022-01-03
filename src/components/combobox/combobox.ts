@@ -5,6 +5,7 @@ import type SlDropdown from '../dropdown/dropdown';
 import type SlMenu from '../menu/menu';
 import styles from './combobox.styles';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {scrollIntoView} from "../../internal/scroll";
 
 /**
  * @since 2.X
@@ -42,7 +43,7 @@ export default class SlCombobox extends LitElement {
   @query('sl-dropdown') dropdown: SlDropdown;
   @query('sl-menu') menu: SlMenu;
 
-  @state() lastActiveItemIndex: number = -1;
+  @state() activeItemIndex: number = -1;
   @state() suggestions: Array<{ text: string; value: string }> = [];
 
   /** The combobox's size. */
@@ -108,12 +109,6 @@ export default class SlCombobox extends LitElement {
     event.stopImmediatePropagation();
   }
 
-  handleMenuSelect(event: CustomEvent) {
-    const item = event.detail.item;
-    this.input.value = item.textContent;
-    this.search = item.textContent;
-  }
-
   handleCloseMenu() {
     this.menu.getCurrentItem()?.setAttribute('tabindex', '-1');
   }
@@ -131,6 +126,7 @@ export default class SlCombobox extends LitElement {
   private handleMenuItemKeyDown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Escape':
+        this.input.value = '';
         this.dropdown.focusOnTrigger();
         this.dropdown.hide();
         break;
@@ -149,6 +145,7 @@ export default class SlCombobox extends LitElement {
 
     // Close when escape or tab is pressed
     if (event.key === 'Escape') {
+      this.input.value = '';
       this.dropdown.focusOnTrigger();
       this.dropdown.hide();
       return;
@@ -164,37 +161,51 @@ export default class SlCombobox extends LitElement {
 
       // Focus on a menu item
       if (event.key === 'ArrowDown' && firstMenuItem) {
-        if (this.lastActiveItemIndex !== -1) {
-          menuItems[this.lastActiveItemIndex].active = false;
+        if (this.activeItemIndex !== -1) {
+          menuItems[this.activeItemIndex].active = false;
         }
 
-        if (this.lastActiveItemIndex === menuItems.length - 1) {
-          this.lastActiveItemIndex = 0;
+        if (this.activeItemIndex === menuItems.length - 1) {
+          this.activeItemIndex = 0;
         } else {
-          this.lastActiveItemIndex++;
+          this.activeItemIndex++;
         }
 
-        this.menu.setCurrentItem(menuItems[this.lastActiveItemIndex]);
-        menuItems[this.lastActiveItemIndex].active = true;
+        this.menu.setCurrentItem(menuItems[this.activeItemIndex]);
+        menuItems[this.activeItemIndex].active = true;
+
+        scrollIntoView(menuItems[this.activeItemIndex], this.dropdown.panel);
 
         return;
       }
 
       if (event.key === 'ArrowUp' && lastMenuItem) {
-        if (this.lastActiveItemIndex !== -1) {
-          menuItems[this.lastActiveItemIndex].active = false;
+        if (this.activeItemIndex !== -1) {
+          menuItems[this.activeItemIndex].active = false;
         }
 
-        if (this.lastActiveItemIndex === 0) {
-          this.lastActiveItemIndex = menuItems.length - 1;
+        if (this.activeItemIndex === 0) {
+          this.activeItemIndex = menuItems.length - 1;
         } else {
-          this.lastActiveItemIndex--;
+          this.activeItemIndex--;
         }
 
-        this.menu.setCurrentItem(menuItems[this.lastActiveItemIndex]);
-        menuItems[this.lastActiveItemIndex].active = true;
+        this.menu.setCurrentItem(menuItems[this.activeItemIndex]);
+        menuItems[this.activeItemIndex].active = true;
+
+        scrollIntoView(menuItems[this.activeItemIndex], this.dropdown.panel);
 
         return;
+      }
+    }
+
+    if (event.key === 'Enter' && this.activeItemIndex !== -1) {
+      event.preventDefault();
+      const item = menuItems[this.activeItemIndex];
+      if (item) {
+        this.dropdown.hide();
+        this.input.value = item.textContent ?? '';
+        this.search = item.textContent ?? '';
       }
     }
 
@@ -210,9 +221,9 @@ export default class SlCombobox extends LitElement {
   }
 
   async handleSlInput() {
-    if(this.lastActiveItemIndex !== -1) {
-      this.menu.getAllItems({includeDisabled: false})[this.lastActiveItemIndex].active = false;
-      this.lastActiveItemIndex = -1;
+    if(this.activeItemIndex !== -1) {
+      this.menu.getAllItems({includeDisabled: false})[this.activeItemIndex].active = false;
+      this.activeItemIndex = -1;
     }
     await this.prepareSuggestions(this.input.value);
     this.dropdown.show();
@@ -258,11 +269,11 @@ export default class SlCombobox extends LitElement {
   }
 
   activeDescendant(): string|null {
-    if (this.lastActiveItemIndex === -1) {
+    if (this.activeItemIndex === -1) {
       return null;
     }
 
-    return `menu-item-${this.lastActiveItemIndex}`;
+    return `menu-item-${this.activeItemIndex}`;
   }
 
   render() {
@@ -307,7 +318,7 @@ export default class SlCombobox extends LitElement {
           </span>
         </sl-input>
 
-        <sl-menu @sl-select=${this.handleMenuSelect} ?select-on-type=${false}>
+        <sl-menu ?select-on-type=${false}>
           ${this.suggestions.length === 0
             ? html`
               <sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
