@@ -12,6 +12,7 @@ import { setDefaultAnimation, getAnimation } from '../../utilities/animation-reg
 import type SlMenu from '../menu/menu';
 import type SlMenuItem from '../menu-item/menu-item';
 import styles from './dropdown.styles';
+import de from "../../translations/de";
 
 /**
  * @since 2.0

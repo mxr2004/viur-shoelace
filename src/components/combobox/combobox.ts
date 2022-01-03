@@ -5,6 +5,7 @@ import type SlDropdown from '../dropdown/dropdown';
 import type SlMenu from '../menu/menu';
 import styles from './combobox.styles';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import de from "../../translations/de";
 
 /**
  * @since 2.X
@@ -33,6 +34,7 @@ import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 @customElement('sl-combobox')
 export default class SlCombobox extends LitElement {
   static styles = styles;
+  static navigationKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt', 'Enter', 'Escape'];
 
   private resizeObserver: ResizeObserver;
   private search: string = '';
@@ -124,10 +126,18 @@ export default class SlCombobox extends LitElement {
       return
     }
 
+    this.handleMenuItemKeyDown(event);
+  }
+
+  private handleMenuItemKeyDown(event: KeyboardEvent) {
     const items = this.menu.getAllItems({includeDisabled: false});
     const activeItem = this.menu.getActiveItem();
 
     switch (event.key) {
+      case 'Escape':
+        this.dropdown.focusOnTrigger();
+        this.dropdown.hide();
+        break;
       case 'ArrowUp':
         if (activeItem === 0 && this.lastActiveItemIndex === 0) {
           const lastItemIndex = items.length - 1;
@@ -148,15 +158,20 @@ export default class SlCombobox extends LitElement {
         }
         break;
       default:
-        const ignoredKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt', 'Enter', 'Escape'];
-        if (!ignoredKeys.includes(event.key)) this.input.focus();
+        if (!SlCombobox.navigationKeys.includes(event.key)) this.input.focus();
         break;
     }
   }
 
   async handleKeyUp(event: KeyboardEvent) {
-    await this.prepareSuggestions(this.input.value);
     event.stopImmediatePropagation();
+
+    if (SlCombobox.navigationKeys.includes(event.key)) {
+      return;
+    }
+
+    await this.prepareSuggestions(this.input.value);
+    this.dropdown.show();
   }
 
   resizeMenu() {
@@ -180,8 +195,6 @@ export default class SlCombobox extends LitElement {
     items.splice(this.maxResults);
 
     this.suggestions = this.highlightSearchTextInSuggestions(items, this.search);
-
-    this.dropdown.show();
   }
 
   private highlightSearchTextInSuggestions(items: Array<{ text: string; value: string }>, searchText: string) {
