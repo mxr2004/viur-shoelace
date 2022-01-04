@@ -6,6 +6,7 @@ import type SlMenu from '../menu/menu';
 import styles from './combobox.styles';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {scrollIntoView} from "../../internal/scroll";
+import {emit} from "../../internal/event";
 
 export interface Suggestion {
   text: string;
@@ -45,8 +46,8 @@ export default class SlCombobox extends LitElement {
   static styles = styles;
   static navigationKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt', 'Enter', 'Escape'];
 
+  private comboboxId = comboboxIds++;
   private resizeObserver: ResizeObserver;
-  private search: string = '';
 
   @query('sl-input') input: HTMLInputElement;
   @query('sl-dropdown') dropdown: SlDropdown;
@@ -102,12 +103,13 @@ export default class SlCombobox extends LitElement {
     this.resizeObserver.unobserve(this.input);
   }
 
-  handleClearClick() {
-    this.search = '';
+  clear() {
+    this.input.value = '';
+    this.dropdown.focusOnTrigger();
     this.dropdown.hide();
   }
 
-  handleClick(event: MouseEvent) {
+  ignoreInputClick(event: MouseEvent) {
     event.stopImmediatePropagation();
   }
 
@@ -128,9 +130,7 @@ export default class SlCombobox extends LitElement {
   private handleMenuItemKeyDown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Escape':
-        this.input.value = '';
-        this.dropdown.focusOnTrigger();
-        this.dropdown.hide();
+        this.clear();
         break;
       default:
         if (!SlCombobox.navigationKeys.includes(event.key)) this.input.focus();
@@ -147,9 +147,7 @@ export default class SlCombobox extends LitElement {
 
     // Close when escape or tab is pressed
     if (event.key === 'Escape') {
-      this.input.value = '';
-      this.dropdown.focusOnTrigger();
-      this.dropdown.hide();
+      this.clear();
       return;
     }
 
@@ -205,10 +203,19 @@ export default class SlCombobox extends LitElement {
       event.preventDefault();
       const item = menuItems[this.activeItemIndex];
       if (item) {
-        this.dropdown.hide();
-        this.input.value = item.textContent ?? '';
-        this.search = item.textContent ?? '';
+        this.onItemSelected(item);
       }
+    }
+  }
+
+  onItemSelected(item: SlMenuItem) {
+    const event = emit(this, 'sl-item-select', {
+      detail: {item},
+      cancelable: true,
+    });
+    if (!event.defaultPrevented) {
+      this.dropdown.hide();
+      this.input.value = item.textContent ?? '';
     }
   }
 
@@ -217,12 +224,18 @@ export default class SlCombobox extends LitElement {
   }
 
   async handleSlInput() {
-    if(this.activeItemIndex !== -1) {
+    if (this.activeItemIndex !== -1) {
       this.menu.getAllItems({includeDisabled: false})[this.activeItemIndex].active = false;
       this.activeItemIndex = -1;
     }
+
+    if (this.input.value === '') {
+      await this.dropdown.hide();
+      return
+    }
+
     await this.prepareSuggestions(this.input.value);
-    this.dropdown.show();
+    await this.dropdown.show();
   }
 
   resizeMenu() {
@@ -240,11 +253,9 @@ export default class SlCombobox extends LitElement {
       return;
     }
 
-    this.search = this.input.value;
-
     let items = await this.source(text);
 
-    this.suggestions = this.highlightSearchTextInSuggestions(items, this.search);
+    this.suggestions = this.highlightSearchTextInSuggestions(items, this.input.value);
   }
 
   highlightSearchTextInSuggestions(items: Suggestion[], searchText: string) {
@@ -268,7 +279,11 @@ export default class SlCombobox extends LitElement {
       return null;
     }
 
-    return `menu-item-${this.activeItemIndex}`;
+    return this.menuItemId(this.activeItemIndex);
+  }
+
+  menuItemId(index: number): string {
+    return `sl-combobox-menu-${this.comboboxId}-item-${index}`
   }
 
   render() {
@@ -281,12 +296,14 @@ export default class SlCombobox extends LitElement {
         @keydown=${this.handleKeyDown}
         @sl-hide=${this.handleCloseMenu}
         disableKeyboardToggle="true"
+        stay-open-on-select
       >
         <sl-input
           part="input"
           slot="trigger"
           type="text"
           role="combobox"
+          aria-expanded=${this.dropdown?.open}
           size=${this.size}
           label=${this.label}
           placeholder=${this.placeholder}
@@ -299,12 +316,14 @@ export default class SlCombobox extends LitElement {
           autocomplete="off"
           autocorrect="off"
           inputmode="search"
-          ariaActivedescendant=${this.activeDescendant()}
+          aria-activedescendant=${this.activeDescendant()}
+          aria-controls=${`sl-combobox-menu-${this.comboboxId}`}
+          aria-autocomplete="list"
           @keydown=${this.handleInputKeyDown}
           @keyup=${this.ignoreKeyUp}
           @sl-input=${this.handleSlInput}
-          @click=${this.handleClick}
-          @sl-clear=${this.handleClearClick}
+          @click=${this.ignoreInputClick}
+          @sl-clear=${this.clear}
         >
           <span class="input__prefix" slot="prefix">
             <slot name="prefix"></slot>
@@ -314,12 +333,17 @@ export default class SlCombobox extends LitElement {
           </span>
         </sl-input>
 
-        <sl-menu part="menu">
+        <sl-menu
+          part="menu"
+          id=${`sl-combobox-menu-${this.comboboxId}`}
+          role="listbox"
+          @sl-select=${(selectEvent: CustomEvent) => this.onItemSelected(selectEvent.detail.item)}
+        >
           ${this.suggestions.length === 0
             ? html`
               <sl-menu-item disabled>${this.emptyMessage}</sl-menu-item>`
             : this.suggestions.map((item, index) => html`
-              <sl-menu-item value=${item.value} id=${`menu-item-${index}`}>${unsafeHTML(item.text)}</sl-menu-item>`)}
+              <sl-menu-item value=${item.value} id=${this.menuItemId(index)}>${unsafeHTML(item.text)}</sl-menu-item>`)}
         </sl-menu>
       </sl-dropdown>
     `;
@@ -331,3 +355,5 @@ declare global {
     'sl-combobox': SlCombobox;
   }
 }
+
+let comboboxIds = 0;
