@@ -182,7 +182,7 @@ describe('<sl-input>', () => {
 
     it('should set the input value to the text of the suggestion when selected', async () => {
       let selectedItem: SlMenuItem;
-      const selectHandler = (event) => selectedItem = event.detail.item;
+      const selectHandler = (event: CustomEvent) => selectedItem = event.detail.item;
       const el = await fixture<SlCombobox>(html`<sl-combobox></sl-combobox>`);
       el.source = dummyDataSource;
       el.addEventListener('sl-item-select', selectHandler);
@@ -252,30 +252,61 @@ describe('<sl-input>', () => {
       await expect(el.dropdown.open).to.be.false;
     });
 
-    it('should not open menu on input click', async () => {
-      const el = await fixture<SlCombobox>(html`<sl-combobox></sl-combobox>`);
-      el.source = dummyDataSource;
-      const input = el.shadowRoot?.querySelector('[part="input"]') as SlInput;
-      input.click();
-
-      await expect(el.dropdown.open).to.be.false;
-    });
-
-    it('should not open menu when input value is empty', async () => {
-      const el = await fixture<SlCombobox>(html`<sl-combobox></sl-combobox>`);
+    it('should not open menu on focus when input value is empty', async () => {
+      const fix = await fixture(html`
+        <div>
+          <sl-combobox></sl-combobox>
+          <div></div>
+        </div>`);
+      const el = fix.querySelector('sl-combobox')!;
       el.source = dummyDataSource;
       const input = el.shadowRoot?.querySelector('[part="input"]') as SlInput;
       input.focus();
 
-      await sendKeys({
-        type: 't'
-      });
-
-      await sendKeys({
-        press: 'Backspace'
-      });
-
       await expect(el.dropdown.open).to.be.false;
+    });
+
+    it('should open menu when input gains focus', async () => {
+      const fix = await fixture(html`
+        <div>
+          <sl-combobox></sl-combobox>
+            <input class="other-focus"/>
+        </div>`);
+      const el = fix.querySelector('sl-combobox')!;
+      const otherFocus: HTMLInputElement = fix.querySelector('.other-focus')!;
+      el.source = dummyDataSource;
+      const input = el.shadowRoot?.querySelector('[part="input"]') as SlInput;
+
+      input.focus();
+
+      await sendKeys({
+        type: 'a',
+      });
+
+      otherFocus.focus();
+
+      input.focus()
+
+      await expect(el.dropdown.open).to.be.true;
+    });
+
+    it('should set input value when clicking suggestion', async () => {
+      const el = await fixture<SlCombobox>(html`<sl-combobox></sl-combobox>`);
+      el.source = dummyDataSource;
+      const input = el.shadowRoot?.querySelector('[part="input"]') as SlInput;
+      const menu = el.shadowRoot?.querySelector('[part="menu"]') as SlMenu;
+
+      input.focus();
+
+      await sendKeys({
+        type: 'a',
+      });
+
+      const firstSuggestion = menu.getAllItems()[0];
+
+      firstSuggestion.click();
+
+      await expect(input.value).to.equal(firstSuggestion.textContent);
     });
   });
 });

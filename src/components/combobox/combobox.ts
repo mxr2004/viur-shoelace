@@ -118,16 +118,18 @@ export default class SlCombobox extends LitElement {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    event.stopImmediatePropagation();
+    if (event.key !== 'Tab') {
+      event.stopImmediatePropagation();
+    }
 
     if (!(event.target instanceof SlMenuItem)) {
-      return
+      return;
     }
 
     this.handleMenuItemKeyDown(event);
   }
 
-  private handleMenuItemKeyDown(event: KeyboardEvent) {
+  handleMenuItemKeyDown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Escape':
         this.clear();
@@ -139,7 +141,9 @@ export default class SlCombobox extends LitElement {
   }
 
   handleInputKeyDown(event: KeyboardEvent) {
-    event.stopImmediatePropagation();
+    if (event.key !== 'Tab') {
+      event.stopImmediatePropagation();
+    }
 
     const menuItems: SlMenuItem[] = this.menu.getAllItems();
     const firstMenuItem = menuItems[0];
@@ -207,6 +211,13 @@ export default class SlCombobox extends LitElement {
       }
     }
   }
+
+  handleInputFocus = () => {
+    if (this.input.value == '') {
+      return;
+    }
+    this.dropdown.show();
+  };
 
   onItemSelected(item: SlMenuItem) {
     const event = emit(this, 'sl-item-select', {
@@ -324,6 +335,7 @@ export default class SlCombobox extends LitElement {
           @sl-input=${this.handleSlInput}
           @click=${this.ignoreInputClick}
           @sl-clear=${this.clear}
+          @sl-focus=${this.handleInputFocus}
         >
           <span class="input__prefix" slot="prefix">
             <slot name="prefix"></slot>
