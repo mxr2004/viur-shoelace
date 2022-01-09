@@ -114,7 +114,7 @@ describe('<sl-input>', () => {
         press: 'ArrowDown'
       });
 
-      await expect(el.shadowRoot.activeElement).to.equal(input);
+      await expect(el.shadowRoot?.activeElement).to.equal(input);
     });
 
     it('should give the input the correct aria attributes', async () => {

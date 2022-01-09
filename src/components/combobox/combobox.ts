@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property, query, state} from 'lit/decorators.js';
-import SlMenuItem from '../menu-item/menu-item';
+import type SlMenuItem from '../menu-item/menu-item';
 import type SlDropdown from '../dropdown/dropdown';
 import type SlMenu from '../menu/menu';
 import styles from './combobox.styles';
@@ -22,24 +22,17 @@ export interface SuggestionSource {
  * @status beta
  *
  * @dependency sl-input
- * @dependency sl-icon
  * @dependency sl-dropdown
  * @dependency sl-menu
  * @dependency sl-menu-item
  *
- * @event {{ item: SlMenuItem }} sl-select - Emitted when a menu item is selected.
+ * @event {{ item: SlMenuItem }} sl-item-select - Emitted when a suggestion is selected.
  * @event sl-change - Emitted when the input's value changes.
- * @event sl-clear - Emitted when the clear button is activated.
  * @event sl-input - Emitted when the input receives input.
- * @event sl-focus - Emitted when the input gains focus.
- * @event sl-blur - Emitted when the input loses focus.
- * @event sl-show - Emitted when the dropdown opens.
- * @event sl-after-show - Emitted after the dropdown opens and all animations are complete.
- * @event sl-hide - Emitted when the dropdown closes.
- * @event sl-after-hide - Emitted after the dropdown closes and all animations are complete.*
  *
- * @csspart base - The component's base wrapper.
- *
+ * @csspart base - The component's base wrapper, a sl-dropdown.
+ * @csspart input - The sl-input component.
+ * @csspart menu - The sl-menu component.
  */
 @customElement('sl-combobox')
 export default class SlCombobox extends LitElement {
@@ -186,19 +179,22 @@ export default class SlCombobox extends LitElement {
     }
   }
 
-  async handleSlInput() {
+  handleSlInput(event: CustomEvent) {
+    event.stopPropagation();
+    emit(this, 'sl-input');
+
     if (this.activeItemIndex !== -1) {
       this.menu.getAllItems({includeDisabled: false})[this.activeItemIndex].active = false;
       this.activeItemIndex = -1;
     }
 
     if (this.input.value === '') {
-      await this.dropdown.hide();
+      this.dropdown.hide();
       return
     }
 
-    await this.prepareSuggestions(this.input.value);
-    await this.dropdown.show();
+    this.prepareSuggestions(this.input.value)
+      .then(() => this.dropdown.show())
   }
 
   resizeMenu() {
@@ -209,6 +205,11 @@ export default class SlCombobox extends LitElement {
     }px`;
 
     if (this.dropdown) this.dropdown.reposition();
+  }
+
+  handleSlChange(event: CustomEvent) {
+    event.stopPropagation();
+    emit(this, 'sl-change');
   }
 
   async prepareSuggestions(text: string) {
@@ -282,6 +283,7 @@ export default class SlCombobox extends LitElement {
           aria-autocomplete="list"
           @keydown=${this.handleInputKeyDown}
           @sl-input=${this.handleSlInput}
+          @sl-change=${this.handleSlChange}
           @click=${this.ignoreInputClick}
           @sl-clear=${this.clear}
           @sl-focus=${this.handleInputFocus}
