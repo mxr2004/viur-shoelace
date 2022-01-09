@@ -113,11 +113,6 @@ export default class SlCombobox extends LitElement {
     event.stopImmediatePropagation();
   }
 
-  handleCloseMenu() {
-    // reset tabindex on menu item so the menu item is not focused when tabbing through elements
-    this.menu.getCurrentItem()?.setAttribute('tabindex', '-1');
-  }
-
   handleInputKeyDown(event: KeyboardEvent) {
     // let dropdown handle tabbing, handle every other key here
     if (event.key !== 'Tab') {
@@ -261,7 +256,6 @@ export default class SlCombobox extends LitElement {
         closeOnSelect="true"
         .containing-element=${this}
         ?hoist=${this.hoist}
-        @sl-hide=${this.handleCloseMenu}
         disableKeyboardToggle="true"
         stay-open-on-select
       >
@@ -305,6 +299,7 @@ export default class SlCombobox extends LitElement {
           id=${`sl-combobox-menu-${this.comboboxId}`}
           role="listbox"
           @sl-select=${(selectEvent: CustomEvent) => this.onItemSelected(selectEvent.detail.item)}
+          not-tabbable
         >
           ${this.suggestions.length === 0
             ? html`

@@ -23,8 +23,13 @@ export default class SlMenu extends LitElement {
   @query('.menu') menu: HTMLElement;
   @query('slot') defaultSlot: HTMLSlotElement;
 
+  /** Deactivate setting tabindex on active menu item. For menus where focus should remain on the trigger. */
+  @property({ type: Boolean, reflect: true, attribute: 'not-tabbable' }) notTabbable = false;
+
   private typeToSelectString = '';
   private typeToSelectTimeout: any;
+
+  private currentItem: SlMenuItem|null = null;
 
   firstUpdated() {
     this.setAttribute('role', 'menu');
@@ -36,20 +41,16 @@ export default class SlMenu extends LitElement {
         return false;
       }
 
-      if (!options?.includeDisabled && (el as SlMenuItem).disabled) {
-        return false;
-      }
-
-      return true;
+      return !(!options?.includeDisabled && (el as SlMenuItem).disabled);
     }) as SlMenuItem[];
   }
 
   /**
-   * @internal Gets the current menu item, which is the menu item that has `tabindex="0"` within the roving tab index.
+   * @internal Gets the current menu item. Which is the menu item that has `tabindex="0"` within the roving tab index if notTabbable attribute is set to false.
    * The menu item may or may not have focus, but for keyboard interaction purposes it's considered the "active" item.
    */
   getCurrentItem() {
-    return this.getAllItems({ includeDisabled: false }).find(i => i.getAttribute('tabindex') === '0');
+    return this.currentItem;
   }
 
   /**
@@ -60,8 +61,14 @@ export default class SlMenu extends LitElement {
     const items = this.getAllItems({ includeDisabled: false });
     let activeItem = item.disabled ? items[0] : item;
 
-    // Update tab indexes
-    items.map(i => i.setAttribute('tabindex', i === activeItem ? '0' : '-1'));
+    this.currentItem = activeItem;
+
+    emit(this, 'sl-item-active', { detail: item });
+
+    if (!this.notTabbable) {
+      // Update tab indexes
+      items.map(i => i.setAttribute('tabindex', i === activeItem ? '0' : '-1'));
+    }
   }
 
   /**
