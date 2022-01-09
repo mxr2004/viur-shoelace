@@ -44,7 +44,6 @@ export interface SuggestionSource {
 @customElement('sl-combobox')
 export default class SlCombobox extends LitElement {
   static styles = styles;
-  static navigationKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt', 'Enter', 'Escape'];
 
   private comboboxId = comboboxIds++;
   private resizeObserver: ResizeObserver;
@@ -110,44 +109,22 @@ export default class SlCombobox extends LitElement {
   }
 
   ignoreInputClick(event: MouseEvent) {
+    // don't trigger dropdown event handler so the menu is not toggled when clicking on the input
     event.stopImmediatePropagation();
   }
 
   handleCloseMenu() {
+    // reset tabindex on menu item so the menu item is not focused when tabbing through elements
     this.menu.getCurrentItem()?.setAttribute('tabindex', '-1');
   }
 
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key !== 'Tab') {
-      event.stopImmediatePropagation();
-    }
-
-    if (!(event.target instanceof SlMenuItem)) {
-      return;
-    }
-
-    this.handleMenuItemKeyDown(event);
-  }
-
-  handleMenuItemKeyDown(event: KeyboardEvent) {
-    switch (event.key) {
-      case 'Escape':
-        this.clear();
-        break;
-      default:
-        if (!SlCombobox.navigationKeys.includes(event.key)) this.input.focus();
-        break;
-    }
-  }
-
   handleInputKeyDown(event: KeyboardEvent) {
+    // let dropdown handle tabbing, handle every other key here
     if (event.key !== 'Tab') {
       event.stopImmediatePropagation();
     }
 
     const menuItems: SlMenuItem[] = this.menu.getAllItems();
-    const firstMenuItem = menuItems[0];
-    const lastMenuItem = menuItems[menuItems.length - 1];
 
     // Close when escape or tab is pressed
     if (event.key === 'Escape') {
@@ -155,44 +132,29 @@ export default class SlCombobox extends LitElement {
       return;
     }
 
-    // When up/down is pressed, we make the assumption that the user is familiar with the menu and plans to make a
-    // selection. Rather than toggle the panel, we focus on the menu (if one exists) and activate the first item for
-    // faster navigation.
     if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
       event.preventDefault();
 
       this.dropdown.show();
 
       // Focus on a menu item
-      if (event.key === 'ArrowDown' && firstMenuItem) {
-        if (this.activeItemIndex !== -1) {
-          menuItems[this.activeItemIndex].active = false;
-        }
+      if (this.activeItemIndex !== -1) {
+        menuItems[this.activeItemIndex].active = false;
+      }
 
+      if (event.key === 'ArrowDown') {
         if (this.activeItemIndex === menuItems.length - 1) {
           this.activeItemIndex = 0;
         } else {
           this.activeItemIndex++;
         }
-
-        this.menu.setCurrentItem(menuItems[this.activeItemIndex]);
-        menuItems[this.activeItemIndex].active = true;
-
-        scrollIntoView(menuItems[this.activeItemIndex], this.dropdown.panel);
-
-        return;
-      }
-
-      if (event.key === 'ArrowUp' && lastMenuItem) {
-        if (this.activeItemIndex !== -1) {
-          menuItems[this.activeItemIndex].active = false;
-        }
-
+      } else if (event.key === 'ArrowUp') {
         if (this.activeItemIndex === 0) {
           this.activeItemIndex = menuItems.length - 1;
         } else {
           this.activeItemIndex--;
         }
+      }
 
         this.menu.setCurrentItem(menuItems[this.activeItemIndex]);
         menuItems[this.activeItemIndex].active = true;
@@ -200,7 +162,6 @@ export default class SlCombobox extends LitElement {
         scrollIntoView(menuItems[this.activeItemIndex], this.dropdown.panel);
 
         return;
-      }
     }
 
     if (event.key === 'Enter' && this.activeItemIndex !== -1) {
@@ -228,10 +189,6 @@ export default class SlCombobox extends LitElement {
       this.dropdown.hide();
       this.input.value = item.textContent ?? '';
     }
-  }
-
-  ignoreKeyUp(event: KeyboardEvent) {
-    event.stopImmediatePropagation();
   }
 
   async handleSlInput() {
@@ -304,7 +261,6 @@ export default class SlCombobox extends LitElement {
         closeOnSelect="true"
         .containing-element=${this}
         ?hoist=${this.hoist}
-        @keydown=${this.handleKeyDown}
         @sl-hide=${this.handleCloseMenu}
         disableKeyboardToggle="true"
         stay-open-on-select
@@ -331,7 +287,6 @@ export default class SlCombobox extends LitElement {
           aria-controls=${`sl-combobox-menu-${this.comboboxId}`}
           aria-autocomplete="list"
           @keydown=${this.handleInputKeyDown}
-          @keyup=${this.ignoreKeyUp}
           @sl-input=${this.handleSlInput}
           @click=${this.ignoreInputClick}
           @sl-clear=${this.clear}
