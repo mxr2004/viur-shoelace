@@ -3,8 +3,8 @@ import componentStyles from '../../styles/component.styles';
 //language=CSS
 export default css`
   ${componentStyles}
-
-  :host {
-    display: block;
+  :host{
+    display:contents ;
   }
+
 `;

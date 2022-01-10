@@ -5,4 +5,7 @@ docs/dist
 examples
 node_modules
 .idea
+/jsdoc
+/out
+/types
 

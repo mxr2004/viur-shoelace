@@ -1,0 +1,56 @@
+sl-date:not([block])::part(base) {
+  width: 150px;
+}
+sl-date[mode='month']:not([block])::part(base) {
+  width: 130px;
+}
+sl-date[mode='year']:not([block])::part(base) {
+  width: 100px;
+}
+sl-input::part(input) {
+  min-width: 20px;
+}
+.sl-scroll-lock {
+  overflow: hidden !important;
+}
+
+.sl-toast-stack {
+  position: fixed;
+  z-index: var(--sl-z-index-toast);
+  width: 28rem;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+.sl-toast-stack[stack='top-right'] {
+  top: 0;
+  right: 0;
+}
+
+.sl-toast-stack[stack='top-left'] {
+  left: 0;
+  top: 0;
+}
+.sl-toast-stack[stack='bottom-left'] {
+  bottom: 0;
+  left: 0;
+}
+.sl-toast-stack[stack='bottom-right'] {
+  bottom: 0;
+  right: 0;
+}
+.sl-toast-stack[stack='top-center'] {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+.sl-toast-stack[stack='bottom-center'] {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.sl-toast-stack sl-alert {
+  --box-shadow: var(--sl-shadow-large);
+  margin: var(--sl-spacing-medium);
+}

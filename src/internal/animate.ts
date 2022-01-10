@@ -50,7 +50,6 @@ export function stopAnimations(el: HTMLElement) {
     el.getAnimations().map((animation: any) => {
       return new Promise(resolve => {
         const handleAnimationEvent = requestAnimationFrame(resolve);
-
         animation.addEventListener('cancel', () => handleAnimationEvent, { once: true });
         animation.addEventListener('finish', () => handleAnimationEvent, { once: true });
         animation.cancel();
@@ -68,3 +67,23 @@ export function shimKeyframesHeightAuto(keyframes: Keyframe[], calculatedHeight:
     })
   );
 }
+
+/**
+ * 显示动画
+ *
+ *  await animateTo(this.contentElement,shimKeyframesHeightAuto(this.active ?animate_show:animate_hide,this.active?currentHeight:oldHeight), {
+ *   duration: duration,
+ *   easing: 'ease'
+ * });
+ */
+export const animate_show = [
+  { height: 0, overflow: 'hidden' },
+  { height: 'auto', overflow: 'hidden' }
+];
+/**
+ * 隐藏动画
+ */
+export const animate_hide = [
+  { height: 'auto', overflow: 'hidden' },
+  { height: 0, overflow: 'hidden' }
+];

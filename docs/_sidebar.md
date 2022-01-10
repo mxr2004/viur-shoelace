@@ -60,18 +60,38 @@
   - [Tag](/components/tag)
   - [Textarea](/components/textarea)
   - [Tooltip](/components/tooltip)
-
+  
 - Extension
   - [Slider](/components/slider)
   - [Details Group](/components/details-group)
   - [Table Wrapper](/components/table-wrapper)
   - [Back To Top](/components/back-to-top)
   - [Map](/components/map)
+  - [Page Btn](/components/page-btn)
+  - [Gallery](/components/gallery)
+  - [Scroll](/components/scroll)
+  - [Collapse](/components/collapse)
+  <!-- - [Steps](/components/steps)-->
+  - [Transfer](/components/transfer)
+  - [Table](/components/table)
+  - [Org Tree](/components/org-tree)
+  - [Tree](/components/tree)
+  - [Tree Node](/components/tree-node)
+  <!-- - [Date Panel](/components/date-panel)-->
+  <!--- [Date](/components/date)-->
+  <!--- [Markdown Element](/components/markdown-element)-->
+  <!--- [Row](/components/row)-->
+  <!--- [Layout](/components/layout)-->
+  <!--- [Splitter](/components/splitter)-->
+  - [TreeTable](/components/treeTable)
+  <!--- [EditTable](/components/tableEdit)-->
   <!--plop:component-->
-
+  
 - Utilities
-  - [Animated Image](/components/animated-image)
+  - [Router](/components/router)
+  - [Animated-image](/components/animated-image)
   - [Animation](/components/animation)
+  - [Ripple](/components/ripple)
   - [Format Bytes](/components/format-bytes)
   - [Format Date](/components/format-date)
   - [Format Number](/components/format-number)

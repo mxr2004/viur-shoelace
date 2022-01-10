@@ -37,7 +37,7 @@
     "build": "node scripts/build.js --bundle --types --copydir \"docs/dist\"",
     "prepublishOnly": "npm run build && npm run test",
     "prettier": "prettier --write --loglevel warn .",
-    "create": "plop --plopfile scripts/plop/plopfile.cjs",
+    "create": "plop --plopfile olds/plop/plopfile.cjs",
     "test": "web-test-runner \"src/**/*.test.ts\" --node-resolve --playwright --browsers chromium firefox webkit",
     "test:watch": "web-test-runner \"src/**/*.test.ts\" --node-resolve --playwright --browsers chromium firefox webkit --watch"
   },
@@ -53,13 +53,20 @@
     "lit": "^2.0.2",
     "pascal-case": "^3.1.2",
     "qr-creator": "^1.0.0",
-    "string-natural-compare": "^3.0.1"
+    "string-natural-compare": "^3.0.1",
+    "@types/crypto-js": "^4.0.2",
+    "crypto-js": "^4.1.1",
+    "path-to-regexp": "^6.2.0",
+    "vditor": "^3.8.6"
   },
   "devDependencies": {
+    "express": "^4.17.1",
     "@custom-elements-manifest/analyzer": "^0.4.12",
     "@open-wc/testing": "^3.0.3",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@types/color": "^3.0.1",
-    "@types/react": "^17.0.33",
+    "@types/crypto-js": "^4.0.2",
+    "@types/react": "^17.0.2",
     "@web/dev-server-esbuild": "^0.2.12",
     "@web/test-runner": "^0.13.5",
     "@web/test-runner-playwright": "^0.8.8",
@@ -67,6 +74,7 @@
     "bootstrap-icons": "^1.7.2",
     "browser-sync": "^2.26.14",
     "chalk": "^4.1.0",
+    "chokidar": "^3.5.2",
     "command-line-args": "^5.2.0",
     "comment-parser": "^1.1.5",
     "concurrently": "^6.4.0",
@@ -84,9 +92,11 @@
     "react": "^17.0.2",
     "recursive-copy": "^2.0.11",
     "sinon": "^11.1.1",
+    "string-to-template-literal": "^2.0.0",
     "strip-css-comments": "^4.1.0",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4",
+    "uglifycss": "^0.0.29",
     "wait-on": "^5.2.1"
   },
   "husky": {

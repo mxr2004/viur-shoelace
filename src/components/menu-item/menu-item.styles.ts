@@ -32,7 +32,11 @@ export default css`
     color: var(--sl-color-neutral-400);
     cursor: not-allowed;
   }
-
+  .menu-item.menu-item--highlight:not(.menu-item--disabled) {
+    outline: none;
+    background-color: var(--sl-color-primary-500);
+    color: var(--sl-color-neutral-0);
+  }
   .menu-item .menu-item__label {
     flex: 1 1 auto;
   }

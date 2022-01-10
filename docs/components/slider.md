@@ -5,6 +5,12 @@
 This Slider component uses internally the [Glider.js](https://nickpiscitelli.github.io/Glider.js) library. 
 
 ```html preview
+<style>
+  img{
+    width:100%;
+    height:100%;
+  }
+</style>
 <sl-slider>
   <div><img src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80&sat=-100&bri=-5"/></div>
   <div><img src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"/></div>

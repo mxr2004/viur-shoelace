@@ -57,9 +57,34 @@ export { default as SlVisuallyHidden } from './components/visually-hidden/visual
 export { default as SlTableWrapper } from './components/table-wrapper/table-wrapper';
 export { default as SlBackToTop } from './components/back-to-top/back-to-top';
 export { default as SlMap } from './components/map/map';
+export { default as SlRipple } from './components/ripple/ripple';
+export { default as SlOrgTree } from './components/org-tree/org-tree';
+export { default as SlOrgNode } from './components/org-node/org-node';
+export { default as SlSteps } from './components/steps/steps';
+export { default as SlStep } from './components/step/step';
+export { default as SlScroll } from './components/scroll/scroll';
+export { default as SlAcPanel } from './components/ac-panel/ac-panel';
+export { default as SlCollapse } from './components/collapse/collapse';
+export { default as SlTree } from './components/tree/tree';
+export { default as SlTreeNode } from './components/tree-node/tree-node';
+export { default as SlSplitter } from './components/splitter/splitter';
+export { default as SlPageBtn } from './components/page-btn/page-btn';
+export { default as SlGallery } from './components/gallery/gallery';
+export { default as SlDatePanel } from './components/date-panel/date-panel';
+export { default as SlDate } from './components/date/date';
+export { default as SlMarkdownElement } from './components/markdown-element/markdown-element';
+export { default as SlRow } from './components/row/row';
+export { default as SlLayout } from './components/layout/layout';
+export { default as SlColumn } from './components/column/column';
+export { default as SlTable } from './components/table/table';
+export { default as SlRouter } from './components/router/router';
+export { default as SlRouterLink } from './components/router/router-link';
+export { default as SlTransfer } from './components/transfer/transfer';
 /* plop:component */
 
 // Utilities
 export * from './utilities/animation';
 export * from './utilities/base-path';
 export * from './utilities/icon-library';
+export { hide, show, doAnimate } from './directives/hideOrShowAnimate';
+import './globExport';

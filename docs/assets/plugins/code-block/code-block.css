@@ -222,7 +222,3 @@
 body.flavor-html [data-flavor]:not([data-flavor='html']) {
   display: none;
 }
-
-body.flavor-react [data-flavor]:not([data-flavor='react']) {
-  display: none;
-}

@@ -1,7 +1,7 @@
 (() => {
   const isDev = location.hostname === 'localhost';
   const isNext = location.hostname === 'next.shoelace.style';
-  const customElements = fetch('/dist/custom-elements.json')
+  const customElements = fetch('dist/custom-elements.json')
     .then(res => res.json())
     .catch(err => console.error(err));
 
@@ -47,9 +47,7 @@
                 <td>
                   ${escapeHtml(prop.description)}
                 </td>
-                <td style="text-align: center;">${
-                  prop.reflects ? '<sl-icon label="yes" name="check"></sl-icon>' : ''
-                }</td>
+                <td style="text-align: center;">${prop.reflects ? '<sl-icon label="yes" name="check"></sl-icon>' : ''}</td>
                 <td>${prop.type?.text ? `<code>${escapeHtml(prop.type?.text || '')}</code>` : '-'}</td>
                 <td>${prop.default ? `<code>${escapeHtml(prop.default)}</code>` : '-'}</td>
               </tr>
@@ -67,8 +65,7 @@
     table.innerHTML = `
       <thead>
         <tr>
-          <th data-flavor="html">Name</th>
-          <th data-flavor="react">React Event</th>
+          <th data-flavor="rect">Name</th>
           <th>Description</th>
           <th>Event Detail</th>
         </tr>
@@ -78,8 +75,9 @@
           .map(
             event => `
               <tr>
-                <td data-flavor="html"><code class="nowrap">${escapeHtml(event.name)}</code></td>
-                <td data-flavor="react"><code class="nowrap">${escapeHtml(event.reactName)}</code></td>
+                <td data-flavor="rect">
+                <sl-tooltip content='reactName:${escapeHtml(event.reactName)}' ><code class="nowrap">${escapeHtml(event.name)}</code>
+                </sl-tooltip></td>
                 <td>${escapeHtml(event.description)}</td>
                 <td>${event.type?.text ? `<code>${escapeHtml(event.type?.text)}` : '-'}</td>
               </tr>
@@ -113,9 +111,7 @@
                   ${
                     method.parameters?.length
                       ? `
-                        <code>${escapeHtml(
-                          method.parameters.map(param => `${param.name}: ${param.type.text}`).join(', ')
-                        )}</code>
+                        <code>${escapeHtml(method.parameters.map(param => `${param.name}: ${param.type && param.type.text ? param.type.text : ''}`).join(', '))}</code>
                       `
                       : '-'
                   }
@@ -536,7 +532,6 @@
     hook.doneEach(function () {
       const content = document.querySelector('.content');
       const tables = [...content.querySelectorAll('table')];
-
       tables.map(table => {
         table.outerHTML = `
           <div class="table-wrapper">

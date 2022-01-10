@@ -2,6 +2,7 @@
 *.md
 .cache
 .github
+search.json
 dist
 docs/*.md
 src/components/icon/icons

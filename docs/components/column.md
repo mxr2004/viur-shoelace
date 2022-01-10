@@ -1,11 +1,11 @@
-# {{ tagToTitle tag }}
+# Column
 
-[component-header:{{ tag }}]
+[component-header:sl-column]
 
 A description of the component goes here.
 
 ```html preview
-<{{ tag }}></{{ tag }}>
+<sl-column></sl-column>
 ```
 
 ## Examples
@@ -18,4 +18,4 @@ TODO
 
 TODO
 
-[component-metadata:{{ tag }}]
+[component-metadata:sl-column]

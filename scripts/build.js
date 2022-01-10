@@ -22,6 +22,7 @@ const { bundle, copydir, dir, serve, types } = commandLineArgs([
 const outdir = dir;
 
 del.sync(outdir);
+del.sync('/docs/dist');
 mkdirp.sync(outdir);
 
 (async () => {
@@ -49,8 +50,13 @@ mkdirp.sync(outdir);
         './src/shoelace.ts',
         // Components
         ...(await glob('./src/components/**/!(*.(style|test)).ts')),
+
         // Translations
         ...(await glob('./src/translations/**/*.ts')),
+
+        //资源文件
+        ...(await glob('./src/resources/**/!(*.(style|test)).ts')),
+
         // Public utilities
         ...(await glob('./src/utilities/**/!(*.(style|test)).ts')),
         // Theme stylesheets
@@ -58,7 +64,7 @@ mkdirp.sync(outdir);
         // React wrappers
         ...(await glob('./src/react/**/*.ts'))
       ],
-      outdir,
+      outdir: outdir,
       chunkNames: 'chunks/[name].[hash]',
       incremental: serve,
       define: {

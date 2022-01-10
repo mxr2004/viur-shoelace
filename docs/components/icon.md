@@ -66,7 +66,6 @@ Icons are sized relative to the current font size. To change their size, set the
   <sl-icon name="battery-charging"></sl-icon>
   <sl-icon name="bell"></sl-icon>
   <sl-icon name="clock"></sl-icon>
-  <sl-icon name="cloud"></sl-icon>
   <sl-icon name="download"></sl-icon>
   <sl-icon name="file-earmark"></sl-icon>
   <sl-icon name="flag"></sl-icon>
@@ -77,32 +76,8 @@ Icons are sized relative to the current font size. To change their size, set the
   <sl-icon name="search"></sl-icon>
   <sl-icon name="star"></sl-icon>
   <sl-icon name="trash"></sl-icon>
+  <sl-icon name="x-circle"></sl-icon>
 </div>
-```
-
-```jsx react
-import { SlIcon } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <div style={{ fontSize: '32px' }}>
-    <SlIcon name="exclamation-triangle" />
-    <SlIcon name="archive" />
-    <SlIcon name="battery-charging" />
-    <SlIcon name="bell" />
-    <SlIcon name="clock" />
-    <SlIcon name="cloud" />
-    <SlIcon name="download" />
-    <SlIcon name="file-earmark" />
-    <SlIcon name="flag" />
-    <SlIcon name="heart" />
-    <SlIcon name="image" />
-    <SlIcon name="lightning" />
-    <SlIcon name="mic" />
-    <SlIcon name="search" />
-    <SlIcon name="star" />
-    <SlIcon name="trash" />
-  </div>  
-);
 ```
 
 ### Labels
@@ -126,16 +101,7 @@ const App = () => (
 Custom icons can be loaded individually with the `src` attribute. Only SVGs on a local or CORS-enabled endpoint are supported. If you're using more than one custom icon, it might make sense to register a [custom icon library](#icon-libraries).
 
 ```html preview
-<sl-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 8rem;"></sl-icon>
-```
-
-
-```jsx react
-import { SlIcon } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlIcon src="https://shoelace.style/assets/images/shoe.svg" style={{ fontSize: '8rem' }}></SlIcon>
-);
+<sl-icon src="assets/images/shoe.svg" style="font-size: 8rem;"></sl-icon>
 ```
 
 
@@ -181,8 +147,10 @@ Icons in this library are licensed under the [Creative Commons 4.0 License](http
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
-
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
   registerIconLibrary('boxicons', {
     resolver: name => {
       let folder = 'regular';
@@ -235,7 +203,10 @@ Icons in this library are licensed under the [MIT License](https://github.com/fe
 </div>
 
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('feather', {
     resolver: name => `https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/icons/${name}.svg`
@@ -251,7 +222,10 @@ Icons in this library are licensed under the [Font Awesome Free License](https:/
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('fa', {
     resolver: name => {
@@ -297,7 +271,10 @@ Icons in this library are licensed under the [MIT License](https://github.com/ta
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+ var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('heroicons', {
     resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@0.4.2/outline/${name}.svg`
@@ -322,8 +299,10 @@ Icons in this library are licensed under the [MIT License](https://github.com/lu
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
-
+ var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
   registerIconLibrary('iconoir', {
     resolver: name => `https://cdn.jsdelivr.net/gh/lucaburgio/iconoir@latest/icons/${name}.svg`
   });
@@ -347,7 +326,10 @@ Icons in this library are licensed under the [MIT License](https://github.com/io
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('ionicons', {
     resolver: name => `https://cdn.jsdelivr.net/npm/ionicons@5.1.2/dist/ionicons/svg/${name}.svg`,
@@ -392,7 +374,10 @@ Icons in this library are licensed under the [MIT License](https://github.com/mi
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('jam', {
     resolver: name => `https://cdn.jsdelivr.net/npm/jam-icons@2.0.0/svg/${name}.svg`,
@@ -425,7 +410,10 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('material', {
     resolver: name => {
@@ -468,7 +456,10 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('remixicon', {
     resolver: name => {
@@ -505,7 +496,10 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ```html preview
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('unicons', {
     resolver: name => {
@@ -541,7 +535,10 @@ This example will load the same set of icons from the jsDelivr CDN instead of yo
 
 ```html
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
 
   registerIconLibrary('default', {
     resolver: name => `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.0.0/icons/${name}.svg`
@@ -557,8 +554,10 @@ If you want to change the icons Shoelace uses internally, you can register an ic
 
 ```html
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
-
+  var host=window.location.host;
+  var url=(host=='suyouwanggang.github.io'?'/shoelace/':'')+ '/dist/utilities/icon-library.js';
+  var moduelObj= await import(url);
+  var registerIconLibrary=moduelObj.registerIconLibrary;
   registerIconLibrary('system', {
     resolver: name => `/path/to/custom/icons/${name}.svg`
   });

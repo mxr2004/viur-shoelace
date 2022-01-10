@@ -12,23 +12,58 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 <sl-dropdown>
   <sl-button slot="trigger" caret>Dropdown</sl-button>
   <sl-menu>
-    <sl-menu-item>Dropdown Item 1</sl-menu-item>
+    <sl-menu-item id="subItem" >Dropdown Item 1</sl-menu-item>
     <sl-menu-item>Dropdown Item 2</sl-menu-item>
     <sl-menu-item>Dropdown Item 3</sl-menu-item>
     <sl-divider></sl-divider>
-    <sl-menu-item checked>Checked</sl-menu-item>
+    <sl-menu-item checked>Checked 
+       <sl-icon slot="prefix" name="gift"></sl-icon></sl-menu-item>
     <sl-menu-item disabled>Disabled</sl-menu-item>
     <sl-divider></sl-divider>
-    <sl-menu-item>
-      Prefix
-      <sl-icon slot="prefix" name="gift"></sl-icon>
-    </sl-menu-item>
     <sl-menu-item>
       Suffix Icon
       <sl-icon slot="suffix" name="heart"></sl-icon>
     </sl-menu-item>
   </sl-menu>
 </sl-dropdown>
+
+<div id='dropDown' style='display:inline-block;margin-left:0.8em;'></div>
+ 
+<script>
+    document.querySelector('#subItem').addEventListener('click',(ev)=>{
+      ev.preventDefault();
+      ev.stopPropagation();
+    })
+    let menu= document.querySelector("#menu-item" );
+    window.lastPostion='bottom-start';
+    const renderMenu=(position)=>{
+      const array=["top",'top-start','top-end', 'left','left-start','left-end','right','right-start','right-end','bottom','bottom-start','bottom-end'];
+      const result=[];
+      for(let i=0,j=array.length;i<j;i++){
+        result.push(html`<sl-menu-item  ?checked=${array[i]==position}>${array[i]}</sl-menu-item>`);
+        if((i+1)%3==0&& i!=j-1){
+          result.push(html`<sl-menu-divider ></sl-menu-divider>`);
+        }
+      }
+      return html`
+         <sl-dropdown id="placementDrop" distance="12" .placement=${position} >
+          <sl-button slot="trigger" caret>${position}</sl-button>
+          <div style='padding:5px 0; '>
+            <sl-menu id="menu-item" style='width:250px'  @sl-select=${ async(ev)=>{
+              window.lastPostion=ev.detail.item.textContent;
+              await document.querySelector('#placementDrop').hide();
+              LitRender(renderMenu(window.lastPostion),document.querySelector('#dropDown'));
+                await document.querySelector('#placementDrop').show();
+            }}>
+                ${result}
+            </sl-menu>
+          </div>
+      </sl-dropdown>
+      `;
+    };
+    LitRender(renderMenu(window.lastPostion),document.querySelector('#dropDown'));
+
+</script>
 ```
 
 ```jsx react
