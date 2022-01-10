@@ -62,7 +62,7 @@ export default class SlTag extends LitElement {
           'tag--medium': this.size === 'medium',
           'tag--large': this.size === 'large',
 
-          // Modifers
+          // Modifiers
           'tag--pill': this.pill,
           'tag--removable': this.removable
         })}

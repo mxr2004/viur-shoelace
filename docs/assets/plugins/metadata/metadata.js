@@ -236,7 +236,7 @@
     const ul = document.createElement('ul');
     const dependencies = [];
 
-    // Recursively fetch subdependencies
+    // Recursively fetch sub-dependencies
     function getDependencies(tag) {
       const component = allComponents.find(c => c.tagName === tag);
       if (!component || !Array.isArray(component.dependencies)) {

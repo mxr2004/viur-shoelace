@@ -1,17 +1,15 @@
 //
 // This script downloads and generates icons and icon metadata.
 //
-import Promise from 'bluebird';
 import chalk from 'chalk';
 import commandLineArgs from 'command-line-args';
 import copy from 'recursive-copy';
 import del from 'del';
 import download from 'download';
-import mkdirp from 'mkdirp';
 import fm from 'front-matter';
-import { readFileSync } from 'fs';
+import { readFileSync, mkdirSync } from 'fs';
 import { stat, readFile, writeFile } from 'fs/promises';
-import glob from 'globby';
+import { globby } from 'globby';
 import path from 'path';
 import jsdom from 'jsdom';
 const { JSDOM } = jsdom;
@@ -40,7 +38,7 @@ let numIcons = 0;
     // Copy icons
     console.log(`Copying icons and license`);
     await del([iconDir]);
-    await mkdirp(iconDir);
+    mkdirSync(iconDir, { recursive: true });
     await Promise.all([
       copy(`${srcPath}/icons`, iconDir),
       copy(`${srcPath}/LICENSE.md`, path.join(iconDir, 'LICENSE.md')),
@@ -49,20 +47,22 @@ let numIcons = 0;
 
     // Generate metadata
     console.log(`Generating icon metadata`);
-    const files = await glob(`${srcPath}/docs/content/icons/**/*.md`);
+    const files = await globby(`${srcPath}/docs/content/icons/**/*.md`);
 
-    const metadata = await Promise.map(files, async file => {
-      const name = path.basename(file, path.extname(file));
-      const data = fm(await readFile(file, 'utf8')).attributes;
-      numIcons++;
+    const metadata = await Promise.all(
+      files.map(async file => {
+        const name = path.basename(file, path.extname(file));
+        const data = fm(await readFile(file, 'utf8')).attributes;
+        numIcons++;
 
-      return {
-        name,
-        title: data.title,
-        categories: data.categories,
-        tags: data.tags
-      };
-    });
+        return {
+          name,
+          title: data.title,
+          categories: data.categories,
+          tags: data.tags
+        };
+      })
+    );
 
     await writeFile(path.join(iconDir, 'icons.json'), JSON.stringify(metadata, null, 2), 'utf8');
 
@@ -94,7 +94,7 @@ const iconDir2 = path.join(outdir, '/assets/icons');
     // Copy icons
     console.log(`Copying icons and license`);
     await del([iconDir2]);
-    await mkdirp(iconDir2);
+    mkdirSync(iconDir2, { recursive: true });
     await Promise.all([
       copy(`${srcPath}`, iconDir2)
       //copy(`${srcPath}/LICENSE`, path.join(iconDir2, 'LICENSE')),
@@ -103,37 +103,42 @@ const iconDir2 = path.join(outdir, '/assets/icons');
 
     // Generate metadata
     console.log(`Generating icon metadata`);
-    const files = await glob(`${srcPath}/*.svg`);
+    const files = await globby(`${srcPath}/*.svg`);
 
-    const metadata = await Promise.map(files, async file => {
-      const name = path.basename(file, path.extname(file));
-      numIcons2++;
+    const metadata = await Promise.all(
+      files.map(async file => {
+        const name = path.basename(file, path.extname(file));
+        numIcons2++;
 
-      return {
-        name,
-        title: name,
-        categories: [name],
-        tags: [name]
-      };
-    });
+        return {
+          name,
+          title: name,
+          categories: [name],
+          tags: [name]
+        };
+      })
+    );
+
     const dom = new JSDOM();
-    const sprite = await Promise.map(files, async file => {
-      const name = path.basename(file, path.extname(file));
-      const data = fm(await readFile(file, 'utf8'));
-      let svg = dom.window.document.createRange().createContextualFragment(data['body']).firstElementChild;
-      let svgcode = svg.innerHTML;
+    const sprite = await Promise.all(
+      files.map(async file => {
+        const name = path.basename(file, path.extname(file));
+        const data = fm(await readFile(file, 'utf8'));
+        let svg = dom.window.document.createRange().createContextualFragment(data['body']).firstElementChild;
+        let svgcode = svg.innerHTML;
 
-      svgcode = svgcode.toString().replace(/<title>.*?<\/title>/g, '');
-      svgcode = svgcode.toString().replace(/<style>.*?<\/style>/g, '');
-      svgcode = svgcode.toString().replace(/#fff/g, 'currentcolor');
-      svgcode = svgcode.toString().replace(/#FFFFFF/g, 'currentcolor');
+        svgcode = svgcode.toString().replace(/<title>.*?<\/title>/g, '');
+        svgcode = svgcode.toString().replace(/<style>.*?<\/style>/g, '');
+        svgcode = svgcode.toString().replace(/#fff/g, 'currentcolor');
+        svgcode = svgcode.toString().replace(/#FFFFFF/g, 'currentcolor');
 
-      return `
-        <symbol viewBox="0 0 60 60" id="${name}">
-            ${svgcode}
-        </symbol>
-      `;
-    });
+        return `
+          <symbol viewBox="0 0 60 60" id="${name}">
+              ${svgcode}
+          </symbol>
+        `;
+      })
+    );
 
     await writeFile(
       './docs/assets/icons/sprite.svg',

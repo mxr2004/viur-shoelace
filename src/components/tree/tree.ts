@@ -3,7 +3,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { customStyle } from '../../internal/customStyle';
 import { emit } from '../../internal/event';
-import { hasSlot } from '../../internal/slot';
+import { HasSlotController } from '../../internal/slot';
 import { debounceWait } from '../../internal/throttle';
 import { watch } from '../../internal/watch';
 import { watchProps } from '../../internal/watchProps';
@@ -107,6 +107,8 @@ export default class SlTree extends LitElement {
 
   @state()
   private real_treeNodeRender = this.nodeRender;
+
+  private hasSlotController = new HasSlotController(this, 'footer');
 
   @watch('selectMode')
   watchSelectModeChange(_oldMode: string, newMode: string) {
@@ -277,7 +279,8 @@ export default class SlTree extends LitElement {
     </div>`;
   }
   private slotChangeHandler() {
-    this.hasFooter = hasSlot(this, 'footer');
+
+    this.hasFooter = this.hasSlotController.test('footer');
   }
   private inputChangeHander = debounceWait((inputString: string) => {
     this.filterString = inputString;

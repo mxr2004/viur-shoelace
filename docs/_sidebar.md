@@ -88,7 +88,7 @@
   <!--plop:component-->
   
 - Utilities
-  - [Router](/components/router)
+  <!--- [Router](/components/router)-->
   - [Animated-image](/components/animated-image)
   - [Animation](/components/animation)
   - [Ripple](/components/ripple)

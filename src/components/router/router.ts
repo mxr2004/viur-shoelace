@@ -2,7 +2,7 @@ import { html, LitElement, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { emit } from '../../internal/event';
 import { watch } from '../../internal/watch';
-import { isFunction } from '../../utilities/common';
+//import { isFunction } from '../../utilities/common';
 import { defaultResove, getPathNames, isPathURLMatchPattern, PathNameResult, ResovlePathInterface, stripExtraTrailingSlash } from './pathResovle';
 import styles from './router.styles';
 export type RouterItem = {
@@ -186,7 +186,7 @@ export default class SlRouter extends LitElement {
     for (let temp of matchItems) {
       let tempResult: any;
       if (temp.import) {
-        tempResult = isFunction(temp.import) ? await temp.import() : await import(temp.import);
+        //tempResult = isFunction(temp.import) ? await temp.import() : await import(temp.import); //FIXME
       }
       importResult.push(tempResult);
     }

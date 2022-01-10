@@ -1,6 +1,8 @@
 import { emit } from '../internal/event';
-import resouceZh from '../resources/resource.de';
-let currentLocal = 'zh';
+import resouceZh from '../resources/resource.zh';
+import resouceDe from '../resources/resource.de';
+import resouceEn from '../resources/resource.en';
+let currentLocal = 'de';
 type ResouceType = typeof resouceZh;
 /**
  * 全局 资源改变事件监听..
@@ -37,10 +39,16 @@ async function loaderLocal(locale: string) {
   if (resourceMap[locale]) {
     return resourceMap[locale] as ResouceType;
   }
-  return import(`../resources/resource.${locale}.js`).then(ret => {
-    resourceMap[locale] = ret.default as ResouceType;
-    return resourceMap[locale];
-  });
+
+  if (locale === "de"){
+    resourceMap["de"] = resouceDe
+    return resouceDe
+  } else if (locale === "en"){
+    resourceMap["en"] = resouceEn
+    return resouceEn
+  }
+
+  return resourceMap["zh"]
 }
 /**
  * 获取组件语言
@@ -49,7 +57,7 @@ async function loaderLocal(locale: string) {
 function getLocal() {
   return currentLocal;
 }
-const supportLocals = ['zh', 'en'];
+const supportLocals = ['zh', 'en', 'de'];
 /**
  * 获取组件支持的语言列表
  * @returns

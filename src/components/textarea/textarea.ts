@@ -6,7 +6,7 @@ import { emit } from '../../internal/event';
 import { live } from 'lit/directives/live.js';
 import { watch } from '../../internal/watch';
 import { getLabelledBy, renderFormControl } from '../../internal/form-control';
-import { hasSlot } from '../../internal/slot';
+import { HasSlotController } from '../../internal/slot';
 import styles from './textarea.styles';
 
 let id = 0;
@@ -35,14 +35,13 @@ export default class SlTextarea extends LitElement {
 
   @query('.textarea__control') input: HTMLTextAreaElement;
 
+  private hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private inputId = `textarea-${++id}`;
   private helpTextId = `textarea-help-text-${id}`;
   private labelId = `textarea-label-${id}`;
   private resizeObserver: ResizeObserver;
 
   @state() private hasFocus = false;
-  @state() private hasHelpTextSlot = false;
-  @state() private hasLabelSlot = false;
 
   /** The textarea's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -98,7 +97,7 @@ export default class SlTextarea extends LitElement {
    */
   @property({ type: Boolean, reflect: true }) invalid = false;
 
-  /** The textarea's autocaptialize attribute. */
+  /** The textarea's autocapitalize attribute. */
   @property() autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
 
   /** The textarea's autocorrect attribute. */
@@ -118,10 +117,7 @@ export default class SlTextarea extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.handleSlotChange = this.handleSlotChange.bind(this);
     this.resizeObserver = new ResizeObserver(() => this.setTextareaHeight());
-    this.shadowRoot!.addEventListener('slotchange', this.handleSlotChange);
-    this.handleSlotChange();
 
     this.updateComplete.then(() => {
       this.setTextareaHeight();
@@ -136,7 +132,6 @@ export default class SlTextarea extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.resizeObserver.unobserve(this.input);
-    this.shadowRoot!.removeEventListener('slotchange', this.handleSlotChange);
   }
 
   /** Sets focus on the textarea. */
@@ -246,13 +241,6 @@ export default class SlTextarea extends LitElement {
     this.setTextareaHeight();
   }
 
-  @watch('helpText')
-  @watch('label')
-  handleSlotChange() {
-    this.hasHelpTextSlot = hasSlot(this, 'help-text');
-    this.hasLabelSlot = hasSlot(this, 'label');
-  }
-
   @watch('value')
   handleValueChange() {
     if (this.input) {
@@ -272,17 +260,21 @@ export default class SlTextarea extends LitElement {
   }
 
   render() {
+    const hasLabelSlot = this.hasSlotController.test('label');
+    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+
     return renderFormControl(
       {
         inputId: this.inputId,
         label: this.label,
         labelId: this.labelId,
-        hasLabelSlot: this.hasLabelSlot,
+        hasLabelSlot,
         helpTextId: this.helpTextId,
         helpText: this.helpText,
-        hasHelpTextSlot: this.hasHelpTextSlot,
+        hasHelpTextSlot,
         size: this.size,
         labelPosition: this.labelposition
+
       },
       html`
         <div
@@ -325,10 +317,10 @@ export default class SlTextarea extends LitElement {
               getLabelledBy({
                 label: this.label,
                 labelId: this.labelId,
-                hasLabelSlot: this.hasLabelSlot,
+                hasLabelSlot,
                 helpText: this.helpText,
                 helpTextId: this.helpTextId,
-                hasHelpTextSlot: this.hasHelpTextSlot
+                hasHelpTextSlot
               })
             )}
             @change=${this.handleChange}

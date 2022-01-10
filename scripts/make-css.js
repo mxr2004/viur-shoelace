@@ -4,19 +4,19 @@
 import chalk from 'chalk';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs/promises';
-import glob from 'globby';
-import mkdirp from 'mkdirp';
+import { mkdirSync } from 'fs';
+import { globbySync } from 'globby';
 import path from 'path';
 import prettier from 'prettier';
 import stripComments from 'strip-css-comments';
 
 const { outdir } = commandLineArgs({ name: 'outdir', type: String });
-const files = glob.sync('./src/themes/**/*.styles.ts');
+const files = globbySync('./src/themes/**/*.styles.ts');
 const themesDir = path.join(outdir, 'themes');
 
 console.log('Generating stylesheets');
 
-mkdirp.sync(themesDir);
+mkdirSync(themesDir, { recursive: true });
 
 try {
   files.map(async file => {
@@ -33,10 +33,10 @@ try {
 
     const formattedStyles = prettier.format(stripComments(css), { parser: 'css' });
     const filename = path.basename(file).replace('.styles.ts', '.css');
-    const outfile = path.join(themesDir, filename);
-    await fs.writeFile(outfile, formattedStyles, 'utf8');
+    const outFile = path.join(themesDir, filename);
+    await fs.writeFile(outFile, formattedStyles, 'utf8');
   });
 } catch (err) {
-  console.error(chalk.red('Error generating styleseheets!'));
+  console.error(chalk.red('Error generating stylesheets!'));
   console.error(err);
 }
