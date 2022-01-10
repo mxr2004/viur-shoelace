@@ -66,7 +66,8 @@ export default css`
   }
 
   :host(:hover:not([aria-disabled='true'])) .menu-item,
-  :host(${focusVisibleSelector}:not(.sl-focus-invisible):not([aria-disabled='true'])) .menu-item {
+  :host(${focusVisibleSelector}:not(.sl-focus-invisible):not([aria-disabled='true'])) .menu-item,
+  .menu-item--active {
     outline: none;
     background-color: var(--sl-color-primary-600);
     color: var(--sl-color-neutral-0);

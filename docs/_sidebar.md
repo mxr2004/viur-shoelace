@@ -28,6 +28,7 @@
   - [Card](/components/card)
   - [Checkbox](/components/checkbox)
   - [Color Picker](/components/color-picker)
+  - [Combobox](/components/combobox)
   - [Details](/components/details)
   - [Dialog](/components/dialog)
   - [Divider](/components/divider)

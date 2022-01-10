@@ -339,6 +339,8 @@ export default class SlInput extends LitElement {
             spellcheck=${ifDefined(this.spellcheck)}
             pattern=${ifDefined(this.pattern)}
             inputmode=${ifDefined(this.inputmode)}
+            role=${this.role}
+            aria-activedescendant=${this.ariaActivedescendant}
             aria-labelledby=${ifDefined(
               getLabelledBy({
                 label: this.label,
