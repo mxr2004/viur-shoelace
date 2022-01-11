@@ -40,7 +40,7 @@ Set the `variant` attribute to change the alert's variant.
 <br>
 
 <sl-alert variant="success" open>
-  <sl-icon slot="icon" name="check2-circle"></sl-icon>
+  <sl-icon slot="icon" name="check"></sl-icon>
   <strong>Your changes have been saved</strong><br>
   You can safely exit the app now.
 </sl-alert>

@@ -51,7 +51,7 @@
       dropdown.classList.add('theme-picker');
       dropdown.innerHTML = `
         <sl-button size="small" pill slot="trigger" caret>
-          <sl-icon name="sun" label="Select Theme"></sl-icon>
+          <sl-icon library="bootstrap" name="sun" label="Select Theme"></sl-icon>
         </sl-button>
         <sl-menu>
           <sl-menu-label>Toggle <kbd>\\</kbd></sl-menu-label>

@@ -317,10 +317,10 @@
           <sl-icon slot="prefix" name="heart"></sl-icon> Sponsor
         </sl-button>
         <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace/stargazers" target="_blank">
-          <sl-icon slot="prefix" name="github"></sl-icon> <span class="github-star-count">Star</span>
+          <sl-icon slot="prefix" library="bootstrap" name="github"></sl-icon> <span class="github-star-count">Star</span>
         </sl-button>
         <sl-button size="small" class="repo-button repo-button--twitter" href="https://twitter.com/shoelace_style" target="_blank">
-          <sl-icon slot="prefix" name="twitter"></sl-icon> Follow
+          <sl-icon slot="prefix" library="bootstrap" name="twitter"></sl-icon> Follow
         </sl-button>
       `;
       target.appendChild(buttons);
