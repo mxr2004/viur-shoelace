@@ -28,7 +28,6 @@
   - [Card](/components/card)
   - [Checkbox](/components/checkbox)
   - [Color Picker](/components/color-picker)
-  - [Combobox](/components/combobox)
   - [Details](/components/details)
   - [Dialog](/components/dialog)
   - [Divider](/components/divider)
@@ -63,6 +62,7 @@
   - [Tooltip](/components/tooltip)
   
 - Extension
+  - [Combobox](/components/combobox)
   - [Slider](/components/slider)
   - [Details Group](/components/details-group)
   - [Table Wrapper](/components/table-wrapper)

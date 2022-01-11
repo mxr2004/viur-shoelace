@@ -17,11 +17,7 @@
 /* global define */
 
 (function (factory) {
-  typeof define === 'function' && define.amd
-    ? define(factory)
-    : typeof exports === 'object'
-    ? (module.exports = factory())
-    : factory();
+  factory();
 })(function () {
   ('use strict'); // eslint-disable-line no-unused-expressions
 
