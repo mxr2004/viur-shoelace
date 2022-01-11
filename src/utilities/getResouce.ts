@@ -2,7 +2,7 @@ import { emit } from '../internal/event';
 import resouceZh from '../resources/resource.zh';
 import resouceDe from '../resources/resource.de';
 import resouceEn from '../resources/resource.en';
-let currentLocal = 'de';
+let currentLocal = 'en';
 type ResouceType = typeof resouceZh;
 /**
  * 全局 资源改变事件监听..
@@ -13,6 +13,7 @@ const resouce_changeEvent = `window-resouce-change-event`;
  * @param locale
  */
 async function setLocal(locale: string, loadOtherResouce?: (data: any) => void) {
+
   if (!getSupportLocals().includes(locale)) {
     throw new Error(`不支持的组件语言!支持的语言有${getSupportLocals().join(',')}`);
   }
@@ -79,13 +80,14 @@ const resultCache: {
  */
 function getResouceValue(keys: string): any {
   let resultMap = resultCache[getLocal()];
+
   if (resultMap && resultMap.has(keys)) {
     return resultMap.get(keys);
   }
   let array = keys.split('.');
   let obj = resourceMap[getLocal()];
   if (!obj) {
-    obj = resouceZh;
+    obj = resouceEn;
   }
   let result = obj as any;
   for (let k of array) {

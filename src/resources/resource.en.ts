@@ -1,7 +1,7 @@
 const resouce = {
   pageBtn: {
     total: (total: number) => {
-      return `共${total}条记录`;
+      return `${total} items`;
     },
     first: 'First',
     last: 'Last',
