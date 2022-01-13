@@ -30,8 +30,12 @@ export default class SlBackToTop extends LitElement {
   }
 
   initSlot(){
-    this.targetElement = document.querySelector(this.target)
-    this.targetElement.addEventListener("scroll", this.scolling)
+    if (this.target == "html"){
+      document.addEventListener("scroll", this.scolling)
+    }else{
+      this.targetElement = document.querySelector(this.target)
+      this.targetElement.addEventListener("scroll", this.scolling)
+    }
   }
 
   firstUpdated() {
