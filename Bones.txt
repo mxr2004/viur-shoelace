@@ -1,0 +1,35 @@
+sl-color > color picker with label
+sl-boolean > switch with label
+sl-select-one > RadioGroup or select with label
+
+
+
+NEW:
+
+sl-select-multi > CheckboxGroup(feat limit allowed options) select with tags
+sl-file > Use VIUR FileUpload APi
+sl-record > add a Subform
+sl-relation > use Viur Api and select from module. ggf. add subform
+
+
+inDev
+-----------------
+Text > Summernote
+
+
+
+Fertig
+-----------------
+String
+Numeric
+password
+Date
+Email
+Credential ist String
+
+
+-----------------------------------------------------------------------------------------
+NEEDED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-----------------------------------------------------------------------------------------
+inputs und selects müssen auch mit button group functionieren
+

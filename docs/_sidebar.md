@@ -87,7 +87,15 @@
   - [TreeTable](/components/treeTable)
   <!--- [EditTable](/components/tableEdit)-->
   <!--plop:component-->
-  
+
+- Bones
+  - [Bone](/components/bone)
+  - [String-Bone](/components/string-bone) 
+  - [Numeric-Bone](/components/numeric-bone)
+  - [Password-Bone](/components/password-bone)
+  - [Email-Bone](/components/email-bone)
+  - [Boolean-Bone](/components/boolean-bone)
+
 - Utilities
   <!--- [Router](/components/router)-->
   - [Animated-image](/components/animated-image)

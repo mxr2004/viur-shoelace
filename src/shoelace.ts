@@ -81,6 +81,13 @@ export { default as SlTable } from './components/table/table';
 export { default as SlRouter } from './components/router/router';
 export { default as SlRouterLink } from './components/router/router-link';
 export { default as SlTransfer } from './components/transfer/transfer';
+export { default as SlBone } from './components/bone/bone';
+
+export { default as SlStringBone } from './components/string-bone/string-bone';
+export { default as SlNumericBone } from './components/numeric-bone/numeric-bone';
+export { default as SlPasswordBone } from './components/password-bone/password-bone';
+export { default as SlEmailBone } from './components/email-bone/email-bone';
+export { default as SlBooleanBone } from './components/boolean-bone/boolean-bone';
 /* plop:component */
 
 // Utilities
