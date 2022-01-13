@@ -10,6 +10,22 @@ import path from 'path';
 import prettier from 'prettier';
 import stripComments from 'strip-css-comments';
 
+import { execSync } from 'child_process';
+
+console.log('Generating viur-theme');
+//execSync(`lessc src/ignite/shoelace.less dist/themes/viur.css`, { stdio: 'inherit' });
+let ccode = execSync(`lessc src/ignite/shoelace.less`);
+
+//const ignite_source = await fs.readFile(file, 'utf8');
+console.log(ccode)
+let ts_style=`import { css } from 'lit';
+
+export default css\`
+${ccode}
+\`;
+`;
+await fs.writeFile("./src/themes/viur.styles.ts", ts_style, 'utf8');
+
 const { outdir } = commandLineArgs({ name: 'outdir', type: String });
 const files = globbySync('./src/themes/**/*.styles.ts');
 const themesDir = path.join(outdir, 'themes');
