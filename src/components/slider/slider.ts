@@ -26,10 +26,10 @@ export default class SlSlider extends LitElement {
   @query('.glider') gliderWrapper: HTMLElement;
 
   /** Wenn set arrows are rendered */
-  @property({ type: Boolean, reflect: true }) arrows = true;
+  @property({ type: Boolean, reflect: true }) no_arrows = false;
 
   /** Wenn set navigation dots are rendered */
-  @property({ type: Boolean, reflect: true }) dots = true;
+  @property({ type: Boolean, reflect: true }) no_dots = false;
 
   /** The amount of visible Slides */
   @property({ type: Number, reflect: true }) slidesToShow = 1;
@@ -60,7 +60,7 @@ export default class SlSlider extends LitElement {
   interval: any = null;
 
   collectOtions() {
-    if (this.arrows) {
+    if (!this.no_arrows) {
       Object.assign(this.baseOptions, {
         arrows: {
           prev: '.prev',
@@ -69,7 +69,7 @@ export default class SlSlider extends LitElement {
       });
     }
 
-    if (this.dots) {
+    if (!this.no_dots) {
       Object.assign(this.baseOptions, { dots: '.dots' });
     }
 
@@ -120,20 +120,20 @@ export default class SlSlider extends LitElement {
         <div part="base" class="glider">
           <slot @slotchange=${this.handleSlotChange}> </slot>
         </div>
-
-        <sl-icon-button
+        ${!this.no_arrows?html`
+           <sl-icon-button
           part="previous-button"
           aria-label="Previous"
           class="prev glider-prev"
-          name="arrow-left"
+          name="chevron-left"
         ></sl-icon-button>
         <sl-icon-button
           part="next-button"
           aria-label="Next"
           class="next glider-next"
-          name="arrow-right"
+          name="chevron-right"
         ></sl-icon-button>
-
+        `:''}
         <div part="dots" role="tablist" class="dots"></div>
       </div>
     `;

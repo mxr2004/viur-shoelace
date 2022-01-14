@@ -22,19 +22,29 @@ export default class SlBackToTop extends LitElement {
   @property() target = "html";
 
   scrollToTop(){
-    this.targetElement.scrollTo({ top: 0, behavior: 'smooth' });
+    if (this.target == "html"){
+      document.getElementsByTagName("html")[0].scrollTo({ top: 0, behavior: 'smooth' })
+    }else{
+      this.targetElement.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+
   }
 
   scolling(e:any){
-    this.classList.toggle("scrolled", 1.5 * e.target.scrollTop > e.target.clientHeight )
+    if (this.target == "html") {
+      this.classList.toggle("scrolled", 1.5 * document.getElementsByTagName("html")[0].scrollTop > document.getElementsByTagName("html")[0].clientHeight )
+    }else{
+      this.classList.toggle("scrolled", 1.5 * e.target.scrollTop > e.target.clientHeight )
+    }
   }
 
   initSlot(){
     if (this.target == "html"){
-      document.addEventListener("scroll", this.scolling)
+      document.addEventListener("scroll", (e:Event)=>this.scolling(e))
     }else{
       this.targetElement = document.querySelector(this.target)
-      this.targetElement.addEventListener("scroll", this.scolling)
+      this.targetElement.addEventListener("scroll", (e:Event)=>this.scolling(e))
     }
   }
 

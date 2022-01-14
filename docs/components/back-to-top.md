@@ -45,7 +45,7 @@ A description of the component goes here.
     overflow-y:scroll;
     height:200px
   }
-  .containerWrapper.scrolled .toTopButton{
+  .toTopButton.scrolled{
     right:85px;
      opacity:1;
   }
