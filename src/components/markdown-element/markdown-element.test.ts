@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlMarkdownElement from './markdown-element';
+//import type SlMarkdownElement from './markdown-element';
 
 describe('<sl-markdown-element>', () => {
   it('should render a component', async () => {

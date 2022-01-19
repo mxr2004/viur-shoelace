@@ -7,7 +7,7 @@ import type { SuggestionSource } from "./combobox";
 import type SlMenu from "../menu/menu";
 import Sinon from "sinon";
 import SlMenuItem from "../menu-item/menu-item";
-
+// @ts-ignore
 const dummyDataSource: SuggestionSource = async (text) => ([
   {text: 'test', value: 'test'},
   {text: 'test2', value: 'test2value'},
@@ -36,6 +36,7 @@ describe('<sl-input>', () => {
 
   describe('with source', () => {
     it('should be accessible', async () => {
+      // @ts-ignore
       const emptyDataSource = async (search: string) => ([]);
       const el = await fixture<SlCombobox>(html`<sl-combobox label="test"></sl-combobox>`);
       el.source = emptyDataSource;
@@ -43,6 +44,7 @@ describe('<sl-input>', () => {
     });
 
     it('should show empty message when no data is available', async () => {
+      // @ts-ignore
       const emptyDataSource = async (search: string) => ([]);
       const el = await fixture<SlCombobox>(html`<sl-combobox></sl-combobox>`);
       el.source = emptyDataSource;
@@ -58,6 +60,7 @@ describe('<sl-input>', () => {
     })
 
     it('should suggest items coming back from source method', async () => {
+      // @ts-ignore
       const dummyDataSource: SuggestionSource = async (search: string) => ([
         {text: 'test', value: 'test'},
         {text: 'test2', value: 'test2'},
@@ -78,6 +81,7 @@ describe('<sl-input>', () => {
     });
 
     it('should activate first item when pressing arrow down', async () => {
+      // @ts-ignore
       const dummyDataSource: SuggestionSource = async (search: string) => ([
         {text: 'test', value: 'test'},
       ]);
@@ -203,7 +207,7 @@ describe('<sl-input>', () => {
       await sendKeys({
         press: 'Enter'
       });
-
+      // @ts-ignore
       await expect(input.value).to.equal(selectedItem.textContent);
     });
 

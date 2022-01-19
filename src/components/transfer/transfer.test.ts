@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlTransfer from './transfer';
+//import type SlTransfer from './transfer';
 
 describe('<sl-transfer>', () => {
   it('should render a component', async () => {

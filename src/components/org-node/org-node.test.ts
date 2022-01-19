@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlOrgNode from './org-node';
+//import type SlOrgNode from './org-node';
 
 describe('<sl-org-node>', () => {
   it('should render a component', async () => {

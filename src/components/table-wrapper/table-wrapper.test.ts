@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlTableWrapper from './table-wrapper';
+//import type SlTableWrapper from './table-wrapper';
 
 describe('<sl-table-wrapper>', () => {
   it('should render a component', async () => {

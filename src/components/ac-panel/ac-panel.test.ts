@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlAcPanel from './ac-panel';
+//import type SlAcPanel from './ac-panel';
 
 describe('<sl-ac-panel>', () => {
   it('should render a component', async () => {

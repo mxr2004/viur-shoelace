@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlTreeNode from './tree-node';
+//import type SlTreeNode from './tree-node';
 
 describe('<sl-tree-node>', () => {
   it('should render a component', async () => {

@@ -1,7 +1,7 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import type SlColumn from './column';
+//import type SlColumn from './column';
 
 describe('<sl-column>', () => {
   it('should render a component', async () => {
