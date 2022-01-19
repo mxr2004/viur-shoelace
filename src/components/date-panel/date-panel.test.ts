@@ -1,7 +1,6 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import '../../../dist/shoelace.js';
 import type SlDatePanel from './date-panel';
 
 describe('<sl-date-panel>', () => {

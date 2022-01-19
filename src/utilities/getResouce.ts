@@ -23,6 +23,7 @@ async function setLocal(locale: string, loadOtherResouce?: (data: any) => void) 
   }
   if (locale != currentLocal) {
     currentLocal = locale;
+    // @ts-ignore
     emit(window, resouce_changeEvent, {
       detail: {
         local: locale,

@@ -1,6 +1,4 @@
 import { expect, fixture, html } from '@open-wc/testing';
-
-import '../../../dist/shoelace.js';
 import type SlSpinnerCircle from './spinner-circle';
 
 describe('<sl-spinner-circle>', () => {

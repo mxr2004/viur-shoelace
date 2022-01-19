@@ -3,12 +3,11 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { emit } from '../../internal/event';
-import { watch } from '../../internal/watch';
-import { FormSubmitController } from '../../internal/form-control';
 import styles from './checkbox.styles';
-
-let id = 0;
+import { autoIncrement } from '~/internal/auto-increment';
+import { emit } from '~/internal/event';
+import { FormSubmitController } from '~/internal/form-control';
+import { watch } from '~/internal/watch';
 
 /**
  * @since 2.0
@@ -33,12 +32,13 @@ export default class SlCheckbox extends LitElement {
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
-  // @ts-ignore
-  private formSubmitController = new FormSubmitController(this, {
+  // @ts-expect-error -- Controller is currently unused
+  private readonly formSubmitController = new FormSubmitController(this, {
     value: (control: SlCheckbox) => (control.checked ? control.value : undefined)
   });
-  private inputId = `checkbox-${++id}`;
-  private labelId = `checkbox-label-${id}`;
+  private readonly attrId = autoIncrement();
+  private readonly inputId = `checkbox-${this.attrId}`;
+  private readonly labelId = `checkbox-label-${this.attrId}`;
 
   @state() private hasFocus = false;
 
@@ -104,13 +104,11 @@ export default class SlCheckbox extends LitElement {
     emit(this, 'sl-blur');
   }
 
-  @watch('disabled')
+  @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
-    if (this.input) {
-      this.input.disabled = this.disabled;
-      this.invalid = !this.input.checkValidity();
-    }
+    this.input.disabled = this.disabled;
+    this.invalid = !this.input.checkValidity();
   }
 
   handleFocus() {
@@ -147,7 +145,6 @@ export default class SlCheckbox extends LitElement {
           .checked=${live(this.checked)}
           .disabled=${this.disabled}
           .required=${this.required}
-          role="checkbox"
           aria-checked=${this.checked ? 'true' : 'false'}
           aria-labelledby=${this.labelId}
           @click=${this.handleClick}

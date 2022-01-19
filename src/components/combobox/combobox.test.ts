@@ -1,7 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 
-import '../../../dist/shoelace.js';
 import type SlInput from '../input/input';
 import type SlCombobox from "./combobox";
 import type { SuggestionSource } from "./combobox";

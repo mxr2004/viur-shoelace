@@ -1,4 +1,4 @@
-import { isFunction } from '../../utilities/common';
+import { isFunction } from '~/utilities/common';
 import SlColumn from '../column/column';
 /**
  * 定义排序，升序，降序,不显示

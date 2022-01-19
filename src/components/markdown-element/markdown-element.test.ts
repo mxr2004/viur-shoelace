@@ -1,7 +1,6 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 // import sinon from 'sinon';
 
-import '../../../dist/shoelace.js';
 import type SlMarkdownElement from './markdown-element';
 
 describe('<sl-markdown-element>', () => {
