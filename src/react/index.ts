@@ -1,7 +1,7 @@
 export { default as SlAcPanel } from './ac-panel';
 export { default as SlAlert } from './alert';
-export { default as SlAnimatedImage } from './animated-image';
 export { default as SlAnimation } from './animation';
+export { default as SlAnimatedImage } from './animated-image';
 export { default as SlAvatar } from './avatar';
 export { default as SlBackToTop } from './back-to-top';
 export { default as SlBadge } from './badge';
@@ -23,7 +23,6 @@ export { default as SlDialog } from './dialog';
 export { default as SlDivider } from './divider';
 export { default as SlDrawer } from './drawer';
 export { default as SlDropdown } from './dropdown';
-export { default as SlForm } from './form';
 export { default as SlFormatBytes } from './format-bytes';
 export { default as SlFormatDate } from './format-date';
 export { default as SlFormatNumber } from './format-number';
