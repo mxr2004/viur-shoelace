@@ -710,6 +710,10 @@ If you want to change the icons Shoelace uses internally, you can register an ic
     display: none;
   }
 
+  .icon-search2 [hidden] {
+      display: none;
+    }
+
   .icon-search-controls {
     display: flex;
   }
