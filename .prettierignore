@@ -3,6 +3,7 @@
 .cache
 .github
 search.json
+cspell.json
 dist
 docs/*.md
 docs/search.json

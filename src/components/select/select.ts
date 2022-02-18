@@ -44,14 +44,15 @@ import { watch } from '~/internal/watch';
  * @csspart base - The component's base wrapper.
  * @csspart clear-button - The clear button.
  * @csspart control - The container that holds the prefix, label, and suffix.
+ * @csspart display-label - The label that displays the current selection. Not available when used with `multiple`.
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart help-text - The select's help text.
  * @csspart icon - The select's icon.
  * @csspart prefix - The select's prefix.
  * @csspart label - The select's label.
  * @csspart suffix - The select's suffix.
- * @csspart menu - The select menu, an <sl-menu> element.
- * @csspart tag - The multi select option, an <sl-tag> element.
+ * @csspart menu - The select menu, an `<sl-menu>` element.
+ * @csspart tag - The multi select option, an `<sl-tag>` element.
  * @csspart tags - The container in which multi select options are rendered.
  */
 @customElement('sl-select')
@@ -253,13 +254,13 @@ export default class SlSelect extends LitElement {
       }
 
       // Focus on a menu item
-      if (event.key === 'ArrowDown' && typeof firstItem !== 'undefined') {
+      if (event.key === 'ArrowDown') {
         this.menu.setCurrentItem(firstItem);
         firstItem.focus();
         return;
       }
 
-      if (event.key === 'ArrowUp' && typeof lastItem !== 'undefined') {
+      if (event.key === 'ArrowUp') {
         this.menu.setCurrentItem(lastItem);
         lastItem.focus();
         return;
@@ -346,7 +347,7 @@ export default class SlSelect extends LitElement {
       return false;
     });
 
-    if (typeof clearButton !== 'undefined') {
+    if (clearButton) {
       event.stopPropagation();
     }
   }
@@ -411,7 +412,7 @@ export default class SlSelect extends LitElement {
     } else {
       const checkedItem = items.find(item => item.value === value[0]);
 
-      this.displayLabel = typeof checkedItem !== 'undefined' ? this.getItemLabel(checkedItem) : '';
+      this.displayLabel = checkedItem ? this.getItemLabel(checkedItem) : '';
       this.displayTags = [];
     }
   }
@@ -502,7 +503,7 @@ export default class SlSelect extends LitElement {
               <slot name="prefix"></slot>
             </span>
 
-            <div class="select__label">
+            <div part="display-label" class="select__label">
               ${this.displayTags.length > 0
                 ? html` <span part="tags" class="select__tags"> ${this.displayTags} </span> `
                 : this.displayLabel.length > 0

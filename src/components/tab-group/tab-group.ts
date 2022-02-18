@@ -116,7 +116,7 @@ export default class SlTabGroup extends LitElement {
   show(panel: string) {
     const tab = this.tabs.find(el => el.panel === panel);
 
-    if (typeof tab !== 'undefined') {
+    if (tab) {
       this.setActiveTab(tab, { scrollBehavior: 'smooth' });
     }
   }
@@ -127,7 +127,7 @@ export default class SlTabGroup extends LitElement {
     return [...(slot.assignedElements() as SlTab[])].filter(el => {
       return includeDisabled
         ? el.tagName.toLowerCase() === 'sl-tab'
-        : el.tagName.toLowerCase() === 'sl-tab' && el.disabled;
+        : el.tagName.toLowerCase() === 'sl-tab' && !el.disabled;
     });
   }
 
@@ -235,24 +235,20 @@ export default class SlTabGroup extends LitElement {
     }
   }
 
-  setActiveTab(tab: SlTab | undefined, options?: { emitEvents?: boolean; scrollBehavior?: 'auto' | 'smooth' }) {
+  setActiveTab(tab: SlTab, options?: { emitEvents?: boolean; scrollBehavior?: 'auto' | 'smooth' }) {
     options = {
       emitEvents: true,
       scrollBehavior: 'auto',
       ...options
     };
 
-    if (typeof tab !== 'undefined' && tab !== this.activeTab && !tab.disabled) {
+    if (tab !== this.activeTab && !tab.disabled) {
       const previousTab = this.activeTab;
       this.activeTab = tab;
 
       // Sync active tab and panel
-      this.tabs.forEach(el => {
-        el.active = el === this.activeTab;
-      });
-      this.panels.forEach(el => {
-        el.active = el.name === tab.panel;
-      });
+      this.tabs.map(el => (el.active = el === this.activeTab));
+      this.panels.map(el => (el.active = el.name === this.activeTab?.panel));
       this.syncIndicator();
 
       if (['top', 'bottom'].includes(this.placement)) {
@@ -260,10 +256,11 @@ export default class SlTabGroup extends LitElement {
       }
 
       // Emit events
-      if (options.emitEvents === true) {
-        if (typeof previousTab !== 'undefined') {
+      if (options.emitEvents) {
+        if (previousTab) {
           emit(this, 'sl-tab-hide', { detail: { name: previousTab.panel } });
         }
+
         emit(this, 'sl-tab-show', { detail: { name: this.activeTab.panel } });
       }
     }
@@ -273,7 +270,7 @@ export default class SlTabGroup extends LitElement {
     // Link each tab with its corresponding panel
     this.tabs.forEach(tab => {
       const panel = this.panels.find(el => el.name === tab.panel);
-      if (typeof panel !== 'undefined') {
+      if (panel) {
         tab.setAttribute('aria-controls', panel.getAttribute('id')!);
         panel.setAttribute('aria-labelledby', tab.getAttribute('id')!);
       }
@@ -284,7 +281,7 @@ export default class SlTabGroup extends LitElement {
   syncIndicator() {
     const tab = this.getActiveTab();
 
-    if (typeof tab !== 'undefined') {
+    if (tab) {
       this.indicator.style.display = 'block';
       this.repositionIndicator();
     } else {
@@ -295,7 +292,7 @@ export default class SlTabGroup extends LitElement {
   repositionIndicator() {
     const currentTab = this.getActiveTab();
 
-    if (typeof currentTab === 'undefined') {
+    if (!currentTab) {
       return;
     }
 

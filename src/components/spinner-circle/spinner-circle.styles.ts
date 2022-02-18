@@ -3,12 +3,11 @@ import componentStyles from '~/styles/component.styles';
 //language=CSS
 export default css`
   ${componentStyles}
-
   :host {
     --track-width: 2px;
     --track-color: rgb(128 128 128 / 25%);
     --indicator-color: var(--sl-color-primary-600);
-    --speed: 800ms;
+    --speed: 2s;
     display: inline-flex;
     width: 1em;
     height: 1em;
@@ -41,9 +40,15 @@ export default css`
   @keyframes spin {
     0% {
       transform: rotate(0deg);
+      stroke-dasharray: 0.01em, 2.75em;
+    }
+    50% {
+      transform: rotate(450deg);
+      stroke-dasharray: 1.375em, 1.375em;
     }
     100% {
-      transform: rotate(360deg);
+      transform: rotate(1080deg);
+      stroke-dasharray: 0.01em, 2.75em;
     }
   }
 `;

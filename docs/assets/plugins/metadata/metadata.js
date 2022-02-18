@@ -20,7 +20,7 @@
       <tbody>
         ${props
           .map(prop => {
-            const hasAttribute = typeof prop.attribute !== 'undefined';
+            const hasAttribute = !!prop.attribute;
             const isAttributeDifferent = prop.attribute !== prop.name;
             let attributeInfo = '';
 
@@ -169,7 +169,7 @@
               <tr>
                 <td class="nowrap"><code>${escapeHtml(style.name)}</code></td>
                 <td>${escapeHtml(style.description)}</td>
-                <td><code>${escapeHtml(style.default)}</code></td>
+                <td>${style.default ? `<code>${escapeHtml(style.default)}</code>` : ''}</td>
               </tr>
             `
           )
@@ -262,7 +262,7 @@
   }
 
   function escapeHtml(html) {
-    if (typeof html === 'undefined') {
+    if (!html) {
       return '';
     }
     return html

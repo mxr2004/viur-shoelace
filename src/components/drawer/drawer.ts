@@ -13,6 +13,7 @@ import { uppercaseFirstLetter } from '~/internal/string';
 import { isPreventScrollSupported } from '~/internal/support';
 import { watch } from '~/internal/watch';
 import { setDefaultAnimation, getAnimation } from '~/utilities/animation-registry';
+import { LocalizeController } from '~/utilities/localize';
 
 const hasPreventScroll = isPreventScrollSupported();
 
@@ -32,9 +33,10 @@ const hasPreventScroll = isPreventScrollSupported();
  * @event sl-after-hide - Emitted after the drawer closes and all animations are complete.
  * @event sl-initial-focus - Emitted when the drawer opens and the panel gains focus. Calling `event.preventDefault()` will
  *   prevent focus and allow you to set it on a different element in the drawer, such as an input or button.
- * @event sl-request-close - Emitted when the user attempts to close the drawer by clicking the close button, clicking the
- *   overlay, or pressing the escape key. Calling `event.preventDefault()` will prevent the drawer from closing. Avoid
- *   using this unless closing the drawer will result in destructive behavior such as data loss.
+ * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} sl-request-close - Emitted when the user attempts to
+ *   close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling
+ *   `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in
+ *   destructive behavior such as data loss.
  *
  * @csspart base - The component's base wrapper.
  * @csspart overlay - The overlay.
@@ -72,6 +74,7 @@ export default class SlDrawer extends LitElement {
   @query('.drawer__overlay') overlay: HTMLElement;
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
+  private readonly localize = new LocalizeController(this);
   private modal: Modal;
   private originalTrigger: HTMLElement | null;
 
@@ -138,8 +141,12 @@ export default class SlDrawer extends LitElement {
     return waitForEvent(this, 'sl-after-hide');
   }
 
-  private requestClose() {
-    const slRequestClose = emit(this, 'sl-request-close', { cancelable: true });
+  private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
+    const slRequestClose = emit(this, 'sl-request-close', {
+      cancelable: true,
+      detail: { source }
+    });
+
     if (slRequestClose.defaultPrevented) {
       const animation = getAnimation(this, 'drawer.denyClose');
       animateTo(this.panel, animation.keyframes, animation.options);
@@ -152,7 +159,7 @@ export default class SlDrawer extends LitElement {
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       event.stopPropagation();
-      this.requestClose();
+      this.requestClose('keyboard');
     }
   }
 
@@ -241,7 +248,7 @@ export default class SlDrawer extends LitElement {
         })}
         @keydown=${this.handleKeyDown}
       >
-        <div part="overlay" class="drawer__overlay" @click=${this.requestClose} tabindex="-1"></div>
+        <div part="overlay" class="drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
 
         <div
           part="panel"
@@ -256,16 +263,17 @@ export default class SlDrawer extends LitElement {
           ${!this.noHeader
             ? html`
                 <header part="header" class="drawer__header">
-                  <span part="title" class="drawer__title" id="title">
+                  <h2 part="title" class="drawer__title" id="title">
                     <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
-                  </span>
+                  </h2>
                   <sl-icon-button
                     exportparts="base:close-button"
                     class="drawer__close"
                     name="x"
+                    label=${this.localize.term('close')}
                     library="system"
-                    @click=${this.requestClose}
+                    @click=${() => this.requestClose('close-button')}
                   ></sl-icon-button>
                 </header>
               `
