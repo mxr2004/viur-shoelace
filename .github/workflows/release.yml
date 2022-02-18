@@ -28,7 +28,10 @@ jobs:
           cache: 'npm'
       - run: npx playwright install-deps
       - run: npm ci
-      - run: npm run vbuild
+      - run: | 
+          echo $GITHUB_WORKSPACE
+          echo $GITHUB_WORKSPACE/dist
+          npm run vbuild
       - uses: actions/upload-artifact@master
         with:
           name: buildfiles
