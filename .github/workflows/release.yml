@@ -32,7 +32,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: buildfiles
-          path: /dist
+          path: $GITHUB_WORKSPACE/dist
 
   release:
     runs-on: ubuntu-latest
@@ -42,10 +42,10 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: buildfiles
-          path: /dist
+          path: $GITHUB_WORKSPACE/dist
 
       - name: archive
-        run: cd /dist && zip shoelace.zip -r ./*
+        run: cd $GITHUB_WORKSPACE/dist && zip shoelace.zip -r ./*
 
       - name: create release
         uses: "marvinpinto/action-automatic-releases@v1.2.1"
@@ -53,4 +53,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false,
           files: |
-            /dist/shoelace.zip
+            $GITHUB_WORKSPACE/dist/shoelace.zip
