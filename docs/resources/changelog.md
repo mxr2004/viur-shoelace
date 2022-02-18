@@ -6,6 +6,29 @@ Components with the <sl-badge variant="warning" pill>Experimental</sl-badge> bad
 
 _During the beta period, these restrictions may be relaxed in the event of a mission-critical bug._ 🐛
 
+## 2.0.0-beta.69
+
+- Added `web-types.json` to improve the dev experience for WebStorm/PHPStorm users [#328](https://github.com/shoelace-style/shoelace/issues/328)
+- Fixed a bug that caused an error when pressing up/down in `<sl-select>`
+- Fixed a bug that caused `<sl-details>` to not show when double clicking the summary while open [#662](https://github.com/shoelace-style/shoelace/issues/662)
+- Fixed a bug that prevented the first/last menu item from receiving focus when pressing up/down in `<sl-dropdown>`
+- Fixed a bug that caused the active tab indicator in `<sl-tab-group>` to render incorrectly when used inside an element that animates [#671](https://github.com/shoelace-style/shoelace/pull/671)
+- Fixed a bug that allowed values in `<sl-range>` to be invalid according to its `min|max|step` [#674](https://github.com/shoelace-style/shoelace/issues/674)
+- Updated Lit to 2.1.4
+- Updated all other dependencies to latest versions
+
+## 2.0.0-beta.68
+
+- Fixed path aliases in generated files so they're relative again [#669](https://github.com/shoelace-style/shoelace/pull/669)
+
+## 2.0.0-beta.67
+
+- Fixed a TypeScript config regression introduced in [#647](https://github.com/shoelace-style/shoelace/pull/647) that removed the `rootDir`, breaking the expected build output
+
+## 2.0.0-beta.66
+
+- Attempted to fix a bug that prevented types from being generated in the build
+
 ## 2.0.0-beta.65
 
 - 🚨 BREAKING: the `unit` property of `<sl-format-bytes>` has changed to `byte | bit` instead of `bytes | bits`
