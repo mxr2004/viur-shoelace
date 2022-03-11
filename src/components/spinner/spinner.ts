@@ -7,7 +7,7 @@ import styles from './spinner.styles';
  * @status experimental
  * @viur 0.5
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - The component's internal wrapper.
  *
  * @cssproperty --indicator-color - The color of the indicator.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.

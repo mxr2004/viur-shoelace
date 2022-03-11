@@ -29,10 +29,17 @@ If you prefer to use the [dark theme](/getting-started/themes#dark-theme) instea
 If you want to load the light or dark theme based on the user's `prefers-color-scheme` setting, use this. The `media` attributes ensure that only the user's preferred theme stylesheet loads and the `onload` attribute sets the appropriate [theme class](/getting-started/themes) on the `<html>` element.
 
 ```html
-<link rel="stylesheet" media="(prefers-color-scheme:light)" href="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/themes/light.css">
-<link rel="stylesheet" media="(prefers-color-scheme:dark)"
-      href="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/themes/dark.css"
-      onload="document.documentElement.classList.add('sl-theme-dark');">
+<link
+  rel="stylesheet"
+  media="(prefers-color-scheme:light)"
+  href="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/themes/light.css"
+/>
+<link
+  rel="stylesheet"
+  media="(prefers-color-scheme:dark)"
+  href="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/themes/dark.css"
+  onload="document.documentElement.classList.add('sl-theme-dark');"
+/>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@viur/viur-shoelace@%VERSION%/dist/shoelace.js"></script>
 ```
 
@@ -51,7 +58,7 @@ It's up to you to make the source files available to your app. One way to do thi
 Once you've done that, add the following tags to your page. Make sure to update `href` and `src` so they point to the route you created.
 
 ```html
-<link rel="stylesheet" href="/shoelace/dist/themes/light.css">
+<link rel="stylesheet" href="/shoelace/dist/themes/light.css" />
 <script type="module" src="/shoelace/dist/shoelace.js"></script>
 ```
 
@@ -88,7 +95,7 @@ Cherry picking can be done from your local install or [directly from the CDN](ht
 Here's an example that loads only the button component. Again, if you're not using a module resolver, you'll need to adjust the path to point to the folder Shoelace is in.
 
 ```html
-<link rel="stylesheet" href="/path/to/shoelace/dist/themes/light.css">
+<link rel="stylesheet" href="/path/to/shoelace/dist/themes/light.css" />
 
 <script type="module" data-shoelace="/path/to/shoelace/dist">
   import '@shoelace-style/shoelace/dist/components/button/button.js';

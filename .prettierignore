@@ -1,11 +1,9 @@
 *.hbs
-*.md
 .cache
 .github
 search.json
 cspell.json
 dist
-docs/*.md
 docs/search.json
 src/components/icon/icons
 src/react/index.ts

@@ -14,7 +14,6 @@ Tags are used as labels to organize things or to indicate a selection.
 <sl-tag variant="secondary">Secondary</sl-tag>
 ```
 
-
 ```jsx react
 import { SlTag } from '@shoelace-style/shoelace/dist/react';
 
@@ -24,7 +23,7 @@ const App = () => (
     <SlTag variant="success">Success</SlTag>
     <SlTag variant="neutral">Neutral</SlTag>
     <SlTag variant="warning">Warning</SlTag>
-    <SlTag variant="danger">Danger</SlTag> 
+    <SlTag variant="danger">Danger</SlTag>
   </>
 );
 ```
@@ -68,9 +67,15 @@ import { SlTag } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
   <>
-    <SlTag size="small" pill>Small</SlTag>
-    <SlTag size="medium" pill>Medium</SlTag>
-    <SlTag size="large" pill>Large</SlTag>
+    <SlTag size="small" pill>
+      Small
+    </SlTag>
+    <SlTag size="medium" pill>
+      Medium
+    </SlTag>
+    <SlTag size="large" pill>
+      Large
+    </SlTag>
   </>
 );
 ```
@@ -92,7 +97,7 @@ Use the `removable` attribute to add a remove button to the tag.
   div.addEventListener('sl-remove', event => {
     const tag = event.target;
     tag.style.opacity = '0';
-    setTimeout(() => tag.style.opacity = '1', 2000);
+    setTimeout(() => (tag.style.opacity = '1'), 2000);
   });
 </script>
 
@@ -116,7 +121,7 @@ const App = () => {
   function handleRemove(event) {
     const tag = event.target;
     tag.style.opacity = '0';
-    setTimeout(() => tag.style.opacity = '1', 2000);
+    setTimeout(() => (tag.style.opacity = '1'), 2000);
   }
 
   return (
@@ -137,7 +142,7 @@ const App = () => {
 
       <style>{css}</style>
     </>
-  )
+  );
 };
 ```
 

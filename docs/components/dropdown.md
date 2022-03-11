@@ -67,18 +67,13 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDivider,
-  SlDropdown,
-  SlIcon,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDivider, SlDropdown, SlIcon, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
   <SlDropdown>
-    <SlButton slot="trigger" caret>Dropdown</SlButton>
+    <SlButton slot="trigger" caret>
+      Dropdown
+    </SlButton>
     <SlMenu>
       <SlMenuItem>Dropdown Item 1</SlMenuItem>
       <SlMenuItem>Dropdown Item 2</SlMenuItem>
@@ -96,7 +91,7 @@ const App = () => (
         <SlIcon slot="suffix" name="heart" />
       </SlMenuItem>
     </SlMenu>
-  </SlDropdown>  
+  </SlDropdown>
 );
 ```
 
@@ -130,12 +125,7 @@ When dropdowns are used with [menus](/components/menu), you can listen for the `
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDropdown,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDropdown, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => {
   function handleSelect(event) {
@@ -145,13 +135,15 @@ const App = () => {
 
   return (
     <SlDropdown>
-      <SlButton slot="trigger" caret>Edit</SlButton>
+      <SlButton slot="trigger" caret>
+        Edit
+      </SlButton>
       <SlMenu onSlSelect={handleSelect}>
         <SlMenuItem value="cut">Cut</SlMenuItem>
         <SlMenuItem value="copy">Copy</SlMenuItem>
         <SlMenuItem value="paste">Paste</SlMenuItem>
       </SlMenu>
-    </SlDropdown> 
+    </SlDropdown>
   );
 };
 ```
@@ -183,12 +175,7 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDropdown,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDropdown, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => {
   function handleCut() {
@@ -205,13 +192,15 @@ const App = () => {
 
   return (
     <SlDropdown>
-      <SlButton slot="trigger" caret>Edit</SlButton>
+      <SlButton slot="trigger" caret>
+        Edit
+      </SlButton>
       <SlMenu>
         <SlMenuItem onClick={handleCut}>Cut</SlMenuItem>
         <SlMenuItem onClick={handleCopy}>Copy</SlMenuItem>
         <SlMenuItem onClick={handlePaste}>Paste</SlMenuItem>
       </SlMenu>
-    </SlDropdown> 
+    </SlDropdown>
   );
 };
 ```
@@ -235,17 +224,13 @@ The preferred placement of the dropdown can be set with the `placement` attribut
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDivider,
-  SlDropdown,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDivider, SlDropdown, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
   <SlDropdown placement="top-start">
-    <SlButton slot="trigger" caret>Edit</SlButton>
+    <SlButton slot="trigger" caret>
+      Edit
+    </SlButton>
     <SlMenu>
       <SlMenuItem>Cut</SlMenuItem>
       <SlMenuItem>Copy</SlMenuItem>
@@ -254,7 +239,7 @@ const App = () => (
       <SlMenuItem>Find</SlMenuItem>
       <SlMenuItem>Replace</SlMenuItem>
     </SlMenu>
-  </SlDropdown> 
+  </SlDropdown>
 );
 ```
 
@@ -277,17 +262,13 @@ The distance from the panel to the trigger can be customized using the `distance
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDivider,
-  SlDropdown,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDivider, SlDropdown, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
   <SlDropdown distance={30}>
-    <SlButton slot="trigger" caret>Edit</SlButton>
+    <SlButton slot="trigger" caret>
+      Edit
+    </SlButton>
     <SlMenu>
       <SlMenuItem>Cut</SlMenuItem>
       <SlMenuItem>Copy</SlMenuItem>
@@ -296,7 +277,7 @@ const App = () => (
       <SlMenuItem>Find</SlMenuItem>
       <SlMenuItem>Replace</SlMenuItem>
     </SlMenu>
-  </SlDropdown> 
+  </SlDropdown>
 );
 ```
 
@@ -319,17 +300,13 @@ The offset of the panel along the trigger can be customized using the `skidding`
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDivider,
-  SlDropdown,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDivider, SlDropdown, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
   <SlDropdown skidding={30}>
-    <SlButton slot="trigger" caret>Edit</SlButton>
+    <SlButton slot="trigger" caret>
+      Edit
+    </SlButton>
     <SlMenu>
       <SlMenuItem>Cut</SlMenuItem>
       <SlMenuItem>Copy</SlMenuItem>
@@ -338,7 +315,7 @@ const App = () => (
       <SlMenuItem>Find</SlMenuItem>
       <SlMenuItem>Replace</SlMenuItem>
     </SlMenu>
-  </SlDropdown> 
+  </SlDropdown>
 );
 ```
 
@@ -377,14 +354,7 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 ```
 
 ```jsx react
-import { 
-  SlButton,
-  SlDivider,
-  SlDropdown,
-  SlIcon,
-  SlMenu,
-  SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+import { SlButton, SlDivider, SlDropdown, SlIcon, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
 
 const css = `
   .dropdown-hoist {
@@ -398,7 +368,9 @@ const App = () => (
   <>
     <div className="dropdown-hoist">
       <SlDropdown>
-        <SlButton slot="trigger" caret>No Hoist</SlButton>
+        <SlButton slot="trigger" caret>
+          No Hoist
+        </SlButton>
         <SlMenu>
           <SlMenuItem>Item 1</SlMenuItem>
           <SlMenuItem>Item 2</SlMenuItem>
@@ -407,7 +379,9 @@ const App = () => (
       </SlDropdown>
 
       <SlDropdown hoist>
-        <SlButton slot="trigger" caret>Hoist</SlButton>
+        <SlButton slot="trigger" caret>
+          Hoist
+        </SlButton>
         <SlMenu>
           <SlMenuItem>Item 1</SlMenuItem>
           <SlMenuItem>Item 2</SlMenuItem>
