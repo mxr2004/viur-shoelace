@@ -301,4 +301,25 @@ const App = () => (
 );
 ```
 
+## Vertical Card
+
+Cards can use vertical parameter to place the image on the left side.
+
+```html preview
+<sl-card class="card-image" vertical>
+  <img
+    slot="image"
+    src="https://images.unsplash.com/photo-1547191783-94d5f8f6d8b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
+    alt="A kitten walks towards camera on top of pallet."
+  />
+  This is a kitten, but not just any kitten. This kitten likes walking along pallets.
+</sl-card>
+
+<style>
+  .card-image {
+    max-width: 300px;
+  }
+</style>
+```
+
 [component-metadata:sl-card]

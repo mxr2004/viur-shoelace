@@ -3,6 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '~/internal/slot';
 import styles from './card.styles';
+import {property} from "lit/decorators.js";
 
 /**
  * @since 2.0
@@ -28,6 +29,9 @@ import styles from './card.styles';
 export default class SlCard extends LitElement {
   static styles = styles;
 
+  /** vertical card */
+  @property({ type: Boolean, reflect: true }) vertical = false;
+
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
   render() {
@@ -36,6 +40,7 @@ export default class SlCard extends LitElement {
         part="base"
         class=${classMap({
           card: true,
+          'card-vertical':this.vertical,
           'card--has-footer': this.hasSlotController.test('footer'),
           'card--has-image': this.hasSlotController.test('image'),
           'card--has-header': this.hasSlotController.test('header')
@@ -44,17 +49,18 @@ export default class SlCard extends LitElement {
         <div part="image" class="card__image">
           <slot name="image"></slot>
         </div>
+        <div class="card_group">
+          <div part="header" class="card__header">
+            <slot name="header"></slot>
+          </div>
 
-        <div part="header" class="card__header">
-          <slot name="header"></slot>
-        </div>
+          <div part="body" class="card__body">
+            <slot></slot>
+          </div>
 
-        <div part="body" class="card__body">
-          <slot></slot>
-        </div>
-
-        <div part="footer" class="card__footer">
-          <slot name="footer"></slot>
+          <div part="footer" class="card__footer">
+            <slot name="footer"></slot>
+          </div>
         </div>
       </div>
     `;

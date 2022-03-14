@@ -1,6 +1,6 @@
 import { css } from 'lit';
 import componentStyles from '~/styles/component.styles';
-
+// language=CSS
 export default css`
   ${componentStyles}
 
@@ -59,4 +59,25 @@ export default css`
   .card:not(.card--has-footer) .card__footer {
     display: none;
   }
+
+  .card_group{
+    display: flex;
+    flex-direction: column;
+  }
+  .card-vertical{
+    flex-direction: row;
+  }
+
+  .card-vertical .card__image{
+    border-top-right-radius: 0;
+    border-bottom-left-radius: var(--border-radius);
+  }
+
+  .card-vertical .card__image ::slotted(img) {
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+
 `;
