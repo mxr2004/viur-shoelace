@@ -191,20 +191,44 @@
       _.dots = _.ele.parentNode.querySelector(_.opt.dots);
     } else _.dots = _.opt.dots;
     if (!_.dots) return;
-    _.dots.innerHTML = '';
-    _.dots.classList.add('glider-dots');
 
-    for (var i = 0; i < Math.ceil(_.slides.length / _.opt.slidesToShow); ++i) {
-      var dot = document.createElement('button');
-      dot.dataset.index = i;
-      dot.setAttribute('aria-label', 'Page ' + (i + 1));
-      dot.setAttribute('role', 'tab');
-      dot.className = 'glider-dot ' + (i ? '' : 'active');
-      _.event(dot, 'add', {
-        click: _.scrollItem.bind(_, i, true)
-      });
-      _.dots.appendChild(dot);
+    try{
+      var dotChilds = _.dots.querySelector('slot').assignedNodes({ flatten: true });
+      _.opt.dotChilds = Array.prototype.filter.call(dotChilds, node => node.nodeType == Node.ELEMENT_NODE);
+
+       for(let i in _.opt.dotChilds) {
+        _.event(_.opt.dotChilds[i], 'add', {
+          click: _.scrollItem.bind(_, i, true)
+        });
+      }
+
+    }catch (e){
+      console.log(e)
     }
+    console.log(_.opt.dotChilds.length)
+    if (_.opt.dotChilds.length===0) {
+      _.opt.dotChilds = _.dots.children
+      _.dots.innerHTML = '';
+      _.dots.classList.add('glider-dots');
+
+      for (var i = 0; i < Math.ceil(_.slides.length / _.opt.slidesToShow); ++i) {
+        var dot = document.createElement('button');
+        dot.dataset.index = i;
+        dot.setAttribute('aria-label', 'Page ' + (i + 1));
+        dot.setAttribute('role', 'tab');
+        dot.className = 'glider-dot ' + (i ? '' : 'active');
+        _.event(dot, 'add', {
+          click: _.scrollItem.bind(_, i, true)
+        });
+        _.dots.appendChild(dot);
+      }
+    }
+
+
+
+
+
+
   };
 
   gliderPrototype.bindArrows = function () {
@@ -274,7 +298,7 @@
     // the last page may be less than one half of a normal page width so
     // the page is rounded down. when at the end, force the page to turn
     if (_.ele.scrollLeft + _.containerWidth >= Math.floor(_.trackWidth)) {
-      _.page = _.dots ? _.dots.children.length - 1 : 0;
+      _.page = _.dots ? _.opt.dotChilds.length - 1 : 0;
     }
 
     [].forEach.call(_.slides, function (slide, index) {
@@ -314,7 +338,7 @@
       }
     });
     if (_.dots) {
-      [].forEach.call(_.dots.children, function (dot, index) {
+      [].forEach.call(_.opt.dotChilds, function (dot, index) {
         dot.classList.toggle('active', _.page === index);
       });
     }

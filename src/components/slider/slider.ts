@@ -59,6 +59,7 @@ export default class SlSlider extends LitElement {
   gliderInstance: any = null;
   interval: any = null;
 
+
   collectOtions() {
     if (!this.no_arrows) {
       Object.assign(this.baseOptions, {
@@ -103,12 +104,18 @@ export default class SlSlider extends LitElement {
       this.gliderInstance.destroy();
     }
 
-    this.collectOtions();
-    this.gliderInstance = new Glider(this.gliderWrapper, this.baseOptions);
-    this.startAutoScroll();
+    this.buildGlider()
   }
 
   handleSlotChange() {
+    this.buildGlider()
+  }
+
+  handleDotsSlot(){
+    this.buildGlider()
+  }
+
+  buildGlider(){
     this.collectOtions();
     this.gliderInstance = new Glider(this.gliderWrapper, this.baseOptions);
     this.startAutoScroll();
@@ -134,7 +141,14 @@ export default class SlSlider extends LitElement {
           name="chevron-right"
         ></sl-icon-button>
         `:''}
-        <div part="dots" role="tablist" class="dots"></div>
+        <div class="thumbs">
+
+        <div part="dots" role="tablist" class="dots">
+          <slot name="nav" @slotchange=${this.handleDotsSlot}>
+
+          </slot>
+        </div>
+        </div>
       </div>
     `;
   }

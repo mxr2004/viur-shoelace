@@ -122,12 +122,21 @@ export default css`
     background: var(--sl-color-neutral-300);
     width: 12px;
     height: 12px;
-    margin: 7px;
+    margin: 0 7px 0 7px;
   }
   .glider-dot:hover,
   .glider-dot.active {
     background: var(--slider-dot-color);
   }
+  .thumbs{
+    margin-top:7px;
+    text-align: center;
+  }
+  .thumbs::slotted(.thumb){
+    cursor: pointer;
+    margin: 0 7px 0 7px;
+  }
+
   @media (max-width: 36em) {
     .glider::-webkit-scrollbar {
       opacity: 1;
