@@ -42,6 +42,9 @@ export default class SlIcon extends LitElement {
   /** The name of a registered custom icon library. */
   @property() library = 'default';
 
+  /** Enforce v-once for vueJs */
+  @property({reflect: true, type: Boolean, attribute: 'v-once'}) vueonce = true;
+
   connectedCallback() {
     super.connectedCallback();
     watchIcon(this);
