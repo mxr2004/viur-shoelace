@@ -64,6 +64,18 @@ Use the `slidesToShow` attribute to set the amount of visible slides.
 </sl-slider>
 ```
 
+### Show more Slides and Scroll only one Slide
+
+Use the `slidesToShow` attribute to set the amount of visible slides.
+```html preview
+<sl-slider slidesToShow=2 slidesToScroll=1>
+  <div><img src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80&sat=-100&bri=-5"/></div>
+  <div><img src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"/></div>
+  <div><img src="https://images.unsplash.com/photo-1520903074185-8eca362b3dce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"/></div>
+  <div><img src="https://images.unsplash.com/photo-1520640023173-50a135e35804?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"/></div>
+</sl-slider>
+```
+
 ### Autoscroll to Slides 
 
 Use the `autoScroll` attribute to set the scroll interval.

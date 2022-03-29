@@ -34,6 +34,9 @@ export default class SlSlider extends LitElement {
   /** The amount of visible Slides */
   @property({ type: Number, reflect: true }) slidesToShow = 1;
 
+  /** The amount of Slides to Scroll */
+  @property({ type: Number, reflect: true }) slidesToScroll = 1;
+
   /** This value is ignored unless slidesToShow is set to auto, in which it is then required. */
   @property({ type: Number, reflect: true }) itemWidth = undefined;
 
@@ -76,7 +79,7 @@ export default class SlSlider extends LitElement {
 
     Object.assign(this.baseOptions, {
       slidesToShow: this.slidesToShow === 0 ? 'auto' : this.slidesToShow,
-      slidesToScroll: this.slidesToShow === 0 ? 1 : this.slidesToShow,
+      slidesToScroll: this.slidesToScroll === 0 ? 1 : this.slidesToScroll,
       draggable: this.draggable,
       duration: this.duration,
       scrollLock: this.scrollLock,
