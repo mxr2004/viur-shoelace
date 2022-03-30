@@ -5,7 +5,7 @@ import { globbySync } from 'globby';
 export default {
   rootDir: '.',
   files: 'src/**/*.test.ts',
-  concurrentBrowsers: 3,
+  concurrentBrowsers: 2,
   nodeResolve: true,
   plugins: [
     esbuildPlugin({
@@ -16,7 +16,7 @@ export default {
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
     playwrightLauncher({ product: 'firefox' }),
-    playwrightLauncher({ product: 'webkit' })
+    //playwrightLauncher({ product: 'webkit' })
   ],
   testRunnerHtml: testFramework => `
     <html>
