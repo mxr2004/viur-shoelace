@@ -18,6 +18,34 @@ const App = () => <SlInput />;
 
 ## Examples
 
+### Labels
+
+Use the `label` attribute to give the input an accessible label. For labels that contain HTML, use the `label` slot instead.
+
+```html preview
+<sl-input label="What is your name?"></sl-input>
+```
+
+```jsx react
+import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
+
+const App = () => <SlInput label="What is your name?" />;
+```
+
+### Help Text
+
+Add descriptive help text to an input with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+
+```html preview
+<sl-input label="Nickname" help-text="What would you like people to call you?"></sl-input>
+```
+
+```jsx react
+import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
+
+const App = () => <SlInput label="Nickname" help-text="What would you like people to call you?" />;
+```
+
 ### Placeholders
 
 Use the `placeholder` attribute to add a placeholder.
@@ -234,32 +262,31 @@ const App = () => (
 );
 ```
 
-### Labels
+### Customizing Label Position
 
-Use the `label` attribute to give the input an accessible label. For labels that contain HTML, use the `label` slot instead.
-
-```html preview
-<sl-input label="What is your name?"></sl-input>
-```
-
-```jsx react
-import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput label="What is your name?" />;
-```
-
-### Help Text
-
-Add descriptive help text to an input with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+Use parts to to customize the label's position.
 
 ```html preview
-<sl-input label="Nickname" help-text="What would you like people to call you?"></sl-input>
-```
+<sl-input class="label-on-left" label="Name"></sl-input><br />
+<sl-input class="label-on-left" label="Email" type="email"></sl-input>
 
-```jsx react
-import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
+<style>
+  .label-on-left::part(form-control) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-const App = () => <SlInput label="Nickname" help-text="What would you like people to call you?" />;
+  .label-on-left::part(form-control-label) {
+    flex: 0 0 auto;
+    width: 60px;
+    text-align: right;
+  }
+
+  .label-on-left::part(form-control-input) {
+    flex: 1 1 auto;
+  }
+</style>
 ```
 
 [component-metadata:sl-input]

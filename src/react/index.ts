@@ -46,6 +46,7 @@ export { default as SlProgressBar } from './progress-bar';
 export { default as SlProgressRing } from './progress-ring';
 export { default as SlQrCode } from './qr-code';
 export { default as SlRadio } from './radio';
+export { default as SlRadioButton } from './radio-button';
 export { default as SlRadioGroup } from './radio-group';
 export { default as SlRange } from './range';
 export { default as SlRating } from './rating';

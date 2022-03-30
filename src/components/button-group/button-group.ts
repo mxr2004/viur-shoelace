@@ -2,6 +2,8 @@ import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import styles from './button-group.styles';
 
+const BUTTON_CHILDREN = ['sl-button', 'sl-radio-button', 'sl-input', 'sl-select'];
+
 /**
  * @since 2.0
  * @status stable
@@ -20,22 +22,22 @@ export default class SlButtonGroup extends LitElement {
   @property() label = '';
 
   handleFocus(event: CustomEvent) {
-    const button = findElement(event.target as HTMLElement);
+    const button = findButton(event.target as HTMLElement);
     button?.classList.add('sl-button-group__button--focus');
   }
 
   handleBlur(event: CustomEvent) {
-    const button = findElement(event.target as HTMLElement);
+    const button = findButton(event.target as HTMLElement);
     button?.classList.remove('sl-button-group__button--focus');
   }
 
   handleMouseOver(event: CustomEvent) {
-    const button = findElement(event.target as HTMLElement);
+    const button = findButton(event.target as HTMLElement);
     button?.classList.add('sl-button-group__button--hover');
   }
 
   handleMouseOut(event: CustomEvent) {
-    const button = findElement(event.target as HTMLElement);
+    const button = findButton(event.target as HTMLElement);
     button?.classList.remove('sl-button-group__button--hover');
   }
 
@@ -44,7 +46,7 @@ export default class SlButtonGroup extends LitElement {
 
     slottedElements.forEach(el => {
       const index = slottedElements.indexOf(el);
-      const button = findElement(el);
+      const button = findButton(el);
 
       if (button !== null) {
         button.classList.add('sl-button-group__button');
@@ -52,25 +54,6 @@ export default class SlButtonGroup extends LitElement {
         button.classList.toggle('sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
         button.classList.toggle('sl-button-group__button--last', index === slottedElements.length - 1);
       }
-
-      const input = findElement(el, 'sl-input');
-
-      if (input) {
-        input.classList.add('sl-button-group__button');
-        input.classList.toggle('sl-button-group__button--first', index === 0);
-        input.classList.toggle('sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
-        input.classList.toggle('sl-button-group__button--last', index === slottedElements.length - 1);
-      }
-
-      const select = findElement(el, 'sl-select');
-
-      if (select) {
-        select.classList.add('sl-button-group__button');
-        select.classList.toggle('sl-button-group__button--first', index === 0);
-        select.classList.toggle('sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
-        select.classList.toggle('sl-button-group__button--last', index === slottedElements.length - 1);
-      }
-
     });
   }
 
@@ -93,9 +76,9 @@ export default class SlButtonGroup extends LitElement {
   }
 }
 
-function findElement(el: HTMLElement,type:string="sl-button") {
+function findButton(el: HTMLElement) {
+  return BUTTON_CHILDREN.includes(el.tagName.toLowerCase()) ? el : el.querySelector(BUTTON_CHILDREN.join(','));
 
-  return el.tagName.toLowerCase() === type ? el : el.querySelector(type);
 }
 
 declare global {
